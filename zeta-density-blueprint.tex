@@ -2258,11 +2258,41 @@ smooth transition $s$, equal to zero on $(-\infty,0]$ and one on $[1,\infty)$:
  d(x)=1-s(4x-5),\qquad \omega(x)=d(x)-d(2x).
 \]
 It is nonnegative, at most one, and supported in $[5/8,3/2]\subset(1/2,2)$.
-For $x>0$ the sum $\sum_{j\in\Z}\omega(x/2^j)=1$ follows by telescoping:
-nonnegative scales sum to $1-d(2x)$ and negative scales sum to $d(2x)$.
-The sum is pointwise finite by the support bounds. Splitting a block at
-its half-scale endpoints therefore introduces no endpoint contribution.
-\source{MathCollab.Density.Stronger.SmoothPartition: dyadicStep, smoothDyadicWeight, hasSum_smoothDyadicWeight}
+\begin{lemma}[The exact signed-scale partition]\label{lem:signedpartition}
+For $x>0$,
+\[
+ \sum_{j=0}^{\infty}\omega(x/2^j)=1-d(2x),\qquad
+ \sum_{n=0}^{\infty}\omega(x2^{n+1})=d(2x),\qquad
+ \sum_{j\in\Z}\omega(x/2^j)=1.
+\]
+The second sum is the sum over the negative integer scales $j=-(n+1)$;
+it does not include the scale $j=0$.
+\end{lemma}
+\begin{proof}
+By the definition $\omega(y)=d(y)-d(2y)$, for every natural $m$ the
+nonnegative-scale partial sum telescopes exactly to
+\[
+ \sum_{j=0}^{m}\omega(x/2^j)=d(x/2^m)-d(2x).
+\]
+As $m\to\infty$, $x/2^m\to0$ and $d(x/2^m)\to d(0)=1$.
+For the negative scales, substitute $j=-(n+1)$, so that
+$x/2^j=x2^{n+1}$. Their partial sum is exactly
+\[
+ \sum_{n=0}^{m}\omega(x2^{n+1})
+ =\sum_{n=0}^{m}\bigl(d(x2^{n+1})-d(x2^{n+2})\bigr)
+ =d(2x)-d(x2^{m+2}).
+\]
+Since $x>0$, $x2^{m+2}\to\infty$; eventually it is at least $3/2$, where
+$d$ is zero. Thus this limit is $d(2x)$, not $d(x)$.
+All summands are nonnegative. Combining the disjoint index sets
+$\{0,1,\ldots\}$ and $\{-1,-2,\ldots\}$ gives
+$[1-d(2x)]+d(2x)=1$, with neither a missing nor a duplicated zero scale.
+For fixed $x>0$ the support condition also bounds all nonzero summands
+between finite integer limits, so the integer-scale sum is pointwise finite.
+\end{proof}
+\source{MathCollab.Density.Stronger.SmoothPartition: hasSum_smoothDyadicWeight_nonneg_scales, hasSum_smoothDyadicWeight_neg_scales, hasSum_smoothDyadicWeight, smoothDyadicWeight_pointwise_finite}
+Splitting a block at its half-scale endpoints introduces no endpoint
+contribution because the support is strictly contained in $(1/2,2)$.
 Its actual block is
 \[
  B_j(\rho)=\sum_{n\ge2}c_X(n)n^{-\rho}\e^{-n/Y}\omega(n/2^j).

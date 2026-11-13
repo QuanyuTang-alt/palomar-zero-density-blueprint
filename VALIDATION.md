@@ -6,7 +6,7 @@
 - Source commit: `ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0`.
 - Editable English blueprint: `zeta-density-blueprint.tex`.
 - Compiled reading copy: `zeta-density-blueprint.pdf`, 54 pages.
-- The TeX line/token counts in `validation.json` refer to the latest revision; 43 proof environments and 99 source-correspondence paragraphs are retained. These counts are descriptive, not a measure or certificate of mathematical completeness.
+- The latest TeX line/token, proof and source-correspondence counts are recorded in `validation.json`. These counts are descriptive, not a measure or certificate of mathematical completeness.
 
 ## Checks performed
 
@@ -46,6 +46,10 @@ The source's nonpositive-factor witness is retained through the exact decomposit
 `350σ²−657σ+297 = (25/14)(7σ−5)(28σ−33) + (11/2)σ + 33/14`.
 
 On the short interval the product is nonnegative and the remaining terms are positive. At `σ=5/7` the scaled difference equals `44/7`. Exact rational arithmetic also rechecked the adjacent mean-value and closed-upper-window difference identities. The erroneous `(7σ−5)(50σ−69)` expression is absent from the corrected TeX. The PDF, source-map line locations, checksums, ZIP and private remote repository are refreshed together.
+
+## Signed dyadic-scale partition audit
+
+The smooth partition is now given as a separate lemma with full finite telescoping identities. For `omega(y)=d(y)−d(2y)`, the nonnegative scales `j=0,...,m` sum to `d(x/2^m)−d(2x)`, whose limit is `1−d(2x)`. The negative scales are exactly `j=−(n+1)`; for `n=0,...,m` their sum is `d(2x)−d(x2^(m+2))`, whose limit is `d(2x)`. Thus the disjoint signed-scale sums combine to `1`. No negative-scale sum equal to `d(x)` is used. This matches both source `HasSum` declarations and the integer-scale composition in `SmoothPartition.lean`. The explicit formulas and their limits are displayed in the delivered TeX and compiled PDF.
 
 ## Archive safeguards
 

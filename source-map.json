@@ -2345,39 +2345,18 @@
       }
     },
     {
-      "tex_line": 2265,
-      "correspondence": "MathCollab.Density.Stronger.SmoothPartition: dyadicStep, smoothDyadicWeight, hasSum_smoothDyadicWeight",
+      "tex_line": 2293,
+      "correspondence": "MathCollab.Density.Stronger.SmoothPartition: hasSum_smoothDyadicWeight_nonneg_scales, hasSum_smoothDyadicWeight_neg_scales, hasSum_smoothDyadicWeight, smoothDyadicWeight_pointwise_finite",
       "locations": {
-        "MathCollab.Density.Stronger.SmoothPartition": [
+        "SmoothPartition": [
           {
             "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean"
-          }
-        ],
-        "dyadicStep": [
-          {
-            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean",
-            "line": 19,
-            "module": "MathCollab.Density.Stronger.SmoothPartition"
-          }
-        ],
-        "smoothDyadicWeight": [
-          {
-            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean",
-            "line": 47,
-            "module": "MathCollab.Density.Stronger.SmoothPartition"
-          }
-        ],
-        "hasSum_smoothDyadicWeight": [
-          {
-            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean",
-            "line": 148,
-            "module": "MathCollab.Density.Stronger.SmoothPartition"
           }
         ]
       }
     },
     {
-      "tex_line": 2287,
+      "tex_line": 2317,
       "correspondence": "MathCollab.Density.Stronger.SmoothDetector; ShortFixedFamily; ShortTaylorCover; ShortPoweredFamily",
       "locations": {
         "MathCollab.Density.Stronger.SmoothDetector": [
@@ -2403,7 +2382,7 @@
       }
     },
     {
-      "tex_line": 2315,
+      "tex_line": 2345,
       "correspondence": "MathCollab.Density.Stronger.ShortPoweredFamily.smooth_long_or_short_powered_cover; LongMultiplicityReduction.smoothLongZeroCount_physical_moment_reduction; WeightedCriticalMean; LongMeanCounting",
       "locations": {
         "MathCollab.Density.Stronger.ShortPoweredFamily.smooth_long_or_short_powered_cover": [
@@ -2433,7 +2412,7 @@
       }
     },
     {
-      "tex_line": 2350,
+      "tex_line": 2380,
       "correspondence": "MathCollab.Density.Stronger.ShortExponentAccounting.smooth_family_sum_eventually; ShortZeroCount.smoothShortZeroCount_bound",
       "locations": {
         "MathCollab.Density.Stronger.ShortExponentAccounting.smooth_family_sum_eventually": [
@@ -2453,7 +2432,7 @@
       }
     },
     {
-      "tex_line": 2387,
+      "tex_line": 2417,
       "correspondence": "MathCollab.Density.Stronger.FinalParameters.exists_stronger_loss_parameters; ConditionalDensity.stronger_density_bound_of_twelfth_moment; NativeDensity.stronger_density_bound_native",
       "locations": {
         "MathCollab.Density.Stronger.FinalParameters.exists_stronger_loss_parameters": [
@@ -2480,7 +2459,7 @@
       }
     },
     {
-      "tex_line": 2410,
+      "tex_line": 2440,
       "correspondence": "MathCollab.Density.DensityConclusion.zeta_density_bound_of_weyl; DensityTheorem.zeta_density_bound; GuthMaynard.WeylZeta; WeylPort",
       "locations": {
         "MathCollab.Density.DensityConclusion.zeta_density_bound_of_weyl": [
@@ -2505,7 +2484,7 @@
       }
     },
     {
-      "tex_line": 2423,
+      "tex_line": 2453,
       "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve; GuthMaynardStatement.coefficient_times_gap, full_curve",
       "locations": {
         "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve": [
@@ -2537,7 +2516,7 @@
       }
     },
     {
-      "tex_line": 2433,
+      "tex_line": 2463,
       "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_endpoints",
       "locations": {
         "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_endpoints": [
@@ -2550,7 +2529,7 @@
       }
     },
     {
-      "tex_line": 2467,
+      "tex_line": 2497,
       "correspondence": "GuthMaynard.Improvement.UpperWindowBudgets; UpperWindowLargeValues; UpperTypeICount; WeakUpperDensity.upper_density; GlobalDensityIngham.global_density_fixed_sigma_of_ingham",
       "locations": {
         "GuthMaynard.Improvement.UpperWindowBudgets": [
@@ -2585,7 +2564,7 @@
       }
     },
     {
-      "tex_line": 2499,
+      "tex_line": 2529,
       "correspondence": "GuthMaynard.Improvement.CurveUniformization.density_curve_uniform_on_interval",
       "locations": {
         "GuthMaynard.Improvement.CurveUniformization.density_curve_uniform_on_interval": [
@@ -2598,7 +2577,7 @@
       }
     },
     {
-      "tex_line": 2512,
+      "tex_line": 2542,
       "correspondence": "GuthMaynard.Improvement.ShortDensityUniform.zetaDensityCount_uniform_of_fixed_sigma; GlobalDensityIngham.global_density_uniform_of_ingham; GlobalDensity.global_density_uniform; GuthMaynardStatement.global_uniform",
       "locations": {
         "GuthMaynard.Improvement.ShortDensityUniform.zetaDensityCount_uniform_of_fixed_sigma": [
@@ -2637,7 +2616,7 @@
       }
     },
     {
-      "tex_line": 2535,
+      "tex_line": 2565,
       "correspondence": "GuthMaynard.Improvement.CurveModulus",
       "locations": {
         "GuthMaynard.Improvement.CurveModulus": [
@@ -2648,7 +2627,7 @@
       }
     },
     {
-      "tex_line": 2548,
+      "tex_line": 2578,
       "correspondence": "GuthMaynard.Improvement.FullCurveLeftUniform.full_density_curve_uniform_left",
       "locations": {
         "GuthMaynard.Improvement.FullCurveLeftUniform.full_density_curve_uniform_left": [
@@ -2661,7 +2640,7 @@
       }
     },
     {
-      "tex_line": 2560,
+      "tex_line": 2590,
       "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_uniform_away_boundary; GuthMaynardStatement.uniform_away_boundary",
       "locations": {
         "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_uniform_away_boundary": [
@@ -2686,7 +2665,7 @@
       }
     },
     {
-      "tex_line": 2576,
+      "tex_line": 2606,
       "correspondence": "GuthMaynard.Improvement.CurveBoundaryAudit.combined_curve_right_lt_half, combined_curve_boundary_modulus_obstruction",
       "locations": {
         "GuthMaynard.Improvement.CurveBoundaryAudit.combined_curve_right_lt_half": [
@@ -2706,7 +2685,7 @@
       }
     },
     {
-      "tex_line": 2599,
+      "tex_line": 2629,
       "correspondence": "GuthMaynardStatement.actualZeroBound_of_count, coefficient_times_gap, middle_large_values in lean/Solution.lean",
       "locations": {
         "GuthMaynardStatement.actualZeroBound_of_count": [

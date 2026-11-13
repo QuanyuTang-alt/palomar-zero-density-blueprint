@@ -4,10 +4,10 @@
   "solution_sha256_match": true,
   "source_checksum_entries_verified": 899,
   "local_import_modules": 824,
-  "tex_lines": 2721,
-  "tex_words_whitespace": 13467,
+  "tex_lines": 2751,
+  "tex_words_whitespace": 13588,
   "correspondence_paragraphs": 99,
-  "proof_environments": 43,
+  "proof_environments": 44,
   "duplicate_labels": [],
   "undefined_internal_references": [],
   "unexpected_control_characters": [],
@@ -22,5 +22,9 @@
   "human_peer_review_performed": false,
   "typeII_scaled_difference_exact": "350*sigma^2-657*sigma+297",
   "typeII_source_factor_witness_exact": "(25/14)*(7*sigma-5)*(28*sigma-33)+(11/2)*sigma+33/14",
-  "typeII_identity_exact_coefficient_check": true
+  "typeII_identity_exact_coefficient_check": true,
+  "signed_partition_nonnegative_sum": "1-d(2*x)",
+  "signed_partition_negative_sum": "d(2*x)",
+  "signed_partition_negative_indices": "j=-(n+1)",
+  "signed_partition_finite_telescoping_checked": true
 }
