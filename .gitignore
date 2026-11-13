@@ -4,3 +4,7 @@
 /*.out
 /*.xdv
 /*.synctex.gz
+/research-note/*.log
+/research-note/*.aux
+/research-note/*.out
+/research-note/*.xdv

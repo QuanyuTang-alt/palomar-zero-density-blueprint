@@ -1,6 +1,8 @@
 # Zero-density Lean-to-LaTeX study archive
 
-This is a private study archive of an English, source-faithful mathematical blueprint for Palomar entry **PALOMAR-2026-10-11-000010, version 1**, *Zero-density estimates from an improved large-values bound*.
+This is a public study archive of an English, source-faithful mathematical blueprint for Palomar entry **PALOMAR-2026-10-11-000010, version 1**, *Zero-density estimates from an improved large-values bound*. It was initially created privately and made public at the user's request.
+
+A separately revised, research-style English study note is in **[`research-note/`](research-note/README.md)**, with its complete TeX, PDF, 64-item mathematical audit and citation checks. The original blueprint and registered source snapshot remain unchanged.
 
 ## Start here
 
@@ -81,8 +83,8 @@ Use the registered toolchain in `pinned-source/lean/lean-toolchain` and the exac
 
 ## Attribution and licenses
 
-Mathematics and the upstream formalisation are attributed to Mark Lewko and the adapted developments documented in the source's notices. New upstream material is AGPL-3.0-only. Adapted MIT, MIT-0 and Apache-2.0 material retains its respective license and notices. The complete upstream source is preserved without alteration. This private generated study reconstruction does not imply approval or endorsement by any upstream author. No blanket relicensing of adapted sources is asserted.
+Mathematics and the upstream formalisation are attributed to Mark Lewko and the adapted developments documented in the source's notices. New upstream material is AGPL-3.0-only. Adapted MIT, MIT-0 and Apache-2.0 material retains its respective license and notices. The complete upstream source is preserved without alteration. This generated study reconstruction does not imply approval or endorsement by any upstream author. No blanket relicensing of adapted sources is asserted.
 
 ## Archive scope and privacy
 
-Only this task's deliverables and its registered public source materials are included. Unrelated project files, alternate-source working folders, credentials, editor state and session traces are excluded. The remote repository is created with private visibility and that visibility is checked after upload.
+Only this task's deliverables and its registered public source materials are included. Unrelated project files, alternate-source working folders, credentials, editor state and session traces are excluded. The repository was initially created privately; it is now public at the user's explicit request, with its current visibility verified using GitHub's repository API.

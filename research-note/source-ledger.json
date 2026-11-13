@@ -1,0 +1,401 @@
+{
+  "source_commit": "ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0",
+  "correspondences": [
+    {
+      "blueprint_line": 147,
+      "correspondence": "MathCollab.Density.ZetaCounting: IsNontrivialZetaZero, zetaMultiplicity, zetaZeroRegion, zetaZeroFinset, zetaSlabCount, zetaDensityCount"
+    },
+    {
+      "blueprint_line": 173,
+      "correspondence": "MathCollab.Density.ZetaCounting: zetaZeroRegion_finite, zeta_analyticOrder_ne_top, zetaMultiplicity_pos, zetaMultiplicity_local_factorization"
+    },
+    {
+      "blueprint_line": 187,
+      "correspondence": "MathCollab.Density.ZetaCounting: zetaSlabCount_mono, zetaDensityCount_mono, zetaZeroFinset_card_le_count; GuthMaynard.Improvement.GlobalDensityConditional: zetaDensityCount_zero_of_one_le"
+    },
+    {
+      "blueprint_line": 202,
+      "correspondence": "GuthMaynard.Improvement.Target: boundedPolynomial; SourceRatioAssembly: sourceRatioIndices_mem"
+    },
+    {
+      "blueprint_line": 226,
+      "correspondence": "GuthMaynard.Improvement.RealIntegerSource: source_floor_bounds, source_double_floor, boundedPolynomial_norm_integer_sum, boundedPolynomial_le_detecting_floor_add_one, detecting_floor_large_value"
+    },
+    {
+      "blueprint_line": 277,
+      "correspondence": "GuthMaynardStatement.full_curve, global_uniform, uniform_away_boundary, middle_large_values in lean/Solution.lean"
+    },
+    {
+      "blueprint_line": 305,
+      "correspondence": "GuthMaynard.Improvement.StrengthenedAffine: sourceSup, FourierSupInput, affineAverage; AffineBox: InAffineBox; AffineFiniteCover: affineIndexIntegral"
+    },
+    {
+      "blueprint_line": 322,
+      "correspondence": "GuthMaynard.Improvement.StrengthenedAffine.strengthened_unequal_affine; UnequalFullInput.unequal_affine_full_finite; MixedHeightTheorem.mixed_height_affine; MixedMaskedAffine.masked_mixed_affine"
+    },
+    {
+      "blueprint_line": 376,
+      "correspondence": "RiemannZeta.GuthMaynard.exists_uniform_gmAffineJ_le_height_finite_descent and gmAffine_proposition9_1_height_family_native in GuthMaynard/AffineSource/LargeValuesAffineHeight.lean"
+    },
+    {
+      "blueprint_line": 394,
+      "correspondence": "GuthMaynard.Improvement.UniformReduction.unequal_reduction_of_estimates; UnequalHeightTheorem.unequal_height_affine"
+    },
+    {
+      "blueprint_line": 412,
+      "correspondence": "GuthMaynard.Improvement.PoissonReduction; UnequalFullInput.supportIndexMap_term"
+    },
+    {
+      "blueprint_line": 420,
+      "correspondence": "GuthMaynard.Improvement.CompactKernel: kernelBump, compactKernel, compactKernel_mass"
+    },
+    {
+      "blueprint_line": 438,
+      "correspondence": "GuthMaynard.Improvement.Smoothing: smooth_mass, smooth_l2_contraction; MaskedAffine.compact_smoothed_general_schwartz"
+    },
+    {
+      "blueprint_line": 462,
+      "correspondence": "GuthMaynard.Improvement.MaskedAffine: compact_smoothed_full_input, compact_smoothed_unequal_affine, masked_unequal_affine"
+    },
+    {
+      "blueprint_line": 472,
+      "correspondence": "MathCollab.Density.ComparisonCutoff; GuthMaynard.Improvement.FixedCutoffs"
+    },
+    {
+      "blueprint_line": 500,
+      "correspondence": "GuthMaynard.Improvement.OperatorKernel: operatorDiscrete, operatorContinuous; OperatorCubic; CubicKernel; CenteredPoisson"
+    },
+    {
+      "blueprint_line": 523,
+      "correspondence": "GuthMaynard.Improvement.OperatorCubic.operator_frequency_cubic; OperatorCentered.operator_centered_cubic; OperatorTrace"
+    },
+    {
+      "blueprint_line": 549,
+      "correspondence": "GuthMaynard.Improvement.CenteredRestrictedCubic.centered_masked_cubic_estimate"
+    },
+    {
+      "blueprint_line": 601,
+      "correspondence": "GuthMaynard.Improvement.CubicRetainedPartition.retained_cubic_designated_partition; RadialCoordinates; CubicMixedBox; CubicFourierMoments; CubicMaskedEstimate; CubicRetainedMasked; CenteredCubicApprox; CenteredCubicBoundedHeight"
+    },
+    {
+      "blueprint_line": 633,
+      "correspondence": "GuthMaynard.Improvement.CubicScaleClosure: cubic_smoothing_width_bounds, cubic_box_polynomial_scale, cubic_box_epsilon_absorption; CubicScaledStrip; CubicFourierMoments"
+    },
+    {
+      "blueprint_line": 662,
+      "correspondence": "GuthMaynard.Improvement.CubicOrdinaryClosure.ordinary_fourier_threshold_budgets, ordinary_restricted_cubic_of_masked; CenteredRestrictedCubic.centered_restricted_cubic"
+    },
+    {
+      "blueprint_line": 681,
+      "correspondence": "GuthMaynard.Improvement.AmplifierArithmetic; AmplifierNorm; AmplifierSynthesis; AmplifierQuantitative"
+    },
+    {
+      "blueprint_line": 695,
+      "correspondence": "GuthMaynard.Improvement.AmplifierQuantitative.amplifier_time_density_witness; OperatorSchur.operator_fixed_cutoff_schur"
+    },
+    {
+      "blueprint_line": 723,
+      "correspondence": "GuthMaynard.Improvement.AmplifierNorm.amplifier_matrix_energy; AmplifierWitness.amplifier_range_witness; AmplifierSynthesis.amplifier_synthesis_factorization"
+    },
+    {
+      "blueprint_line": 741,
+      "correspondence": "GuthMaynard.Improvement.FiniteSpectral.finite_negative_trace, finite_positive_trace; OperatorSpectralComparison.operator_eigenbasis_diagonal_nonneg"
+    },
+    {
+      "blueprint_line": 762,
+      "correspondence": "GuthMaynard.Improvement.OperatorSpectralComparison.operator_finite_spectral_comparison; OperatorNuclearSpectral.operator_nuclear_spectral_comparison; OperatorFiniteTrace; OperatorTraceConvergence"
+    },
+    {
+      "blueprint_line": 773,
+      "correspondence": "GuthMaynard.Improvement.OperatorSourceMixed.operator_source_mixed"
+    },
+    {
+      "blueprint_line": 800,
+      "correspondence": "GuthMaynard.Improvement.ReflectionSourceRow.centered_source_row; MixedKernelRow.kernelMixed_time_row_bound; MixedCutoffEnvelope; OperatorMixedBound; SourceSpectralRaw"
+    },
+    {
+      "blueprint_line": 826,
+      "correspondence": "GuthMaynard.Improvement.SpectralMassAssembly.actual_spectral_mass_bound, spectral_mass_scalar; SourceSpectralRaw.source_spectral_raw"
+    },
+    {
+      "blueprint_line": 851,
+      "correspondence": "GuthMaynard.Improvement.SpectralScaleBudget: spectral_prefactor_budget, spectral_raw_scale_budget, source_spectral_scale"
+    },
+    {
+      "blueprint_line": 875,
+      "correspondence": "GuthMaynard.Improvement.SourceTailConditional.source_density_regular; TruncatedSourceAttachment.fixed_truncated_source_regular"
+    },
+    {
+      "blueprint_line": 888,
+      "correspondence": "GuthMaynard.Improvement.SourceDirichletTail.boundedPolynomial_source_sampling; SourceTailConditional.SourceSamplingBound"
+    },
+    {
+      "blueprint_line": 930,
+      "correspondence": "GuthMaynard.Improvement.ReducedRatioGeometry; SourceRatioAssembly; SamplingVariation; SamplingFourier; SourceRatioHeightBudget; SourceRatioBound"
+    },
+    {
+      "blueprint_line": 967,
+      "correspondence": "GuthMaynard.Improvement.SourceTailConditional.source_tail_of_sampling, source_tail_scalar_absorption; SourceDirichletTail.boundedPolynomial_source_tail"
+    },
+    {
+      "blueprint_line": 989,
+      "correspondence": "GuthMaynard.Improvement.SeparatedSecondMoment; ClassicalLargeValues.classical_large_values; ClassicalLevelVolume.boundedPolynomial_classical_level_volume; TruncatedSourceMeanValue.fixed_truncated_source_mass"
+    },
+    {
+      "blueprint_line": 1008,
+      "correspondence": "GuthMaynard.Improvement.ClassicalLargeValues: classical_cross_budget, classical_low_scalar, classical_floor_scale, classical_large_values"
+    },
+    {
+      "blueprint_line": 1034,
+      "correspondence": "GuthMaynard.Improvement.RemovedMassBound: removed_dyadic_classical_sum, removed_dyadic_cover, fixed_source_removed_mass"
+    },
+    {
+      "blueprint_line": 1048,
+      "correspondence": "GuthMaynard.Improvement.TruncatedSourceCubic.fixed_truncated_source_cubic"
+    },
+    {
+      "blueprint_line": 1060,
+      "correspondence": "GuthMaynard.Improvement.TruncatedSourceMomentRaw.fixed_truncated_source_moment_raw"
+    },
+    {
+      "blueprint_line": 1098,
+      "correspondence": "GuthMaynard.Improvement.MiddleRangeScales; MiddleRangeIdentities; MiddleLargeValueBranches.middle_threshold_le_length"
+    },
+    {
+      "blueprint_line": 1118,
+      "correspondence": "GuthMaynard.Improvement.MomentScalarClosure.normalized_moment_absorption, normalized_moment_power_absorption"
+    },
+    {
+      "blueprint_line": 1167,
+      "correspondence": "GuthMaynard.Improvement.MiddleMomentRaw.middle_source_moment_raw; MomentScalarClosure.raw_moment_normalized_budget; MiddleFourthMoment.middle_fourth_moment"
+    },
+    {
+      "blueprint_line": 1196,
+      "correspondence": "GuthMaynard.Improvement.SourceReproducingKernel; SourceQuarticKernel; SourceQuarticTail"
+    },
+    {
+      "blueprint_line": 1221,
+      "correspondence": "GuthMaynard.Improvement.QuarticCellGeometry; QuarticMomentExtraction.quartic_good_integral"
+    },
+    {
+      "blueprint_line": 1260,
+      "correspondence": "GuthMaynard.Improvement.QuarticMomentExtraction.quartic_moment_extraction; QuarticBadCells.quartic_bad_cells_bound; QuarticExtraction.quartic_extraction; QuarticRadiusExtraction.quartic_extraction_of_moment"
+    },
+    {
+      "blueprint_line": 1277,
+      "correspondence": "GuthMaynard.Improvement.MiddleLowLargeValues.middle_low_threshold_budget; MiddleLargeValueBranches.middle_high_threshold_budget"
+    },
+    {
+      "blueprint_line": 1305,
+      "correspondence": "GuthMaynard.Improvement.MiddleLowLargeValues.middle_large_values_low; MiddleLargeValueBranches.middle_large_values_high, middle_large_values_small; SourceTranslation; MiddleLargeValues.middle_range_large_values"
+    },
+    {
+      "blueprint_line": 1330,
+      "correspondence": "MathCollab.Density.MollifierCoefficients; DetectorMellin.detectorKernel; DetectorContour.detectorResidue; DetectorError.detectorIntegral"
+    },
+    {
+      "blueprint_line": 1349,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorIdentity.short_smoothedDetector_contour_identity, short_zeta_detector_identity; ShortDetectorContour; ShortDetectorMellin; ShortDetectorEstimates"
+    },
+    {
+      "blueprint_line": 1371,
+      "correspondence": "GuthMaynard.Improvement.ShortFiniteDetector: shortDetectorCoefficient, shortFiniteDetector, shortFiniteDetector_decomposition"
+    },
+    {
+      "blueprint_line": 1388,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorTruncation.short_detector_tail_eventually_small; ShortDetectorResidue.short_detector_residue_eventually_small; ShortDetectorGamma.short_detector_gamma_bound"
+    },
+    {
+      "blueprint_line": 1407,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorAlternative.short_detector_eventually_alternative"
+    },
+    {
+      "blueprint_line": 1439,
+      "correspondence": "MathCollab.Density.DetectorTaylorFamily.detectorTaylorWeight; GuthMaynard.Improvement.ShortDetectorTaylorFamily; ShortDetectorBlockExpansion.hasSum_shortDetectorTaylorPolynomial"
+    },
+    {
+      "blueprint_line": 1465,
+      "correspondence": "GuthMaynard.Improvement.ShortFixedDetectorFamily.shortFiniteDetector_fixed_family_eventually; ShortDetectorFamilyScales.short_detector_family_scales_eventually"
+    },
+    {
+      "blueprint_line": 1480,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorConvolution; ShortDetectorPoweredPieces.exists_shortPoweredDetector_piece"
+    },
+    {
+      "blueprint_line": 1498,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorPowerScales.short_detector_power_exists, short_detector_power_buffer_eventually, short_detector_power_piece_bounds"
+    },
+    {
+      "blueprint_line": 1538,
+      "correspondence": "GuthMaynard.Improvement.ShortPoweredDetectorFamily.shortPoweredDetectorFamily_cover, shortPoweredDetectorFamily_coefficients; ShortDetectorPoweredHeight; ShortDetectorNormalization"
+    },
+    {
+      "blueprint_line": 1560,
+      "correspondence": "GuthMaynard.Improvement.ShortDensityScale.short_density_scale_bounds, short_density_scale_identities"
+    },
+    {
+      "blueprint_line": 1605,
+      "correspondence": "GuthMaynard.Improvement.ShortWindowLargeValues.short_window_large_values; ShortDensityHeight.short_density_height_budgets"
+    },
+    {
+      "blueprint_line": 1622,
+      "correspondence": "GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_exponents"
+    },
+    {
+      "blueprint_line": 1654,
+      "correspondence": "GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_padded_time, upper_curve_mean_budget; UpperCurveLargeValues.upper_curve_large_values"
+    },
+    {
+      "blueprint_line": 1686,
+      "correspondence": "GuthMaynard.Improvement.ShortTypeICount.short_typeI_separated_count, short_typeI_zero_slab_count; UpperCurveTypeICount.upper_curve_typeI_separated_count, upper_curve_typeI_zero_slab_count"
+    },
+    {
+      "blueprint_line": 1710,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic"
+    },
+    {
+      "blueprint_line": 1738,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.SquareSource; SquareNormalized; SquareLineShift; SquareTruncation"
+    },
+    {
+      "blueprint_line": 1774,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.SquareTail; SquarePrefix; Coefficients; PrefixMean; GaussianProducer"
+    },
+    {
+      "blueprint_line": 1798,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic; GaussianProducer.exists_fourth_dyadic_budget"
+    },
+    {
+      "blueprint_line": 1817,
+      "correspondence": "GuthMaynard.Improvement.WeakShortMoment.shortTwistedNorm_fourth_le, weak_short_moment"
+    },
+    {
+      "blueprint_line": 1840,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorWindowDetection.short_detector_window_fourth; ShortTypeIIPacking.short_typeII_window_packing; ShortTypeIICount.short_typeII_count_by_moment"
+    },
+    {
+      "blueprint_line": 1870,
+      "correspondence": "GuthMaynard.Improvement.WeakTypeIICount.weak_short_typeII_count; WeakShortDensity.weak_short_typeII_zero_slab_count, weak_short_typeII_exponent_le; UpperCurveDensity.upper_curve_slab_density"
+    },
+    {
+      "blueprint_line": 1893,
+      "correspondence": "GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_unit_bin_sum_le_jensen; MathCollab.Density.LocalZeroCount; MathCollab.Density.ZetaGrowth"
+    },
+    {
+      "blueprint_line": 1919,
+      "correspondence": "GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_local_multiplicity_bound, short_zeta_separated_representatives; MathCollab.Density.ZeroSeparation"
+    },
+    {
+      "blueprint_line": 1949,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorCounting.short_slab_count_of_separated_branch_bounds; WeakShortDensity.short_slab_density; UpperCurveDensity.upper_curve_slab_density"
+    },
+    {
+      "blueprint_line": 1959,
+      "correspondence": "MathCollab.Density.ZetaConjugation"
+    },
+    {
+      "blueprint_line": 1984,
+      "correspondence": "MathCollab.Density.DensityDyadicSummation: zetaSlab_extend_power_bound, zetaPositive_bound_of_slabs, zetaDensity_bound_of_eventual_slabs"
+    },
+    {
+      "blueprint_line": 1997,
+      "correspondence": "GuthMaynard.Improvement.WeakShortDensity.short_density; UpperCurveDensity.upper_curve_density"
+    },
+    {
+      "blueprint_line": 2030,
+      "correspondence": "GuthMaynard.NativeMoment.FiniteScaleAssembly: classicalMHHExponent, corollary1110Envelope, EndpointScaleCertificate, ZetaWindowResolved"
+    },
+    {
+      "blueprint_line": 2048,
+      "correspondence": "GuthMaynard.NativeMoment.FiniteScaleAssembly.ingham_endpoint_scale_certificate"
+    },
+    {
+      "blueprint_line": 2078,
+      "correspondence": "GuthMaynard.NativeMoment.ClassicalEndpointDensity.classical_endpoint_positive_slab_native, ingham_endpoint_positive_slab_native; MediumTypeIEndpoint; TypeIIFourthMomentReduction; ClassicalDensity.ingham_zero_density_at_half_native"
+    },
+    {
+      "blueprint_line": 2105,
+      "correspondence": "GuthMaynard.Improvement.NativeIngham.ingham_lower_density; NativeDensitySourceBridge.native_N_eq_zetaDensityCount, native_density_epsilon_bound; NativeDensityConventionBridge"
+    },
+    {
+      "blueprint_line": 2126,
+      "correspondence": "MathCollab.Density.Stronger.NativePeaks.pointValue_peak_card_native; PointMean.PeaksInput; Atkinson.AtkinsonNativeLocalMean; Peaks.WidthRanges"
+    },
+    {
+      "blueprint_line": 2150,
+      "correspondence": "MathCollab.Density.Stronger.Peaks.Inputs: PointMeanInput, LocalMeanPacketInput; PointMean.Equation44.heathBrown_equation44_native"
+    },
+    {
+      "blueprint_line": 2210,
+      "correspondence": "MathCollab.Density.Stronger.AtkinsonCardinalityAbsorption; AtkinsonGlobalCardinality; Peaks.Clusters; Peaks.ClusterCount; Peaks.WidthRanges"
+    },
+    {
+      "blueprint_line": 2246,
+      "correspondence": "MathCollab.Density.Stronger.ConditionalMoment.zeta_twelfth_dyadic_of_fourth_and_tail, zeta_twelfth_physical_of_dyadic; MomentGrowth; NativeMoment.zeta_twelfth_physical_native"
+    },
+    {
+      "blueprint_line": 2293,
+      "correspondence": "MathCollab.Density.Stronger.SmoothPartition: hasSum_smoothDyadicWeight_nonneg_scales, hasSum_smoothDyadicWeight_neg_scales, hasSum_smoothDyadicWeight, smoothDyadicWeight_pointwise_finite"
+    },
+    {
+      "blueprint_line": 2317,
+      "correspondence": "MathCollab.Density.Stronger.SmoothDetector; ShortFixedFamily; ShortTaylorCover; ShortPoweredFamily"
+    },
+    {
+      "blueprint_line": 2345,
+      "correspondence": "MathCollab.Density.Stronger.ShortPoweredFamily.smooth_long_or_short_powered_cover; LongMultiplicityReduction.smoothLongZeroCount_physical_moment_reduction; WeightedCriticalMean; LongMeanCounting"
+    },
+    {
+      "blueprint_line": 2380,
+      "correspondence": "MathCollab.Density.Stronger.ShortExponentAccounting.smooth_family_sum_eventually; ShortZeroCount.smoothShortZeroCount_bound"
+    },
+    {
+      "blueprint_line": 2417,
+      "correspondence": "MathCollab.Density.Stronger.FinalParameters.exists_stronger_loss_parameters; ConditionalDensity.stronger_density_bound_of_twelfth_moment; NativeDensity.stronger_density_bound_native"
+    },
+    {
+      "blueprint_line": 2440,
+      "correspondence": "MathCollab.Density.DensityConclusion.zeta_density_bound_of_weyl; DensityTheorem.zeta_density_bound; GuthMaynard.WeylZeta; WeylPort"
+    },
+    {
+      "blueprint_line": 2453,
+      "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve; GuthMaynardStatement.coefficient_times_gap, full_curve"
+    },
+    {
+      "blueprint_line": 2463,
+      "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_endpoints"
+    },
+    {
+      "blueprint_line": 2497,
+      "correspondence": "GuthMaynard.Improvement.UpperWindowBudgets; UpperWindowLargeValues; UpperTypeICount; WeakUpperDensity.upper_density; GlobalDensityIngham.global_density_fixed_sigma_of_ingham"
+    },
+    {
+      "blueprint_line": 2529,
+      "correspondence": "GuthMaynard.Improvement.CurveUniformization.density_curve_uniform_on_interval"
+    },
+    {
+      "blueprint_line": 2542,
+      "correspondence": "GuthMaynard.Improvement.ShortDensityUniform.zetaDensityCount_uniform_of_fixed_sigma; GlobalDensityIngham.global_density_uniform_of_ingham; GlobalDensity.global_density_uniform; GuthMaynardStatement.global_uniform"
+    },
+    {
+      "blueprint_line": 2565,
+      "correspondence": "GuthMaynard.Improvement.CurveModulus"
+    },
+    {
+      "blueprint_line": 2578,
+      "correspondence": "GuthMaynard.Improvement.FullCurveLeftUniform.full_density_curve_uniform_left"
+    },
+    {
+      "blueprint_line": 2590,
+      "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_uniform_away_boundary; GuthMaynardStatement.uniform_away_boundary"
+    },
+    {
+      "blueprint_line": 2606,
+      "correspondence": "GuthMaynard.Improvement.CurveBoundaryAudit.combined_curve_right_lt_half, combined_curve_boundary_modulus_obstruction"
+    },
+    {
+      "blueprint_line": 2629,
+      "correspondence": "GuthMaynardStatement.actualZeroBound_of_count, coefficient_times_gap, middle_large_values in lean/Solution.lean"
+    }
+  ]
+}
