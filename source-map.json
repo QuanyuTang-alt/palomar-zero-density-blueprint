@@ -1,0 +1,2741 @@
+{
+  "source_commit": "ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0",
+  "mapping_method": "Exact declaration leaf or module lookup; ambiguous leaf matches are retained and not claimed to be the minimum dependency set",
+  "paragraphs": [
+    {
+      "tex_line": 147,
+      "correspondence": "MathCollab.Density.ZetaCounting: IsNontrivialZetaZero, zetaMultiplicity, zetaZeroRegion, zetaZeroFinset, zetaSlabCount, zetaDensityCount",
+      "locations": {
+        "MathCollab.Density.ZetaCounting": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean"
+          }
+        ],
+        "IsNontrivialZetaZero": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 16,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaMultiplicity": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 21,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaZeroRegion": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 53,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaZeroFinset": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 72,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaSlabCount": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 80,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaDensityCount": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 84,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 173,
+      "correspondence": "MathCollab.Density.ZetaCounting: zetaZeroRegion_finite, zeta_analyticOrder_ne_top, zetaMultiplicity_pos, zetaMultiplicity_local_factorization",
+      "locations": {
+        "MathCollab.Density.ZetaCounting": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean"
+          }
+        ],
+        "zetaZeroRegion_finite": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 56,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zeta_analyticOrder_ne_top": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 23,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaMultiplicity_pos": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 40,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaMultiplicity_local_factorization": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 46,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 187,
+      "correspondence": "MathCollab.Density.ZetaCounting: zetaSlabCount_mono, zetaDensityCount_mono, zetaZeroFinset_card_le_count; GuthMaynard.Improvement.GlobalDensityConditional: zetaDensityCount_zero_of_one_le",
+      "locations": {
+        "MathCollab.Density.ZetaCounting": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean"
+          }
+        ],
+        "zetaSlabCount_mono": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 98,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaDensityCount_mono": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 106,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "zetaZeroFinset_card_le_count": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaCounting.lean",
+            "line": 91,
+            "module": "MathCollab.Density.ZetaCounting"
+          }
+        ],
+        "GuthMaynard.Improvement.GlobalDensityConditional": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/GlobalDensityConditional.lean"
+          }
+        ],
+        "zetaDensityCount_zero_of_one_le": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/GlobalDensityConditional.lean",
+            "line": 27,
+            "module": "GuthMaynard.Improvement.GlobalDensityConditional"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 202,
+      "correspondence": "GuthMaynard.Improvement.Target: boundedPolynomial; SourceRatioAssembly: sourceRatioIndices_mem",
+      "locations": {
+        "GuthMaynard.Improvement.Target": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/Target.lean"
+          }
+        ],
+        "boundedPolynomial": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/Target.lean",
+            "line": 11,
+            "module": "GuthMaynard.Improvement.Target"
+          }
+        ],
+        "SourceRatioAssembly": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceRatioAssembly.lean"
+          }
+        ],
+        "sourceRatioIndices_mem": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceRatioAssembly.lean",
+            "line": 191,
+            "module": "GuthMaynard.Improvement.SourceRatioAssembly"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 226,
+      "correspondence": "GuthMaynard.Improvement.RealIntegerSource: source_floor_bounds, source_double_floor, boundedPolynomial_norm_integer_sum, boundedPolynomial_le_detecting_floor_add_one, detecting_floor_large_value",
+      "locations": {
+        "GuthMaynard.Improvement.RealIntegerSource": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RealIntegerSource.lean"
+          }
+        ],
+        "source_floor_bounds": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RealIntegerSource.lean",
+            "line": 12,
+            "module": "GuthMaynard.Improvement.RealIntegerSource"
+          }
+        ],
+        "source_double_floor": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RealIntegerSource.lean",
+            "line": 21,
+            "module": "GuthMaynard.Improvement.RealIntegerSource"
+          }
+        ],
+        "boundedPolynomial_norm_integer_sum": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RealIntegerSource.lean",
+            "line": 48,
+            "module": "GuthMaynard.Improvement.RealIntegerSource"
+          }
+        ],
+        "boundedPolynomial_le_detecting_floor_add_one": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RealIntegerSource.lean",
+            "line": 68,
+            "module": "GuthMaynard.Improvement.RealIntegerSource"
+          }
+        ],
+        "detecting_floor_large_value": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RealIntegerSource.lean",
+            "line": 95,
+            "module": "GuthMaynard.Improvement.RealIntegerSource"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 277,
+      "correspondence": "GuthMaynardStatement.full_curve, global_uniform, uniform_away_boundary, middle_large_values in lean/Solution.lean",
+      "locations": {
+        "GuthMaynardStatement.full_curve": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 50,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 36,
+            "module": "Challenge"
+          }
+        ],
+        "global_uniform": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 60,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 42,
+            "module": "Challenge"
+          }
+        ],
+        "uniform_away_boundary": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 70,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 49,
+            "module": "Challenge"
+          }
+        ],
+        "middle_large_values": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 82,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 57,
+            "module": "Challenge"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 305,
+      "correspondence": "GuthMaynard.Improvement.StrengthenedAffine: sourceSup, FourierSupInput, affineAverage; AffineBox: InAffineBox; AffineFiniteCover: affineIndexIntegral",
+      "locations": {
+        "GuthMaynard.Improvement.StrengthenedAffine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/StrengthenedAffine.lean"
+          }
+        ],
+        "sourceSup": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/StrengthenedAffine.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.StrengthenedAffine"
+          }
+        ],
+        "FourierSupInput": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/StrengthenedAffine.lean",
+            "line": 17,
+            "module": "GuthMaynard.Improvement.StrengthenedAffine"
+          }
+        ],
+        "affineAverage": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/StrengthenedAffine.lean",
+            "line": 80,
+            "module": "GuthMaynard.Improvement.StrengthenedAffine"
+          }
+        ],
+        "AffineBox": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AffineBox.lean"
+          }
+        ],
+        "InAffineBox": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AffineBox.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.AffineBox"
+          }
+        ],
+        "AffineFiniteCover": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AffineFiniteCover.lean"
+          }
+        ],
+        "affineIndexIntegral": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AffineFiniteCover.lean",
+            "line": 53,
+            "module": "GuthMaynard.Improvement.AffineFiniteCover"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 322,
+      "correspondence": "GuthMaynard.Improvement.StrengthenedAffine.strengthened_unequal_affine; UnequalFullInput.unequal_affine_full_finite; MixedHeightTheorem.mixed_height_affine; MixedMaskedAffine.masked_mixed_affine",
+      "locations": {
+        "GuthMaynard.Improvement.StrengthenedAffine.strengthened_unequal_affine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/StrengthenedAffine.lean",
+            "line": 88,
+            "module": "GuthMaynard.Improvement.StrengthenedAffine"
+          }
+        ],
+        "UnequalFullInput.unequal_affine_full_finite": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UnequalFullInput.lean",
+            "line": 48,
+            "module": "GuthMaynard.Improvement.UnequalFullInput"
+          }
+        ],
+        "MixedHeightTheorem.mixed_height_affine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MixedHeightTheorem.lean",
+            "line": 19,
+            "module": "GuthMaynard.Improvement.MixedHeightTheorem"
+          }
+        ],
+        "MixedMaskedAffine.masked_mixed_affine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MixedMaskedAffine.lean",
+            "line": 80,
+            "module": "GuthMaynard.Improvement.MixedMaskedAffine"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 376,
+      "correspondence": "RiemannZeta.GuthMaynard.exists_uniform_gmAffineJ_le_height_finite_descent and gmAffine_proposition9_1_height_family_native in GuthMaynard/AffineSource/LargeValuesAffineHeight.lean",
+      "locations": {
+        "RiemannZeta.GuthMaynard.exists_uniform_gmAffineJ_le_height_finite_descent": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/AffineSource/LargeValuesAffineHeight.lean",
+            "line": 703,
+            "module": "GuthMaynard.AffineSource.LargeValuesAffineHeight"
+          }
+        ],
+        "and": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Atkinson/MainReflection.lean",
+            "line": 4,
+            "module": "MathCollab.Density.Stronger.Atkinson.MainReflection"
+          },
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean",
+            "line": 106,
+            "module": "GuthMaynard.Improvement.ClassicalLargeValues"
+          },
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/TypeIFiniteWindow.lean",
+            "line": 208,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.TypeIFiniteWindow"
+          },
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/ClassicalEndpointSlab.lean",
+            "line": 5817,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.ClassicalEndpointSlab"
+          },
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/TypeIIZeros.lean",
+            "line": 89,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.TypeIIZeros"
+          },
+          {
+            "file": "pinned-source/lean/WeylPort/AFE/EulerMaclaurin.lean",
+            "line": 16,
+            "module": "WeylPort.AFE.EulerMaclaurin"
+          }
+        ],
+        "gmAffine_proposition9_1_height_family_native": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/AffineSource/LargeValuesAffineHeight.lean",
+            "line": 942,
+            "module": "GuthMaynard.AffineSource.LargeValuesAffineHeight"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 394,
+      "correspondence": "GuthMaynard.Improvement.UniformReduction.unequal_reduction_of_estimates; UnequalHeightTheorem.unequal_height_affine",
+      "locations": {
+        "GuthMaynard.Improvement.UniformReduction.unequal_reduction_of_estimates": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UniformReduction.lean",
+            "line": 19,
+            "module": "GuthMaynard.Improvement.UniformReduction"
+          }
+        ],
+        "UnequalHeightTheorem.unequal_height_affine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UnequalHeightTheorem.lean",
+            "line": 51,
+            "module": "GuthMaynard.Improvement.UnequalHeightTheorem"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 412,
+      "correspondence": "GuthMaynard.Improvement.PoissonReduction; UnequalFullInput.supportIndexMap_term",
+      "locations": {
+        "GuthMaynard.Improvement.PoissonReduction": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/PoissonReduction.lean"
+          }
+        ],
+        "UnequalFullInput.supportIndexMap_term": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UnequalFullInput.lean",
+            "line": 31,
+            "module": "GuthMaynard.Improvement.UnequalFullInput"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 420,
+      "correspondence": "GuthMaynard.Improvement.CompactKernel: kernelBump, compactKernel, compactKernel_mass",
+      "locations": {
+        "GuthMaynard.Improvement.CompactKernel": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CompactKernel.lean"
+          }
+        ],
+        "kernelBump": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CompactKernel.lean",
+            "line": 11,
+            "module": "GuthMaynard.Improvement.CompactKernel"
+          }
+        ],
+        "compactKernel": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CompactKernel.lean",
+            "line": 12,
+            "module": "GuthMaynard.Improvement.CompactKernel"
+          }
+        ],
+        "compactKernel_mass": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CompactKernel.lean",
+            "line": 20,
+            "module": "GuthMaynard.Improvement.CompactKernel"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 438,
+      "correspondence": "GuthMaynard.Improvement.Smoothing: smooth_mass, smooth_l2_contraction; MaskedAffine.compact_smoothed_general_schwartz",
+      "locations": {
+        "GuthMaynard.Improvement.Smoothing": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/Smoothing.lean"
+          }
+        ],
+        "smooth_mass": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/Smoothing.lean",
+            "line": 26,
+            "module": "GuthMaynard.Improvement.Smoothing"
+          }
+        ],
+        "smooth_l2_contraction": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/Smoothing.lean",
+            "line": 82,
+            "module": "GuthMaynard.Improvement.Smoothing"
+          }
+        ],
+        "MaskedAffine.compact_smoothed_general_schwartz": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MaskedAffine.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.MaskedAffine"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 462,
+      "correspondence": "GuthMaynard.Improvement.MaskedAffine: compact_smoothed_full_input, compact_smoothed_unequal_affine, masked_unequal_affine",
+      "locations": {
+        "GuthMaynard.Improvement.MaskedAffine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MaskedAffine.lean"
+          }
+        ],
+        "compact_smoothed_full_input": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MaskedAffine.lean",
+            "line": 39,
+            "module": "GuthMaynard.Improvement.MaskedAffine"
+          }
+        ],
+        "compact_smoothed_unequal_affine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MaskedAffine.lean",
+            "line": 75,
+            "module": "GuthMaynard.Improvement.MaskedAffine"
+          }
+        ],
+        "masked_unequal_affine": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MaskedAffine.lean",
+            "line": 112,
+            "module": "GuthMaynard.Improvement.MaskedAffine"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 472,
+      "correspondence": "MathCollab.Density.ComparisonCutoff; GuthMaynard.Improvement.FixedCutoffs",
+      "locations": {
+        "MathCollab.Density.ComparisonCutoff": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ComparisonCutoff.lean",
+            "line": 16,
+            "module": "MathCollab.Density.ComparisonCutoff"
+          }
+        ],
+        "GuthMaynard.Improvement.FixedCutoffs": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/FixedCutoffs.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 500,
+      "correspondence": "GuthMaynard.Improvement.OperatorKernel: operatorDiscrete, operatorContinuous; OperatorCubic; CubicKernel; CenteredPoisson",
+      "locations": {
+        "GuthMaynard.Improvement.OperatorKernel": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorKernel.lean"
+          }
+        ],
+        "operatorDiscrete": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorKernel.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.OperatorKernel"
+          }
+        ],
+        "operatorContinuous": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorKernel.lean",
+            "line": 21,
+            "module": "GuthMaynard.Improvement.OperatorKernel"
+          }
+        ],
+        "OperatorCubic": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorCubic.lean"
+          }
+        ],
+        "CubicKernel": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicKernel.lean"
+          }
+        ],
+        "CenteredPoisson": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CenteredPoisson.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 523,
+      "correspondence": "GuthMaynard.Improvement.OperatorCubic.operator_frequency_cubic; OperatorCentered.operator_centered_cubic; OperatorTrace",
+      "locations": {
+        "GuthMaynard.Improvement.OperatorCubic.operator_frequency_cubic": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorCubic.lean",
+            "line": 42,
+            "module": "GuthMaynard.Improvement.OperatorCubic"
+          }
+        ],
+        "OperatorCentered.operator_centered_cubic": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorCentered.lean",
+            "line": 157,
+            "module": "GuthMaynard.Improvement.OperatorCentered"
+          }
+        ],
+        "OperatorTrace": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorTrace.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 549,
+      "correspondence": "GuthMaynard.Improvement.CenteredRestrictedCubic.centered_masked_cubic_estimate",
+      "locations": {
+        "GuthMaynard.Improvement.CenteredRestrictedCubic.centered_masked_cubic_estimate": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CenteredRestrictedCubic.lean",
+            "line": 17,
+            "module": "GuthMaynard.Improvement.CenteredRestrictedCubic"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 601,
+      "correspondence": "GuthMaynard.Improvement.CubicRetainedPartition.retained_cubic_designated_partition; RadialCoordinates; CubicMixedBox; CubicFourierMoments; CubicMaskedEstimate; CubicRetainedMasked; CenteredCubicApprox; CenteredCubicBoundedHeight",
+      "locations": {
+        "GuthMaynard.Improvement.CubicRetainedPartition.retained_cubic_designated_partition": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicRetainedPartition.lean",
+            "line": 74,
+            "module": "GuthMaynard.Improvement.CubicRetainedPartition"
+          }
+        ],
+        "RadialCoordinates": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RadialCoordinates.lean"
+          }
+        ],
+        "CubicMixedBox": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicMixedBox.lean"
+          }
+        ],
+        "CubicFourierMoments": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicFourierMoments.lean"
+          }
+        ],
+        "CubicMaskedEstimate": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicMaskedEstimate.lean"
+          }
+        ],
+        "CubicRetainedMasked": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicRetainedMasked.lean"
+          }
+        ],
+        "CenteredCubicApprox": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CenteredCubicApprox.lean"
+          }
+        ],
+        "CenteredCubicBoundedHeight": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CenteredCubicBoundedHeight.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 633,
+      "correspondence": "GuthMaynard.Improvement.CubicScaleClosure: cubic_smoothing_width_bounds, cubic_box_polynomial_scale, cubic_box_epsilon_absorption; CubicScaledStrip; CubicFourierMoments",
+      "locations": {
+        "GuthMaynard.Improvement.CubicScaleClosure": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicScaleClosure.lean"
+          }
+        ],
+        "cubic_smoothing_width_bounds": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicScaleClosure.lean",
+            "line": 12,
+            "module": "GuthMaynard.Improvement.CubicScaleClosure"
+          }
+        ],
+        "cubic_box_polynomial_scale": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicScaleClosure.lean",
+            "line": 76,
+            "module": "GuthMaynard.Improvement.CubicScaleClosure"
+          }
+        ],
+        "cubic_box_epsilon_absorption": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicScaleClosure.lean",
+            "line": 124,
+            "module": "GuthMaynard.Improvement.CubicScaleClosure"
+          }
+        ],
+        "CubicScaledStrip": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicScaledStrip.lean"
+          }
+        ],
+        "CubicFourierMoments": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicFourierMoments.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 662,
+      "correspondence": "GuthMaynard.Improvement.CubicOrdinaryClosure.ordinary_fourier_threshold_budgets, ordinary_restricted_cubic_of_masked; CenteredRestrictedCubic.centered_restricted_cubic",
+      "locations": {
+        "GuthMaynard.Improvement.CubicOrdinaryClosure.ordinary_fourier_threshold_budgets": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicOrdinaryClosure.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.CubicOrdinaryClosure"
+          }
+        ],
+        "ordinary_restricted_cubic_of_masked": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CubicOrdinaryClosure.lean",
+            "line": 39,
+            "module": "GuthMaynard.Improvement.CubicOrdinaryClosure"
+          }
+        ],
+        "CenteredRestrictedCubic.centered_restricted_cubic": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CenteredRestrictedCubic.lean",
+            "line": 95,
+            "module": "GuthMaynard.Improvement.CenteredRestrictedCubic"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 681,
+      "correspondence": "GuthMaynard.Improvement.AmplifierArithmetic; AmplifierNorm; AmplifierSynthesis; AmplifierQuantitative",
+      "locations": {
+        "GuthMaynard.Improvement.AmplifierArithmetic": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierArithmetic.lean"
+          }
+        ],
+        "AmplifierNorm": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierNorm.lean"
+          }
+        ],
+        "AmplifierSynthesis": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierSynthesis.lean"
+          }
+        ],
+        "AmplifierQuantitative": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierQuantitative.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 695,
+      "correspondence": "GuthMaynard.Improvement.AmplifierQuantitative.amplifier_time_density_witness; OperatorSchur.operator_fixed_cutoff_schur",
+      "locations": {
+        "GuthMaynard.Improvement.AmplifierQuantitative.amplifier_time_density_witness": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierQuantitative.lean",
+            "line": 62,
+            "module": "GuthMaynard.Improvement.AmplifierQuantitative"
+          }
+        ],
+        "OperatorSchur.operator_fixed_cutoff_schur": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorSchur.lean",
+            "line": 111,
+            "module": "GuthMaynard.Improvement.OperatorSchur"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 723,
+      "correspondence": "GuthMaynard.Improvement.AmplifierNorm.amplifier_matrix_energy; AmplifierWitness.amplifier_range_witness; AmplifierSynthesis.amplifier_synthesis_factorization",
+      "locations": {
+        "GuthMaynard.Improvement.AmplifierNorm.amplifier_matrix_energy": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierNorm.lean",
+            "line": 88,
+            "module": "GuthMaynard.Improvement.AmplifierNorm"
+          }
+        ],
+        "AmplifierWitness.amplifier_range_witness": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierWitness.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.AmplifierWitness"
+          }
+        ],
+        "AmplifierSynthesis.amplifier_synthesis_factorization": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/AmplifierSynthesis.lean",
+            "line": 41,
+            "module": "GuthMaynard.Improvement.AmplifierSynthesis"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 741,
+      "correspondence": "GuthMaynard.Improvement.FiniteSpectral.finite_negative_trace, finite_positive_trace; OperatorSpectralComparison.operator_eigenbasis_diagonal_nonneg",
+      "locations": {
+        "GuthMaynard.Improvement.FiniteSpectral.finite_negative_trace": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/FiniteSpectral.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.FiniteSpectral"
+          }
+        ],
+        "finite_positive_trace": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/FiniteSpectral.lean",
+            "line": 32,
+            "module": "GuthMaynard.Improvement.FiniteSpectral"
+          }
+        ],
+        "OperatorSpectralComparison.operator_eigenbasis_diagonal_nonneg": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorSpectralComparison.lean",
+            "line": 41,
+            "module": "GuthMaynard.Improvement.OperatorSpectralComparison"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 762,
+      "correspondence": "GuthMaynard.Improvement.OperatorSpectralComparison.operator_finite_spectral_comparison; OperatorNuclearSpectral.operator_nuclear_spectral_comparison; OperatorFiniteTrace; OperatorTraceConvergence",
+      "locations": {
+        "GuthMaynard.Improvement.OperatorSpectralComparison.operator_finite_spectral_comparison": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorSpectralComparison.lean",
+            "line": 59,
+            "module": "GuthMaynard.Improvement.OperatorSpectralComparison"
+          }
+        ],
+        "OperatorNuclearSpectral.operator_nuclear_spectral_comparison": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorNuclearSpectral.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.OperatorNuclearSpectral"
+          }
+        ],
+        "OperatorFiniteTrace": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorFiniteTrace.lean"
+          }
+        ],
+        "OperatorTraceConvergence": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorTraceConvergence.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 773,
+      "correspondence": "GuthMaynard.Improvement.OperatorSourceMixed.operator_source_mixed",
+      "locations": {
+        "GuthMaynard.Improvement.OperatorSourceMixed.operator_source_mixed": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorSourceMixed.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.OperatorSourceMixed"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 800,
+      "correspondence": "GuthMaynard.Improvement.ReflectionSourceRow.centered_source_row; MixedKernelRow.kernelMixed_time_row_bound; MixedCutoffEnvelope; OperatorMixedBound; SourceSpectralRaw",
+      "locations": {
+        "GuthMaynard.Improvement.ReflectionSourceRow.centered_source_row": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ReflectionSourceRow.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.ReflectionSourceRow"
+          }
+        ],
+        "MixedKernelRow.kernelMixed_time_row_bound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MixedKernelRow.lean",
+            "line": 100,
+            "module": "GuthMaynard.Improvement.MixedKernelRow"
+          }
+        ],
+        "MixedCutoffEnvelope": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MixedCutoffEnvelope.lean"
+          }
+        ],
+        "OperatorMixedBound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/OperatorMixedBound.lean"
+          }
+        ],
+        "SourceSpectralRaw": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceSpectralRaw.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 826,
+      "correspondence": "GuthMaynard.Improvement.SpectralMassAssembly.actual_spectral_mass_bound, spectral_mass_scalar; SourceSpectralRaw.source_spectral_raw",
+      "locations": {
+        "GuthMaynard.Improvement.SpectralMassAssembly.actual_spectral_mass_bound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SpectralMassAssembly.lean",
+            "line": 57,
+            "module": "GuthMaynard.Improvement.SpectralMassAssembly"
+          }
+        ],
+        "spectral_mass_scalar": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SpectralMassAssembly.lean",
+            "line": 37,
+            "module": "GuthMaynard.Improvement.SpectralMassAssembly"
+          }
+        ],
+        "SourceSpectralRaw.source_spectral_raw": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceSpectralRaw.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.SourceSpectralRaw"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 851,
+      "correspondence": "GuthMaynard.Improvement.SpectralScaleBudget: spectral_prefactor_budget, spectral_raw_scale_budget, source_spectral_scale",
+      "locations": {
+        "GuthMaynard.Improvement.SpectralScaleBudget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SpectralScaleBudget.lean"
+          }
+        ],
+        "spectral_prefactor_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SpectralScaleBudget.lean",
+            "line": 11,
+            "module": "GuthMaynard.Improvement.SpectralScaleBudget"
+          }
+        ],
+        "spectral_raw_scale_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SpectralScaleBudget.lean",
+            "line": 43,
+            "module": "GuthMaynard.Improvement.SpectralScaleBudget"
+          }
+        ],
+        "source_spectral_scale": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SpectralScaleBudget.lean",
+            "line": 90,
+            "module": "GuthMaynard.Improvement.SpectralScaleBudget"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 875,
+      "correspondence": "GuthMaynard.Improvement.SourceTailConditional.source_density_regular; TruncatedSourceAttachment.fixed_truncated_source_regular",
+      "locations": {
+        "GuthMaynard.Improvement.SourceTailConditional.source_density_regular": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceTailConditional.lean",
+            "line": 18,
+            "module": "GuthMaynard.Improvement.SourceTailConditional"
+          }
+        ],
+        "TruncatedSourceAttachment.fixed_truncated_source_regular": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/TruncatedSourceAttachment.lean",
+            "line": 44,
+            "module": "GuthMaynard.Improvement.TruncatedSourceAttachment"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 888,
+      "correspondence": "GuthMaynard.Improvement.SourceDirichletTail.boundedPolynomial_source_sampling; SourceTailConditional.SourceSamplingBound",
+      "locations": {
+        "GuthMaynard.Improvement.SourceDirichletTail.boundedPolynomial_source_sampling": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceDirichletTail.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.SourceDirichletTail"
+          }
+        ],
+        "SourceTailConditional.SourceSamplingBound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceTailConditional.lean",
+            "line": 65,
+            "module": "GuthMaynard.Improvement.SourceTailConditional"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 930,
+      "correspondence": "GuthMaynard.Improvement.ReducedRatioGeometry; SourceRatioAssembly; SamplingVariation; SamplingFourier; SourceRatioHeightBudget; SourceRatioBound",
+      "locations": {
+        "GuthMaynard.Improvement.ReducedRatioGeometry": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ReducedRatioGeometry.lean"
+          }
+        ],
+        "SourceRatioAssembly": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceRatioAssembly.lean"
+          }
+        ],
+        "SamplingVariation": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SamplingVariation.lean"
+          }
+        ],
+        "SamplingFourier": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SamplingFourier.lean"
+          }
+        ],
+        "SourceRatioHeightBudget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceRatioHeightBudget.lean"
+          }
+        ],
+        "SourceRatioBound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceRatioBound.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 967,
+      "correspondence": "GuthMaynard.Improvement.SourceTailConditional.source_tail_of_sampling, source_tail_scalar_absorption; SourceDirichletTail.boundedPolynomial_source_tail",
+      "locations": {
+        "GuthMaynard.Improvement.SourceTailConditional.source_tail_of_sampling": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceTailConditional.lean",
+            "line": 87,
+            "module": "GuthMaynard.Improvement.SourceTailConditional"
+          }
+        ],
+        "source_tail_scalar_absorption": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceTailConditional.lean",
+            "line": 71,
+            "module": "GuthMaynard.Improvement.SourceTailConditional"
+          }
+        ],
+        "SourceDirichletTail.boundedPolynomial_source_tail": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceDirichletTail.lean",
+            "line": 43,
+            "module": "GuthMaynard.Improvement.SourceDirichletTail"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 989,
+      "correspondence": "GuthMaynard.Improvement.SeparatedSecondMoment; ClassicalLargeValues.classical_large_values; ClassicalLevelVolume.boundedPolynomial_classical_level_volume; TruncatedSourceMeanValue.fixed_truncated_source_mass",
+      "locations": {
+        "GuthMaynard.Improvement.SeparatedSecondMoment": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SeparatedSecondMoment.lean"
+          }
+        ],
+        "ClassicalLargeValues.classical_large_values": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean",
+            "line": 107,
+            "module": "GuthMaynard.Improvement.ClassicalLargeValues"
+          }
+        ],
+        "ClassicalLevelVolume.boundedPolynomial_classical_level_volume": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLevelVolume.lean",
+            "line": 47,
+            "module": "GuthMaynard.Improvement.ClassicalLevelVolume"
+          }
+        ],
+        "TruncatedSourceMeanValue.fixed_truncated_source_mass": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/TruncatedSourceMeanValue.lean",
+            "line": 11,
+            "module": "GuthMaynard.Improvement.TruncatedSourceMeanValue"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1008,
+      "correspondence": "GuthMaynard.Improvement.ClassicalLargeValues: classical_cross_budget, classical_low_scalar, classical_floor_scale, classical_large_values",
+      "locations": {
+        "GuthMaynard.Improvement.ClassicalLargeValues": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean"
+          }
+        ],
+        "classical_cross_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean",
+            "line": 16,
+            "module": "GuthMaynard.Improvement.ClassicalLargeValues"
+          }
+        ],
+        "classical_low_scalar": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean",
+            "line": 69,
+            "module": "GuthMaynard.Improvement.ClassicalLargeValues"
+          }
+        ],
+        "classical_floor_scale": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean",
+            "line": 42,
+            "module": "GuthMaynard.Improvement.ClassicalLargeValues"
+          }
+        ],
+        "classical_large_values": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ClassicalLargeValues.lean",
+            "line": 107,
+            "module": "GuthMaynard.Improvement.ClassicalLargeValues"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1034,
+      "correspondence": "GuthMaynard.Improvement.RemovedMassBound: removed_dyadic_classical_sum, removed_dyadic_cover, fixed_source_removed_mass",
+      "locations": {
+        "GuthMaynard.Improvement.RemovedMassBound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RemovedMassBound.lean"
+          }
+        ],
+        "removed_dyadic_classical_sum": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RemovedMassBound.lean",
+            "line": 39,
+            "module": "GuthMaynard.Improvement.RemovedMassBound"
+          }
+        ],
+        "removed_dyadic_cover": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RemovedMassBound.lean",
+            "line": 62,
+            "module": "GuthMaynard.Improvement.RemovedMassBound"
+          }
+        ],
+        "fixed_source_removed_mass": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/RemovedMassBound.lean",
+            "line": 93,
+            "module": "GuthMaynard.Improvement.RemovedMassBound"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1048,
+      "correspondence": "GuthMaynard.Improvement.TruncatedSourceCubic.fixed_truncated_source_cubic",
+      "locations": {
+        "GuthMaynard.Improvement.TruncatedSourceCubic.fixed_truncated_source_cubic": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/TruncatedSourceCubic.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.TruncatedSourceCubic"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1060,
+      "correspondence": "GuthMaynard.Improvement.TruncatedSourceMomentRaw.fixed_truncated_source_moment_raw",
+      "locations": {
+        "GuthMaynard.Improvement.TruncatedSourceMomentRaw.fixed_truncated_source_moment_raw": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/TruncatedSourceMomentRaw.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.TruncatedSourceMomentRaw"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1098,
+      "correspondence": "GuthMaynard.Improvement.MiddleRangeScales; MiddleRangeIdentities; MiddleLargeValueBranches.middle_threshold_le_length",
+      "locations": {
+        "GuthMaynard.Improvement.MiddleRangeScales": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleRangeScales.lean"
+          }
+        ],
+        "MiddleRangeIdentities": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleRangeIdentities.lean"
+          }
+        ],
+        "MiddleLargeValueBranches.middle_threshold_le_length": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLargeValueBranches.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.MiddleLargeValueBranches"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1118,
+      "correspondence": "GuthMaynard.Improvement.MomentScalarClosure.normalized_moment_absorption, normalized_moment_power_absorption",
+      "locations": {
+        "GuthMaynard.Improvement.MomentScalarClosure.normalized_moment_absorption": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MomentScalarClosure.lean",
+            "line": 11,
+            "module": "GuthMaynard.Improvement.MomentScalarClosure"
+          }
+        ],
+        "normalized_moment_power_absorption": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MomentScalarClosure.lean",
+            "line": 43,
+            "module": "GuthMaynard.Improvement.MomentScalarClosure"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1167,
+      "correspondence": "GuthMaynard.Improvement.MiddleMomentRaw.middle_source_moment_raw; MomentScalarClosure.raw_moment_normalized_budget; MiddleFourthMoment.middle_fourth_moment",
+      "locations": {
+        "GuthMaynard.Improvement.MiddleMomentRaw.middle_source_moment_raw": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleMomentRaw.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.MiddleMomentRaw"
+          }
+        ],
+        "MomentScalarClosure.raw_moment_normalized_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MomentScalarClosure.lean",
+            "line": 67,
+            "module": "GuthMaynard.Improvement.MomentScalarClosure"
+          }
+        ],
+        "MiddleFourthMoment.middle_fourth_moment": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleFourthMoment.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.MiddleFourthMoment"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1196,
+      "correspondence": "GuthMaynard.Improvement.SourceReproducingKernel; SourceQuarticKernel; SourceQuarticTail",
+      "locations": {
+        "GuthMaynard.Improvement.SourceReproducingKernel": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceReproducingKernel.lean"
+          }
+        ],
+        "SourceQuarticKernel": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceQuarticKernel.lean"
+          }
+        ],
+        "SourceQuarticTail": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceQuarticTail.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1221,
+      "correspondence": "GuthMaynard.Improvement.QuarticCellGeometry; QuarticMomentExtraction.quartic_good_integral",
+      "locations": {
+        "GuthMaynard.Improvement.QuarticCellGeometry": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/QuarticCellGeometry.lean"
+          }
+        ],
+        "QuarticMomentExtraction.quartic_good_integral": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/QuarticMomentExtraction.lean",
+            "line": 27,
+            "module": "GuthMaynard.Improvement.QuarticMomentExtraction"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1260,
+      "correspondence": "GuthMaynard.Improvement.QuarticMomentExtraction.quartic_moment_extraction; QuarticBadCells.quartic_bad_cells_bound; QuarticExtraction.quartic_extraction; QuarticRadiusExtraction.quartic_extraction_of_moment",
+      "locations": {
+        "GuthMaynard.Improvement.QuarticMomentExtraction.quartic_moment_extraction": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/QuarticMomentExtraction.lean",
+            "line": 58,
+            "module": "GuthMaynard.Improvement.QuarticMomentExtraction"
+          }
+        ],
+        "QuarticBadCells.quartic_bad_cells_bound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/QuarticBadCells.lean",
+            "line": 49,
+            "module": "GuthMaynard.Improvement.QuarticBadCells"
+          }
+        ],
+        "QuarticExtraction.quartic_extraction": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/QuarticExtraction.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.QuarticExtraction"
+          }
+        ],
+        "QuarticRadiusExtraction.quartic_extraction_of_moment": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/QuarticRadiusExtraction.lean",
+            "line": 24,
+            "module": "GuthMaynard.Improvement.QuarticRadiusExtraction"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1277,
+      "correspondence": "GuthMaynard.Improvement.MiddleLowLargeValues.middle_low_threshold_budget; MiddleLargeValueBranches.middle_high_threshold_budget",
+      "locations": {
+        "GuthMaynard.Improvement.MiddleLowLargeValues.middle_low_threshold_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLowLargeValues.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.MiddleLowLargeValues"
+          }
+        ],
+        "MiddleLargeValueBranches.middle_high_threshold_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLargeValueBranches.lean",
+            "line": 31,
+            "module": "GuthMaynard.Improvement.MiddleLargeValueBranches"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1305,
+      "correspondence": "GuthMaynard.Improvement.MiddleLowLargeValues.middle_large_values_low; MiddleLargeValueBranches.middle_large_values_high, middle_large_values_small; SourceTranslation; MiddleLargeValues.middle_range_large_values",
+      "locations": {
+        "GuthMaynard.Improvement.MiddleLowLargeValues.middle_large_values_low": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLowLargeValues.lean",
+            "line": 41,
+            "module": "GuthMaynard.Improvement.MiddleLowLargeValues"
+          }
+        ],
+        "MiddleLargeValueBranches.middle_large_values_high": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLargeValueBranches.lean",
+            "line": 45,
+            "module": "GuthMaynard.Improvement.MiddleLargeValueBranches"
+          }
+        ],
+        "middle_large_values_small": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLargeValueBranches.lean",
+            "line": 68,
+            "module": "GuthMaynard.Improvement.MiddleLargeValueBranches"
+          }
+        ],
+        "SourceTranslation": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/SourceTranslation.lean"
+          }
+        ],
+        "MiddleLargeValues.middle_range_large_values": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/MiddleLargeValues.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.MiddleLargeValues"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1330,
+      "correspondence": "MathCollab.Density.MollifierCoefficients; DetectorMellin.detectorKernel; DetectorContour.detectorResidue; DetectorError.detectorIntegral",
+      "locations": {
+        "MathCollab.Density.MollifierCoefficients": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/MollifierCoefficients.lean"
+          }
+        ],
+        "DetectorMellin.detectorKernel": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DetectorMellin.lean",
+            "line": 446,
+            "module": "MathCollab.Density.DetectorMellin"
+          }
+        ],
+        "DetectorContour.detectorResidue": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DetectorContour.lean",
+            "line": 38,
+            "module": "MathCollab.Density.DetectorContour"
+          }
+        ],
+        "DetectorError.detectorIntegral": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DetectorError.lean",
+            "line": 15,
+            "module": "MathCollab.Density.DetectorError"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1349,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorIdentity.short_smoothedDetector_contour_identity, short_zeta_detector_identity; ShortDetectorContour; ShortDetectorMellin; ShortDetectorEstimates",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorIdentity.short_smoothedDetector_contour_identity": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorIdentity.lean",
+            "line": 20,
+            "module": "GuthMaynard.Improvement.ShortDetectorIdentity"
+          }
+        ],
+        "short_zeta_detector_identity": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorIdentity.lean",
+            "line": 65,
+            "module": "GuthMaynard.Improvement.ShortDetectorIdentity"
+          }
+        ],
+        "ShortDetectorContour": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorContour.lean"
+          }
+        ],
+        "ShortDetectorMellin": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorMellin.lean"
+          }
+        ],
+        "ShortDetectorEstimates": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorEstimates.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1371,
+      "correspondence": "GuthMaynard.Improvement.ShortFiniteDetector: shortDetectorCoefficient, shortFiniteDetector, shortFiniteDetector_decomposition",
+      "locations": {
+        "GuthMaynard.Improvement.ShortFiniteDetector": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortFiniteDetector.lean"
+          }
+        ],
+        "shortDetectorCoefficient": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortFiniteDetector.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.ShortFiniteDetector"
+          }
+        ],
+        "shortFiniteDetector": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortFiniteDetector.lean",
+            "line": 21,
+            "module": "GuthMaynard.Improvement.ShortFiniteDetector"
+          }
+        ],
+        "shortFiniteDetector_decomposition": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortFiniteDetector.lean",
+            "line": 80,
+            "module": "GuthMaynard.Improvement.ShortFiniteDetector"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1388,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorTruncation.short_detector_tail_eventually_small; ShortDetectorResidue.short_detector_residue_eventually_small; ShortDetectorGamma.short_detector_gamma_bound",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorTruncation.short_detector_tail_eventually_small": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorTruncation.lean",
+            "line": 46,
+            "module": "GuthMaynard.Improvement.ShortDetectorTruncation"
+          }
+        ],
+        "ShortDetectorResidue.short_detector_residue_eventually_small": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorResidue.lean",
+            "line": 73,
+            "module": "GuthMaynard.Improvement.ShortDetectorResidue"
+          }
+        ],
+        "ShortDetectorGamma.short_detector_gamma_bound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorGamma.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.ShortDetectorGamma"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1407,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorAlternative.short_detector_eventually_alternative",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorAlternative.short_detector_eventually_alternative": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorAlternative.lean",
+            "line": 17,
+            "module": "GuthMaynard.Improvement.ShortDetectorAlternative"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1439,
+      "correspondence": "MathCollab.Density.DetectorTaylorFamily.detectorTaylorWeight; GuthMaynard.Improvement.ShortDetectorTaylorFamily; ShortDetectorBlockExpansion.hasSum_shortDetectorTaylorPolynomial",
+      "locations": {
+        "MathCollab.Density.DetectorTaylorFamily.detectorTaylorWeight": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DetectorTaylorFamily.lean",
+            "line": 24,
+            "module": "MathCollab.Density.DetectorTaylorFamily"
+          }
+        ],
+        "GuthMaynard.Improvement.ShortDetectorTaylorFamily": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorTaylorFamily.lean"
+          }
+        ],
+        "ShortDetectorBlockExpansion.hasSum_shortDetectorTaylorPolynomial": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorBlockExpansion.lean",
+            "line": 43,
+            "module": "GuthMaynard.Improvement.ShortDetectorBlockExpansion"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1465,
+      "correspondence": "GuthMaynard.Improvement.ShortFixedDetectorFamily.shortFiniteDetector_fixed_family_eventually; ShortDetectorFamilyScales.short_detector_family_scales_eventually",
+      "locations": {
+        "GuthMaynard.Improvement.ShortFixedDetectorFamily.shortFiniteDetector_fixed_family_eventually": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortFixedDetectorFamily.lean",
+            "line": 85,
+            "module": "GuthMaynard.Improvement.ShortFixedDetectorFamily"
+          }
+        ],
+        "ShortDetectorFamilyScales.short_detector_family_scales_eventually": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorFamilyScales.lean",
+            "line": 45,
+            "module": "GuthMaynard.Improvement.ShortDetectorFamilyScales"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1480,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorConvolution; ShortDetectorPoweredPieces.exists_shortPoweredDetector_piece",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorConvolution": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorConvolution.lean"
+          }
+        ],
+        "ShortDetectorPoweredPieces.exists_shortPoweredDetector_piece": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorPoweredPieces.lean",
+            "line": 60,
+            "module": "GuthMaynard.Improvement.ShortDetectorPoweredPieces"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1498,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorPowerScales.short_detector_power_exists, short_detector_power_buffer_eventually, short_detector_power_piece_bounds",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorPowerScales.short_detector_power_exists": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorPowerScales.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.ShortDetectorPowerScales"
+          }
+        ],
+        "short_detector_power_buffer_eventually": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorPowerScales.lean",
+            "line": 61,
+            "module": "GuthMaynard.Improvement.ShortDetectorPowerScales"
+          }
+        ],
+        "short_detector_power_piece_bounds": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorPowerScales.lean",
+            "line": 90,
+            "module": "GuthMaynard.Improvement.ShortDetectorPowerScales"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1538,
+      "correspondence": "GuthMaynard.Improvement.ShortPoweredDetectorFamily.shortPoweredDetectorFamily_cover, shortPoweredDetectorFamily_coefficients; ShortDetectorPoweredHeight; ShortDetectorNormalization",
+      "locations": {
+        "GuthMaynard.Improvement.ShortPoweredDetectorFamily.shortPoweredDetectorFamily_cover": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortPoweredDetectorFamily.lean",
+            "line": 32,
+            "module": "GuthMaynard.Improvement.ShortPoweredDetectorFamily"
+          }
+        ],
+        "shortPoweredDetectorFamily_coefficients": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortPoweredDetectorFamily.lean",
+            "line": 61,
+            "module": "GuthMaynard.Improvement.ShortPoweredDetectorFamily"
+          }
+        ],
+        "ShortDetectorPoweredHeight": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorPoweredHeight.lean"
+          }
+        ],
+        "ShortDetectorNormalization": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorNormalization.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1560,
+      "correspondence": "GuthMaynard.Improvement.ShortDensityScale.short_density_scale_bounds, short_density_scale_identities",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDensityScale.short_density_scale_bounds": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDensityScale.lean",
+            "line": 17,
+            "module": "GuthMaynard.Improvement.ShortDensityScale"
+          }
+        ],
+        "short_density_scale_identities": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDensityScale.lean",
+            "line": 42,
+            "module": "GuthMaynard.Improvement.ShortDensityScale"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1605,
+      "correspondence": "GuthMaynard.Improvement.ShortWindowLargeValues.short_window_large_values; ShortDensityHeight.short_density_height_budgets",
+      "locations": {
+        "GuthMaynard.Improvement.ShortWindowLargeValues.short_window_large_values": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortWindowLargeValues.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.ShortWindowLargeValues"
+          }
+        ],
+        "ShortDensityHeight.short_density_height_budgets": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDensityHeight.lean",
+            "line": 19,
+            "module": "GuthMaynard.Improvement.ShortDensityHeight"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1622,
+      "correspondence": "GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_exponents",
+      "locations": {
+        "GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_exponents": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveBudgets.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.UpperCurveBudgets"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1654,
+      "correspondence": "GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_padded_time, upper_curve_mean_budget; UpperCurveLargeValues.upper_curve_large_values",
+      "locations": {
+        "GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_padded_time": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveBudgets.lean",
+            "line": 48,
+            "module": "GuthMaynard.Improvement.UpperCurveBudgets"
+          }
+        ],
+        "upper_curve_mean_budget": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveBudgets.lean",
+            "line": 87,
+            "module": "GuthMaynard.Improvement.UpperCurveBudgets"
+          }
+        ],
+        "UpperCurveLargeValues.upper_curve_large_values": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveLargeValues.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.UpperCurveLargeValues"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1686,
+      "correspondence": "GuthMaynard.Improvement.ShortTypeICount.short_typeI_separated_count, short_typeI_zero_slab_count; UpperCurveTypeICount.upper_curve_typeI_separated_count, upper_curve_typeI_zero_slab_count",
+      "locations": {
+        "GuthMaynard.Improvement.ShortTypeICount.short_typeI_separated_count": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortTypeICount.lean",
+            "line": 18,
+            "module": "GuthMaynard.Improvement.ShortTypeICount"
+          }
+        ],
+        "short_typeI_zero_slab_count": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortTypeICount.lean",
+            "line": 112,
+            "module": "GuthMaynard.Improvement.ShortTypeICount"
+          }
+        ],
+        "UpperCurveTypeICount.upper_curve_typeI_separated_count": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveTypeICount.lean",
+            "line": 18,
+            "module": "GuthMaynard.Improvement.UpperCurveTypeICount"
+          }
+        ],
+        "upper_curve_typeI_zero_slab_count": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveTypeICount.lean",
+            "line": 112,
+            "module": "GuthMaynard.Improvement.UpperCurveTypeICount"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1710,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic",
+      "locations": {
+        "MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/FourthMoment.lean",
+            "line": 22,
+            "module": "MathCollab.Density.Stronger.Fourth.FourthMoment"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1738,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.SquareSource; SquareNormalized; SquareLineShift; SquareTruncation",
+      "locations": {
+        "MathCollab.Density.Stronger.Fourth.SquareSource": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/SquareSource.lean"
+          }
+        ],
+        "SquareNormalized": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/SquareNormalized.lean"
+          }
+        ],
+        "SquareLineShift": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/SquareLineShift.lean"
+          }
+        ],
+        "SquareTruncation": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/SquareTruncation.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1774,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.SquareTail; SquarePrefix; Coefficients; PrefixMean; GaussianProducer",
+      "locations": {
+        "MathCollab.Density.Stronger.Fourth.SquareTail": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/SquareTail.lean"
+          }
+        ],
+        "SquarePrefix": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/SquarePrefix.lean"
+          }
+        ],
+        "Coefficients": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/Coefficients.lean"
+          }
+        ],
+        "PrefixMean": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/PrefixMean.lean"
+          }
+        ],
+        "GaussianProducer": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/GaussianProducer.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1798,
+      "correspondence": "MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic; GaussianProducer.exists_fourth_dyadic_budget",
+      "locations": {
+        "MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/FourthMoment.lean",
+            "line": 22,
+            "module": "MathCollab.Density.Stronger.Fourth.FourthMoment"
+          }
+        ],
+        "GaussianProducer.exists_fourth_dyadic_budget": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Fourth/GaussianProducer.lean",
+            "line": 157,
+            "module": "MathCollab.Density.Stronger.Fourth.GaussianProducer"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1817,
+      "correspondence": "GuthMaynard.Improvement.WeakShortMoment.shortTwistedNorm_fourth_le, weak_short_moment",
+      "locations": {
+        "GuthMaynard.Improvement.WeakShortMoment.shortTwistedNorm_fourth_le": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakShortMoment.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.WeakShortMoment"
+          }
+        ],
+        "weak_short_moment": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakShortMoment.lean",
+            "line": 33,
+            "module": "GuthMaynard.Improvement.WeakShortMoment"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1840,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorWindowDetection.short_detector_window_fourth; ShortTypeIIPacking.short_typeII_window_packing; ShortTypeIICount.short_typeII_count_by_moment",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorWindowDetection.short_detector_window_fourth": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorWindowDetection.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.ShortDetectorWindowDetection"
+          }
+        ],
+        "ShortTypeIIPacking.short_typeII_window_packing": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortTypeIIPacking.lean",
+            "line": 35,
+            "module": "GuthMaynard.Improvement.ShortTypeIIPacking"
+          }
+        ],
+        "ShortTypeIICount.short_typeII_count_by_moment": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortTypeIICount.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.ShortTypeIICount"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1861,
+      "correspondence": "GuthMaynard.Improvement.WeakTypeIICount.weak_short_typeII_count; WeakShortDensity.weak_short_typeII_zero_slab_count, weak_short_typeII_exponent_le; UpperCurveDensity.upper_curve_slab_density",
+      "locations": {
+        "GuthMaynard.Improvement.WeakTypeIICount.weak_short_typeII_count": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakTypeIICount.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.WeakTypeIICount"
+          }
+        ],
+        "WeakShortDensity.weak_short_typeII_zero_slab_count": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakShortDensity.lean",
+            "line": 16,
+            "module": "GuthMaynard.Improvement.WeakShortDensity"
+          }
+        ],
+        "weak_short_typeII_exponent_le": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakShortDensity.lean",
+            "line": 51,
+            "module": "GuthMaynard.Improvement.WeakShortDensity"
+          }
+        ],
+        "UpperCurveDensity.upper_curve_slab_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveDensity.lean",
+            "line": 16,
+            "module": "GuthMaynard.Improvement.UpperCurveDensity"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1884,
+      "correspondence": "GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_unit_bin_sum_le_jensen; MathCollab.Density.LocalZeroCount; MathCollab.Density.ZetaGrowth",
+      "locations": {
+        "GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_unit_bin_sum_le_jensen": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortLocalZeroCount.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.ShortLocalZeroCount"
+          }
+        ],
+        "MathCollab.Density.LocalZeroCount": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/LocalZeroCount.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1910,
+      "correspondence": "GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_local_multiplicity_bound, short_zeta_separated_representatives; MathCollab.Density.ZeroSeparation",
+      "locations": {
+        "GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_local_multiplicity_bound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortLocalZeroCount.lean",
+            "line": 155,
+            "module": "GuthMaynard.Improvement.ShortLocalZeroCount"
+          }
+        ],
+        "short_zeta_separated_representatives": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortLocalZeroCount.lean",
+            "line": 230,
+            "module": "GuthMaynard.Improvement.ShortLocalZeroCount"
+          }
+        ],
+        "MathCollab.Density.ZeroSeparation": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZeroSeparation.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1940,
+      "correspondence": "GuthMaynard.Improvement.ShortDetectorCounting.short_slab_count_of_separated_branch_bounds; WeakShortDensity.short_slab_density; UpperCurveDensity.upper_curve_slab_density",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDetectorCounting.short_slab_count_of_separated_branch_bounds": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDetectorCounting.lean",
+            "line": 17,
+            "module": "GuthMaynard.Improvement.ShortDetectorCounting"
+          }
+        ],
+        "WeakShortDensity.short_slab_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakShortDensity.lean",
+            "line": 61,
+            "module": "GuthMaynard.Improvement.WeakShortDensity"
+          }
+        ],
+        "UpperCurveDensity.upper_curve_slab_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveDensity.lean",
+            "line": 16,
+            "module": "GuthMaynard.Improvement.UpperCurveDensity"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1950,
+      "correspondence": "MathCollab.Density.ZetaConjugation",
+      "locations": {
+        "MathCollab.Density.ZetaConjugation": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/ZetaConjugation.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1975,
+      "correspondence": "MathCollab.Density.DensityDyadicSummation: zetaSlab_extend_power_bound, zetaPositive_bound_of_slabs, zetaDensity_bound_of_eventual_slabs",
+      "locations": {
+        "MathCollab.Density.DensityDyadicSummation": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DensityDyadicSummation.lean"
+          }
+        ],
+        "zetaSlab_extend_power_bound": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DensityDyadicSummation.lean",
+            "line": 15,
+            "module": "MathCollab.Density.DensityDyadicSummation"
+          }
+        ],
+        "zetaPositive_bound_of_slabs": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DensityDyadicSummation.lean",
+            "line": 36,
+            "module": "MathCollab.Density.DensityDyadicSummation"
+          }
+        ],
+        "zetaDensity_bound_of_eventual_slabs": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DensityDyadicSummation.lean",
+            "line": 91,
+            "module": "MathCollab.Density.DensityDyadicSummation"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 1988,
+      "correspondence": "GuthMaynard.Improvement.WeakShortDensity.short_density; UpperCurveDensity.upper_curve_density",
+      "locations": {
+        "GuthMaynard.Improvement.WeakShortDensity.short_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakShortDensity.lean",
+            "line": 94,
+            "module": "GuthMaynard.Improvement.WeakShortDensity"
+          }
+        ],
+        "UpperCurveDensity.upper_curve_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperCurveDensity.lean",
+            "line": 51,
+            "module": "GuthMaynard.Improvement.UpperCurveDensity"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2021,
+      "correspondence": "GuthMaynard.NativeMoment.FiniteScaleAssembly: classicalMHHExponent, corollary1110Envelope, EndpointScaleCertificate, ZetaWindowResolved",
+      "locations": {
+        "classicalMHHExponent": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/FiniteScaleAssembly.lean",
+            "line": 22,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.FiniteScaleAssembly"
+          }
+        ],
+        "corollary1110Envelope": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/FiniteScaleAssembly.lean",
+            "line": 27,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.FiniteScaleAssembly"
+          }
+        ],
+        "EndpointScaleCertificate": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/FiniteScaleAssembly.lean",
+            "line": 118,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.FiniteScaleAssembly"
+          }
+        ],
+        "ZetaWindowResolved": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/FiniteScaleAssembly.lean",
+            "line": 112,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.FiniteScaleAssembly"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2039,
+      "correspondence": "GuthMaynard.NativeMoment.FiniteScaleAssembly.ingham_endpoint_scale_certificate",
+      "locations": {
+        "GuthMaynard.NativeMoment.FiniteScaleAssembly.ingham_endpoint_scale_certificate": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/FiniteScaleAssembly.lean",
+            "line": 134,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.FiniteScaleAssembly"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2069,
+      "correspondence": "GuthMaynard.NativeMoment.ClassicalEndpointDensity.classical_endpoint_positive_slab_native, ingham_endpoint_positive_slab_native; MediumTypeIEndpoint; TypeIIFourthMomentReduction; ClassicalDensity.ingham_zero_density_at_half_native",
+      "locations": {
+        "GuthMaynard.NativeMoment.ClassicalEndpointDensity.classical_endpoint_positive_slab_native": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/ClassicalEndpointDensity.lean",
+            "line": 658,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.ClassicalEndpointDensity"
+          }
+        ],
+        "ingham_endpoint_positive_slab_native": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/ClassicalEndpointDensity.lean",
+            "line": 669,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.ClassicalEndpointDensity"
+          }
+        ],
+        "MediumTypeIEndpoint": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/MediumTypeIEndpoint.lean"
+          }
+        ],
+        "TypeIIFourthMomentReduction": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/TypeIIFourthMomentReduction.lean"
+          }
+        ],
+        "ClassicalDensity.ingham_zero_density_at_half_native": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/NativeSource/GuthMaynard/ClassicalDensity.lean",
+            "line": 857,
+            "module": "GuthMaynard.NativeSource.GuthMaynard.ClassicalDensity"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2096,
+      "correspondence": "GuthMaynard.Improvement.NativeIngham.ingham_lower_density; NativeDensitySourceBridge.native_N_eq_zetaDensityCount, native_density_epsilon_bound; NativeDensityConventionBridge",
+      "locations": {
+        "GuthMaynard.Improvement.NativeIngham.ingham_lower_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/NativeIngham.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.NativeIngham"
+          }
+        ],
+        "NativeDensitySourceBridge.native_N_eq_zetaDensityCount": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/NativeDensitySourceBridge.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.NativeDensitySourceBridge"
+          }
+        ],
+        "native_density_epsilon_bound": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/NativeDensitySourceBridge.lean",
+            "line": 26,
+            "module": "GuthMaynard.Improvement.NativeDensitySourceBridge"
+          }
+        ],
+        "NativeDensityConventionBridge": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/NativeDensityConventionBridge.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2117,
+      "correspondence": "MathCollab.Density.Stronger.NativePeaks.pointValue_peak_card_native; PointMean.PeaksInput; Atkinson.AtkinsonNativeLocalMean; Peaks.WidthRanges",
+      "locations": {
+        "MathCollab.Density.Stronger.NativePeaks.pointValue_peak_card_native": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/NativePeaks.lean",
+            "line": 22,
+            "module": "MathCollab.Density.Stronger.NativePeaks"
+          }
+        ],
+        "PointMean.PeaksInput": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/PointMean/PeaksInput.lean"
+          }
+        ],
+        "Atkinson.AtkinsonNativeLocalMean": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Atkinson/AtkinsonNativeLocalMean.lean"
+          }
+        ],
+        "Peaks.WidthRanges": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/WidthRanges.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2141,
+      "correspondence": "MathCollab.Density.Stronger.Peaks.Inputs: PointMeanInput, LocalMeanPacketInput; PointMean.Equation44.heathBrown_equation44_native",
+      "locations": {
+        "MathCollab.Density.Stronger.Peaks.Inputs": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/Inputs.lean"
+          }
+        ],
+        "PointMeanInput": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/Inputs.lean",
+            "line": 34,
+            "module": "MathCollab.Density.Stronger.Peaks.Inputs"
+          }
+        ],
+        "LocalMeanPacketInput": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/Inputs.lean",
+            "line": 51,
+            "module": "MathCollab.Density.Stronger.Peaks.Inputs"
+          }
+        ],
+        "PointMean.Equation44.heathBrown_equation44_native": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/PointMean/Equation44.lean",
+            "line": 101,
+            "module": "MathCollab.Density.Stronger.PointMean.Equation44"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2201,
+      "correspondence": "MathCollab.Density.Stronger.AtkinsonCardinalityAbsorption; AtkinsonGlobalCardinality; Peaks.Clusters; Peaks.ClusterCount; Peaks.WidthRanges",
+      "locations": {
+        "MathCollab.Density.Stronger.AtkinsonCardinalityAbsorption": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/AtkinsonCardinalityAbsorption.lean"
+          }
+        ],
+        "AtkinsonGlobalCardinality": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/AtkinsonGlobalCardinality.lean"
+          }
+        ],
+        "Peaks.Clusters": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/Clusters.lean"
+          }
+        ],
+        "Peaks.ClusterCount": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/ClusterCount.lean"
+          }
+        ],
+        "Peaks.WidthRanges": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/Peaks/WidthRanges.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2237,
+      "correspondence": "MathCollab.Density.Stronger.ConditionalMoment.zeta_twelfth_dyadic_of_fourth_and_tail, zeta_twelfth_physical_of_dyadic; MomentGrowth; NativeMoment.zeta_twelfth_physical_native",
+      "locations": {
+        "MathCollab.Density.Stronger.ConditionalMoment.zeta_twelfth_dyadic_of_fourth_and_tail": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ConditionalMoment.lean",
+            "line": 94,
+            "module": "MathCollab.Density.Stronger.ConditionalMoment"
+          }
+        ],
+        "zeta_twelfth_physical_of_dyadic": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ConditionalMoment.lean",
+            "line": 131,
+            "module": "MathCollab.Density.Stronger.ConditionalMoment"
+          }
+        ],
+        "MomentGrowth": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/MomentGrowth.lean"
+          }
+        ],
+        "NativeMoment.zeta_twelfth_physical_native": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/NativeMoment.lean",
+            "line": 26,
+            "module": "MathCollab.Density.Stronger.NativeMoment"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2256,
+      "correspondence": "MathCollab.Density.Stronger.SmoothPartition: dyadicStep, smoothDyadicWeight, hasSum_smoothDyadicWeight",
+      "locations": {
+        "MathCollab.Density.Stronger.SmoothPartition": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean"
+          }
+        ],
+        "dyadicStep": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean",
+            "line": 19,
+            "module": "MathCollab.Density.Stronger.SmoothPartition"
+          }
+        ],
+        "smoothDyadicWeight": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean",
+            "line": 47,
+            "module": "MathCollab.Density.Stronger.SmoothPartition"
+          }
+        ],
+        "hasSum_smoothDyadicWeight": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothPartition.lean",
+            "line": 148,
+            "module": "MathCollab.Density.Stronger.SmoothPartition"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2278,
+      "correspondence": "MathCollab.Density.Stronger.SmoothDetector; ShortFixedFamily; ShortTaylorCover; ShortPoweredFamily",
+      "locations": {
+        "MathCollab.Density.Stronger.SmoothDetector": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/SmoothDetector.lean"
+          }
+        ],
+        "ShortFixedFamily": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ShortFixedFamily.lean"
+          }
+        ],
+        "ShortTaylorCover": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ShortTaylorCover.lean"
+          }
+        ],
+        "ShortPoweredFamily": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ShortPoweredFamily.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2306,
+      "correspondence": "MathCollab.Density.Stronger.ShortPoweredFamily.smooth_long_or_short_powered_cover; LongMultiplicityReduction.smoothLongZeroCount_physical_moment_reduction; WeightedCriticalMean; LongMeanCounting",
+      "locations": {
+        "MathCollab.Density.Stronger.ShortPoweredFamily.smooth_long_or_short_powered_cover": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ShortPoweredFamily.lean",
+            "line": 117,
+            "module": "MathCollab.Density.Stronger.ShortPoweredFamily"
+          }
+        ],
+        "LongMultiplicityReduction.smoothLongZeroCount_physical_moment_reduction": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/LongMultiplicityReduction.lean",
+            "line": 53,
+            "module": "MathCollab.Density.Stronger.LongMultiplicityReduction"
+          }
+        ],
+        "WeightedCriticalMean": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/WeightedCriticalMean.lean"
+          }
+        ],
+        "LongMeanCounting": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/LongMeanCounting.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2341,
+      "correspondence": "MathCollab.Density.Stronger.ShortExponentAccounting.smooth_family_sum_eventually; ShortZeroCount.smoothShortZeroCount_bound",
+      "locations": {
+        "MathCollab.Density.Stronger.ShortExponentAccounting.smooth_family_sum_eventually": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ShortExponentAccounting.lean",
+            "line": 114,
+            "module": "MathCollab.Density.Stronger.ShortExponentAccounting"
+          }
+        ],
+        "ShortZeroCount.smoothShortZeroCount_bound": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ShortZeroCount.lean",
+            "line": 102,
+            "module": "MathCollab.Density.Stronger.ShortZeroCount"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2378,
+      "correspondence": "MathCollab.Density.Stronger.FinalParameters.exists_stronger_loss_parameters; ConditionalDensity.stronger_density_bound_of_twelfth_moment; NativeDensity.stronger_density_bound_native",
+      "locations": {
+        "MathCollab.Density.Stronger.FinalParameters.exists_stronger_loss_parameters": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/FinalParameters.lean",
+            "line": 12,
+            "module": "MathCollab.Density.Stronger.FinalParameters"
+          }
+        ],
+        "ConditionalDensity.stronger_density_bound_of_twelfth_moment": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/ConditionalDensity.lean",
+            "line": 78,
+            "module": "MathCollab.Density.Stronger.ConditionalDensity"
+          }
+        ],
+        "NativeDensity.stronger_density_bound_native": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/Stronger/NativeDensity.lean",
+            "line": 21,
+            "module": "MathCollab.Density.Stronger.NativeDensity"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2401,
+      "correspondence": "MathCollab.Density.DensityConclusion.zeta_density_bound_of_weyl; DensityTheorem.zeta_density_bound; GuthMaynard.WeylZeta; WeylPort",
+      "locations": {
+        "MathCollab.Density.DensityConclusion.zeta_density_bound_of_weyl": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DensityConclusion.lean",
+            "line": 37,
+            "module": "MathCollab.Density.DensityConclusion"
+          }
+        ],
+        "DensityTheorem.zeta_density_bound": [
+          {
+            "file": "pinned-source/lean/MathCollab/Density/DensityTheorem.lean",
+            "line": 16,
+            "module": "MathCollab.Density.DensityTheorem"
+          }
+        ],
+        "GuthMaynard.WeylZeta": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/WeylZeta.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2414,
+      "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve; GuthMaynardStatement.coefficient_times_gap, full_curve",
+      "locations": {
+        "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CombinedDensityCurve.lean",
+            "line": 20,
+            "module": "GuthMaynard.Improvement.CombinedDensityCurve"
+          }
+        ],
+        "GuthMaynardStatement.coefficient_times_gap": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 34,
+            "module": "Solution"
+          }
+        ],
+        "full_curve": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 50,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 36,
+            "module": "Challenge"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2424,
+      "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_endpoints",
+      "locations": {
+        "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_endpoints": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CombinedDensityCurve.lean",
+            "line": 31,
+            "module": "GuthMaynard.Improvement.CombinedDensityCurve"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2458,
+      "correspondence": "GuthMaynard.Improvement.UpperWindowBudgets; UpperWindowLargeValues; UpperTypeICount; WeakUpperDensity.upper_density; GlobalDensityIngham.global_density_fixed_sigma_of_ingham",
+      "locations": {
+        "GuthMaynard.Improvement.UpperWindowBudgets": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperWindowBudgets.lean"
+          }
+        ],
+        "UpperWindowLargeValues": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperWindowLargeValues.lean"
+          }
+        ],
+        "UpperTypeICount": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/UpperTypeICount.lean"
+          }
+        ],
+        "WeakUpperDensity.upper_density": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/WeakUpperDensity.lean",
+            "line": 51,
+            "module": "GuthMaynard.Improvement.WeakUpperDensity"
+          }
+        ],
+        "GlobalDensityIngham.global_density_fixed_sigma_of_ingham": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/GlobalDensityIngham.lean",
+            "line": 16,
+            "module": "GuthMaynard.Improvement.GlobalDensityIngham"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2490,
+      "correspondence": "GuthMaynard.Improvement.CurveUniformization.density_curve_uniform_on_interval",
+      "locations": {
+        "GuthMaynard.Improvement.CurveUniformization.density_curve_uniform_on_interval": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CurveUniformization.lean",
+            "line": 15,
+            "module": "GuthMaynard.Improvement.CurveUniformization"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2503,
+      "correspondence": "GuthMaynard.Improvement.ShortDensityUniform.zetaDensityCount_uniform_of_fixed_sigma; GlobalDensityIngham.global_density_uniform_of_ingham; GlobalDensity.global_density_uniform; GuthMaynardStatement.global_uniform",
+      "locations": {
+        "GuthMaynard.Improvement.ShortDensityUniform.zetaDensityCount_uniform_of_fixed_sigma": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/ShortDensityUniform.lean",
+            "line": 18,
+            "module": "GuthMaynard.Improvement.ShortDensityUniform"
+          }
+        ],
+        "GlobalDensityIngham.global_density_uniform_of_ingham": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/GlobalDensityIngham.lean",
+            "line": 47,
+            "module": "GuthMaynard.Improvement.GlobalDensityIngham"
+          }
+        ],
+        "GlobalDensity.global_density_uniform": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/GlobalDensity.lean",
+            "line": 14,
+            "module": "GuthMaynard.Improvement.GlobalDensity"
+          }
+        ],
+        "GuthMaynardStatement.global_uniform": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 60,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 42,
+            "module": "Challenge"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2526,
+      "correspondence": "GuthMaynard.Improvement.CurveModulus",
+      "locations": {
+        "GuthMaynard.Improvement.CurveModulus": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CurveModulus.lean"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2539,
+      "correspondence": "GuthMaynard.Improvement.FullCurveLeftUniform.full_density_curve_uniform_left",
+      "locations": {
+        "GuthMaynard.Improvement.FullCurveLeftUniform.full_density_curve_uniform_left": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/FullCurveLeftUniform.lean",
+            "line": 13,
+            "module": "GuthMaynard.Improvement.FullCurveLeftUniform"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2551,
+      "correspondence": "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_uniform_away_boundary; GuthMaynardStatement.uniform_away_boundary",
+      "locations": {
+        "GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_uniform_away_boundary": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CombinedDensityCurve.lean",
+            "line": 46,
+            "module": "GuthMaynard.Improvement.CombinedDensityCurve"
+          }
+        ],
+        "GuthMaynardStatement.uniform_away_boundary": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 70,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 49,
+            "module": "Challenge"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2567,
+      "correspondence": "GuthMaynard.Improvement.CurveBoundaryAudit.combined_curve_right_lt_half, combined_curve_boundary_modulus_obstruction",
+      "locations": {
+        "GuthMaynard.Improvement.CurveBoundaryAudit.combined_curve_right_lt_half": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CurveBoundaryAudit.lean",
+            "line": 12,
+            "module": "GuthMaynard.Improvement.CurveBoundaryAudit"
+          }
+        ],
+        "combined_curve_boundary_modulus_obstruction": [
+          {
+            "file": "pinned-source/lean/GuthMaynard/Improvement/CurveBoundaryAudit.lean",
+            "line": 22,
+            "module": "GuthMaynard.Improvement.CurveBoundaryAudit"
+          }
+        ]
+      }
+    },
+    {
+      "tex_line": 2590,
+      "correspondence": "GuthMaynardStatement.actualZeroBound_of_count, coefficient_times_gap, middle_large_values in lean/Solution.lean",
+      "locations": {
+        "GuthMaynardStatement.actualZeroBound_of_count": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 39,
+            "module": "Solution"
+          }
+        ],
+        "coefficient_times_gap": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 34,
+            "module": "Solution"
+          }
+        ],
+        "middle_large_values": [
+          {
+            "file": "pinned-source/lean/Solution.lean",
+            "line": 82,
+            "module": "Solution"
+          },
+          {
+            "file": "pinned-source/lean/Challenge.lean",
+            "line": 57,
+            "module": "Challenge"
+          }
+        ]
+      }
+    }
+  ]
+}

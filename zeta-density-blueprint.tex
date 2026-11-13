@@ -1,0 +1,2712 @@
+\documentclass[11pt,a4paper,oneside]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=28mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage{fancyvrb}
+\allowdisplaybreaks
+\setlength{\emergencystretch}{3em}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{analyticinput}[theorem]{Established analytic input}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\e}{\mathrm e}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Rea}{\operatorname{Re}}
+\newcommand{\Ima}{\operatorname{Im}}
+\newcommand{\lean}[1]{\nolinkurl{#1}}
+\newcommand{\source}[1]{\par\nobreak\smallskip\nobreak\noindent{\footnotesize\textit{Lean correspondence:}\ \lean{#1}.}\par\smallskip}
+\newcommand{\Hhat}{\widehat}
+\title{Zero-density estimates from an improved large-values bound\\[6pt]\large A source-faithful mathematical blueprint of the registered Lean development}
+\author{Mathematics formalized by Mark Lewko\\\normalsize Informal reconstruction for study; not an author-approved paper}
+\date{Source: Palomar entry PALOMAR-2026-10-11-000010, version 1}
+\begin{document}
+\pagestyle{plain}
+\frontmatter
+\hypersetup{pageanchor=false}
+\maketitle
+\hypersetup{pageanchor=true}
+\chapter*{Scope, provenance, and reading conventions}
+\addcontentsline{toc}{chapter}{Scope, provenance, and reading conventions}
+This document reconstructs the mathematical argument represented by the four
+endpoint theorems in \lean{lean/Solution.lean} of
+\lean{mrklwk/zeta-density-39-over-17-lean}, at the exact commit
+\begin{center}\lean{ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0}.\end{center}
+The immutable record is
+\url{https://data.palomar-registry.org/entries/PALOMAR-2026-10-11-000010-v1.json};
+the requested entry is
+\url{https://palomar-registry.org/entry?id=PALOMAR-2026-10-11-000010&version=1}.
+The dependency on mathlib is pinned to
+\lean{065356127b1dc0016f66b7283ce0ce2c4055aa55}.
+All references to a source file mean this snapshot, not a changing default branch.
+
+\paragraph{What is reconstructed.}
+The text gives full proofs of the endpoint composition, the middle-range scale
+optimization and absorption, the passage from truncated moments to separated
+values, the two new density windows, multiplicity restoration, dyadic summation,
+and uniformization. It also spells out the operators, Fourier masks, affine
+averages, detector families, and imported analytic interfaces needed by those
+proofs. The substantial previously established analytic machinery is explicitly
+identified as such: an invocation of an established input below is not a new
+assumption in an endpoint theorem. In particular, a proof in this blueprint is
+understood relative to the precisely stated, already proved inputs that it cites.
+The native fourth-moment, point-mean/stationary-phase, classical reflection, and
+Fourier-affine foundations are not represented as if they followed from elementary
+algebra. Their actual role and source interfaces are recorded separately.
+
+\paragraph{Boundary of the transcription.}
+This is a mathematical blueprint, not a literal translation of every auxiliary
+lemma in all 824 locally imported modules. There are supporting library proofs
+behind the established inputs. These are not re-proved down to the foundations
+of measure theory, special functions, or the native stationary-source ports here.
+The accompanying complete pinned source archive preserves those proofs. Source
+correspondences make this boundary explicit, rather than concealing it with
+phrases such as ``standard estimates.'' No independent verification of a fresh
+full Lean build is claimed by this reconstruction.
+
+\paragraph{Fidelity rules.}
+All real parameters in the endpoint statements are retained as real parameters.
+The interval of source integers is exactly $(N,2N]$, implemented with natural
+floors. Both signs of zero ordinates and both closed height endpoints are
+retained. Zero locations and zero multiplicities are never identified. A fixed
+constant is selected before every variable over which the corresponding result
+is uniform. The rightmost density branch starts \emph{strictly} above $3/4$.
+We do not assert a globally uniform constant for the exact discontinuous curve.
+The historical name \lean{CandidateMiddleRangeEstimate} denotes a proposition
+that is proved; conversely, the separately defined
+\lean{ShortMobiusFourthMoment} is not silently used as a theorem.
+
+\paragraph{Logical and analytic conventions.}
+Integrals on $\R$ use Lebesgue measure unless another measure is displayed.
+The Fourier transform is
+\[
+ \Hhat f(\xi)=\int_{\R}\e^{-2\pi\ii\xi t}f(t)\,dt,
+ \qquad e(x)=\e^{2\pi\ii x},\qquad
+ \lambda(x)=\frac{\log x}{2\pi}\quad(x>0).
+\]
+Its Plancherel constant is one. Complex inner products are conjugate-linear in
+the first argument. A real power of a positive real base means
+$x^a=\exp(a\log x)$. Every application below of monotonicity in an exponent has
+base at least one. ``Eventually in $H$'' means that one height threshold exists
+before all subsequently quantified variables. A notation $\ll_{\eps}$ abbreviates
+an existential positive constant independent of all other displayed varying
+objects, not an effective numerical value.
+
+\paragraph{Proof automation.}
+Source uses of \lean{ring}, \lean{field_simp}, \lean{norm_num},
+\lean{linarith}, \lean{nlinarith}, and \lean{gcongr} are expanded as algebra,
+positive-denominator comparisons, or monotonicity. They are not additional
+analytic inputs. Classical finite-set selection and Hilbert-basis selection
+account for uses of choice. The registered axiom allowance is
+\lean{propext}, \lean{Classical.choice}, and \lean{Quot.sound}.
+The holes in the independent \lean{Challenge.lean} specification are not imported
+by \lean{Solution.lean} and are not premises of the proof.
+\tableofcontents
+\mainmatter
+
+\chapter{The objects counted and the four endpoint statements}
+\section{Actual zeros and analytic multiplicity}
+\begin{definition}
+Let $\zeta$ be mathlib's Riemann zeta function. A nontrivial zero is a complex
+number $\rho$ for which
+\[
+ \zeta(\rho)=0,\qquad 0<\Rea\rho<1.
+\]
+Define $m(\rho)$ to be the natural analytic vanishing order
+\lean{analyticOrderNatAt riemannZeta} at $\rho$. For real $\sigma,a,b$, set
+\[
+ Z(\sigma;a,b)=\{\rho:\zeta(\rho)=0,\ 0<\Rea\rho<1,\
+                  \sigma\le\Rea\rho,\ a\le\Ima\rho\le b\}.
+\]
+Define the slab and density counts
+\[
+ n(\sigma;a,b)=\sum_{\rho\in Z(\sigma;a,b)}m(\rho),\qquad
+ N(\sigma,T)=n(\sigma;-T,T).
+\]
+\end{definition}
+\source{MathCollab.Density.ZetaCounting: IsNontrivialZetaZero, zetaMultiplicity, zetaZeroRegion, zetaZeroFinset, zetaSlabCount, zetaDensityCount}
+
+\begin{lemma}[The finite-set and multiplicity conventions are genuine]
+Every set $Z(\sigma;a,b)$ is finite. At a nontrivial zero, $m(\rho)$ is finite
+and positive, and there is an analytic function $g$ near $\rho$, with
+$g(\rho)\ne0$, such that locally
+\[
+ \zeta(z)=(z-\rho)^{m(\rho)}g(z).
+\]
+\end{lemma}
+\begin{proof}
+For $\rho\in Z(\sigma;a,b)$, the source bounds
+$|\Ima\rho|\le |a|+|b|$ and
+\[
+ |\rho|\le |\Rea\rho|+|\Ima\rho|\le1+|a|+|b|.
+\]
+Thus the zero set is contained in the intersection of a closed ball and the
+actual zeta-zero set. The imported mathlib theorem that this intersection is
+finite gives the required finite set, without assuming that the open strip is
+compact. Zeta is analytic away from $1$. If its analytic order at any $\rho\ne1$
+were infinite, it would vanish on a neighborhood of $\rho$. The identity theorem
+on the connected punctured plane $\C\setminus\{1\}$ would make it identically
+zero there. This contradicts its nonvanishing at $2$. The finite-order local
+factorization theorem for analytic functions then gives $g$. At a zero the
+order is not zero, so its conversion to a natural number is strictly positive.
+\end{proof}
+\source{MathCollab.Density.ZetaCounting: zetaZeroRegion_finite, zeta_analyticOrder_ne_top, zetaMultiplicity_pos, zetaMultiplicity_local_factorization}
+
+\begin{lemma}[Monotonicity, inclusions, and the right edge]
+If $\sigma'\le\sigma$, $a'\le a$, and $b\le b'$, then
+$n(\sigma;a,b)\le n(\sigma';a',b')$. Consequently if also $T\le T'$, then
+$N(\sigma,T)\le N(\sigma',T')$. If $\sigma\ge1$, $N(\sigma,T)=0$.
+The number of zero locations in a slab is at most its multiplicity count.
+\end{lemma}
+\begin{proof}
+The inequalities on parameters give an inclusion of zero sets. Sum the
+nonnegative natural multiplicities over that inclusion. If $\sigma\ge1$, a
+putative zero has both $\Rea\rho\ge\sigma\ge1$ and $\Rea\rho<1$, a contradiction.
+For the last assertion sum $1\le m(\rho)$ over the finite zero set.
+\end{proof}
+\source{MathCollab.Density.ZetaCounting: zetaSlabCount_mono, zetaDensityCount_mono, zetaZeroFinset_card_le_count; GuthMaynard.Improvement.GlobalDensityConditional: zetaDensityCount_zero_of_one_le}
+
+\section{Source polynomials and separated observation sets}
+\begin{definition}
+For $N\in\R$ put
+\[
+ I_N=\{n\in\N:\lfloor N\rfloor_+<n\le\lfloor2N\rfloor_+\},\qquad
+ D_{N,a}(t)=\sum_{n\in I_N}a_n\e^{\ii t\log(n/N)}.
+\]
+For $N\ge0$, membership in $I_N$ is equivalent to $N<n\le2N$.
+A finite set $W\subset\R$ is one-separated if
+$|t-u|\ge1$ whenever $t,u\in W$ and $t\ne u$.
+\end{definition}
+The coefficient hypothesis throughout is $|a_n|\le1$ for $n\in I_N$;
+no hypothesis is placed on coefficients outside that interval.
+\source{GuthMaynard.Improvement.Target: boundedPolynomial; SourceRatioAssembly: sourceRatioIndices_mem}
+
+\begin{lemma}[Normalization and real-to-integer source transfer]
+For $N>0$, the norm of $D_{N,a}$ equals the norm of
+$\sum_{n\in I_N}a_n\e^{\ii t\log n}$. For $N\ge2$ and $M=\lfloor N\rfloor_+$,
+\[
+ M\ge2,\quad N/2\le M\le N,\quad
+ \lfloor2N\rfloor_+\in\{2M,2M+1\}.
+\]
+For bounded source coefficients,
+\[
+ |D_{N,a}(t)|\le |D_{M,a}(t)|+1.
+\]
+In particular a value at least $V\ge2$ transfers to the integer-length
+polynomial at threshold $V/2$.
+\end{lemma}
+\begin{proof}
+Factor out $\e^{-\ii t\log N}$, which has modulus one. The floor inequalities
+$M\le N<M+1$ give the bounds on $M$ and the two possible values of
+$\lfloor2N\rfloor_+$. The integer sum at real length differs from the sum at
+length $M$ by either no term or the term with index $2M+1$. That term has norm
+at most one. The triangle inequality proves the comparison. Finally
+$V-1\ge V/2$ if $V\ge2$.
+\end{proof}
+\source{GuthMaynard.Improvement.RealIntegerSource: source_floor_bounds, source_double_floor, boundedPolynomial_norm_integer_sum, boundedPolynomial_le_detecting_floor_add_one, detecting_floor_large_value}
+
+\section{Endpoint claims, with the exact quantifier order}
+Set
+\[
+ A(\sigma)=
+ \begin{cases}
+  3/(2-\sigma),&\sigma\le9/13,\\
+  18/(7\sigma+3),&9/13<\sigma\le5/7,\\
+  9/4,&5/7<\sigma\le3/4,\\
+  3/(2\sigma),&3/4<\sigma,
+ \end{cases}\qquad f(\sigma)=A(\sigma)(1-\sigma).
+\]
+Only the interval $1/2\le\sigma\le1$ is asserted in the endpoint density results.
+
+\begin{theorem}[The fixed-line full curve]\label{thm:full}
+For each $\sigma\in[1/2,1]$ and each $\eps>0$ there is
+$C_{\sigma,\eps}>0$ such that for every real $T\ge2$,
+\[
+ N(\sigma,T)\le C_{\sigma,\eps}T^{f(\sigma)+\eps}.
+\]
+\end{theorem}
+\begin{theorem}[The globally uniform coefficient]\label{thm:global}
+For each $\eps>0$ there is $C_\eps>0$ such that simultaneously for
+$\sigma\in[1/2,1]$ and $T\ge2$,
+\[
+ N(\sigma,T)\le C_\eps T^{(39/17)(1-\sigma)+\eps}.
+\]
+\end{theorem}
+\begin{theorem}[Uniform exact curve away from the strict boundary]\label{thm:away}
+For each $\delta>0$ and $\eps>0$ there is $C_{\delta,\eps}>0$ such that
+for every $\sigma\in[1/2,1]$ satisfying
+$\sigma\le3/4$ or $\sigma\ge3/4+\delta$, and every $T\ge2$,
+\[
+ N(\sigma,T)\le C_{\delta,\eps}T^{f(\sigma)+\eps}.
+\]
+\end{theorem}
+\begin{theorem}[Middle-range large values]\label{thm:middle}
+For each $\eps>0$ there is $C_\eps>0$ such that for all real
+$N,T,V,t_0$, all coefficients $a:\N\to\C$, and all finite $W\subset\R$,
+if
+\[
+ N\ge2,\quad N^{6/5}\le T\le N^{5/3},\quad V>0,
+\]
+$|a_n|\le1$ on $I_N$, $W\subset[t_0,t_0+T]$, $W$ is one-separated,
+and $|D_{N,a}(t)|\ge V$ for $t\in W$, then
+\[
+ |W|\le C_\eps N^\eps
+       \left(\frac{N^2}{V^2}+\frac{N^{18/7}T^{6/7}}{V^4}\right).
+\]
+\end{theorem}
+\source{GuthMaynardStatement.full_curve, global_uniform, uniform_away_boundary, middle_large_values in lean/Solution.lean}
+The proofs of Theorems~\ref{thm:full}--\ref{thm:away} appear after all branches
+have been established. Theorem~\ref{thm:middle} is proved in Chapter~\ref{ch:middle}.
+
+\chapter{Fourier-affine machinery and its uniform interfaces}\label{ch:affine}
+\section{The exact affine average}
+\begin{definition}
+For $R,K\ge1$ and $C_0\ge0$, let
+\[
+ \mathcal B(R,K,C_0)=\{(b,q,d)\in\Z^3:
+ R\le|b|\le2R,\ K\le q\le2K,\ |d|\le C_0R\}.
+\]
+The slope has both signs; the denominator is positive. Put
+\[
+ J_{R,K,C_0}(g)=\int_\R
+ \left(\sum_{(b,q,d)\in\mathcal B(R,K,C_0)}
+                  g\left(\frac{bu+d}{q}\right)\right)^2\,du.
+\]
+For a finite subset $S$ the corresponding energy $J_S(g)$ uses $S$ in the sum.
+For a smooth compactly supported input, let
+$\|g\|_\infty=\sup_x|g(x)|$.
+A fixed Fourier profile $D(\beta,n)$ means the family of bounds
+\begin{equation}\label{eq:supprofile}
+ |\Hhat g(\xi)|\le D(\beta,n)\mathcal T^\beta
+       (\mathcal T/|\xi|)^n\|g\|_\infty
+ \quad(\beta>0,\ n\in\N,\ \xi\ne0).
+\end{equation}
+\end{definition}
+\source{GuthMaynard.Improvement.StrengthenedAffine: sourceSup, FourierSupInput, affineAverage; AffineBox: InAffineBox; AffineFiniteCover: affineIndexIntegral}
+
+\begin{analyticinput}[The strengthened unequal-scale affine bound]\label{input:affine}
+Fix $0<a\le b$, $C_0\ge0$, and a nonnegative Fourier profile $D$.
+For each $\eps>0$ there is $C>0$ such that for all
+$\mathcal T\ge2$, $1\le K\le R\le\mathcal T^4$, and all nonnegative
+$C^\infty$ functions $g$ supported in $[a,b]$ satisfying
+\eqref{eq:supprofile},
+\begin{equation}\label{eq:affine}
+ J_{R,K,C_0}(g)\le C\mathcal T^\eps
+ \left(R^2K^4\left(\int g\right)^2+RK^3\int g^2\right).
+\end{equation}
+The constant precedes the height, both real scales, and the function. There is
+also a finite-subset and mixed-box version: slope and translation may have
+separate shells bounded by $R$, and the denominator shell is bounded by $K$,
+with the same right-hand expression up to the fixed support constants.
+\end{analyticinput}
+\source{GuthMaynard.Improvement.StrengthenedAffine.strengthened_unequal_affine; UnequalFullInput.unequal_affine_full_finite; MixedHeightTheorem.mixed_height_affine; MixedMaskedAffine.masked_mixed_affine}
+
+\paragraph{How this input is proved in the development.}
+The following explanation retains the actual two-stage reduction; it does not
+replace this input by an unproved affine conjecture. For the source shells
+$M_1,M_2,M_3$, the native affine transform integrates the square of
+$\sum g((m_1u+m_3)/m_2)$; the first two shells are signed nonzero dyadic
+integer shells and the third is a central integer shell. Its energy
+$\mathcal J(g,M)$ is the finite maximum over $1\le M_j\le M$.
+The Fourier-height family is mass-normalized:
+\[
+ \sup_\xi |\xi|^n|\Hhat g(\xi)|
+ \le 2^dD(\beta,n)\mathcal T^\beta\mathcal T^{n+2}\int g
+\]
+at smoothing depth $d$. The support envelope at that depth is
+$[1/4-2d/\mathcal T,\,9/4+2d/\mathcal T]$.
+The factor $\mathcal T^{n+2}$ is not a height-independent constant.
+
+The native Lemma-9.2 reduction supplies, after choosing its Fourier order,
+a recurrence of the form
+\begin{equation}\label{eq:affrec}
+ \mathcal J(g,M)\le A\mathcal T^\alpha M^6\Bigl(\int g\Bigr)^2
+ +B\mathcal T^\alpha M^2\|g\|_2
+       \sqrt{\mathcal J(\widetilde g,M_2)}
+ +E\Bigl(\int g\Bigr)^2,
+ \qquad M_2\le M.
+\end{equation}
+Here $A,B,E$ are uniform functions of the selected Fourier order, divisor
+constant, and current profile. The adaptive smoothing is the actual
+\lean{gmAffineTildeSchwartz}; its parameter equals
+$\mathcal T+M_2/(2M_3)$ after division by the first Poisson window.
+It preserves nonnegativity, enlarges the support by at most $2/\mathcal T$,
+and updates the Fourier coefficient by a factor two. The source proves
+\[
+ M_2^6\Bigl(\int\widetilde g\Bigr)^2+M_2^4\int\widetilde g^2
+ \le16\left(M^6\Bigl(\int g\Bigr)^2+M^4\int g^2\right).
+\]
+Let the latter parenthesis be $W$. For a desired loss $\delta$, choose finitely
+many descent steps $r$ with $(3/2)^r\delta\ge100$. At the terminal loss
+$\ge100$, the crude source bound
+$\mathcal J(g,M)\le36992M^6\int g^2$ and $M\le\mathcal T^4$ suffice.
+At an induction step use \eqref{eq:affrec} with $\alpha=\delta/8$ and the
+induction hypothesis with loss $3\delta/2$ on $\widetilde g$. It gives
+\[
+ \sqrt{\mathcal J(\widetilde g,M_2)}
+ \le4\sqrt{C_{\rm next}}\mathcal T^{3\delta/4}\sqrt W.
+\]
+Since $M^2\|g\|_2\le\sqrt W$, the mixed term is at most
+$4B\sqrt{C_{\rm next}}\mathcal T^{7\delta/8}W$.
+The first and last terms are at most $(A+E)\mathcal T^\delta W$.
+Thus $C=A+E+4B\sqrt{C_{\rm next}}+1$ closes the induction. A threshold
+$\mathcal T\ge\max(2,8r)$ guarantees all support envelopes used by this
+finite descent. This is why the complete profile must be fixed before the
+varying function and height.
+\source{RiemannZeta.GuthMaynard.exists_uniform_gmAffineJ_le_height_finite_descent and gmAffine_proposition9_1_height_family_native in GuthMaynard/AffineSource/LargeValuesAffineHeight.lean}
+
+The unequal-scale Poisson reduction retains an outer factor $RK$, not a
+factor $R^2$. With $m=\int g$ and $n=\|g\|_2$ it supplies
+\[
+ J\le E_0(R^2K^4m^2+RK n\sqrt Q),\qquad
+ Q\le H_0(K^6m^2+K^4n^2),\quad H_0\ge1.
+\]
+Hence $\sqrt Q\le\sqrt{H_0}(K^3m+K^2n)$. The cross term
+$RK^4mn$ is at most $R^2K^4m^2+RK^3n^2$, by expanding a nonnegative
+square and using $K\le R$. Therefore
+\[
+ J\le2E_0\sqrt{H_0}(R^2K^4m^2+RK^3n^2).
+\]
+The source takes $E_0=A_0\mathcal T^{\eps/2}$ and
+$H_0=(B_0+1)\mathcal T^\eps$, so the total loss is exactly
+$\mathcal T^\eps$. Heights below $8$ are treated by the crude finite
+bound and $R\le8^4$, not discarded.
+\source{GuthMaynard.Improvement.UniformReduction.unequal_reduction_of_estimates; UnequalHeightTheorem.unequal_height_affine}
+
+\paragraph{Exact Poisson normalizations.}
+The identities used in that reduction are
+\[
+ \Hhat{(\psi(\cdot/R)e(\alpha\cdot))}(\xi)
+       =R\Hhat\psi(R(\xi-\alpha)),\qquad
+ \sum_{d\in\Z}\psi(d/R)e(\alpha d)
+       =R\sum_{\ell\in\Z}\Hhat\psi(R(\ell-\alpha)).
+\]
+The second Poisson scale is $S/K$, so its argument is
+$(S/K)(j-q'u'+qu)$ and its prefactor is $S/K$.
+The affine Fourier factor for positive $b,q$ is
+$e(\xi d/b)(q/b)\Hhat g(q\xi/b)$. Signed slopes are handled by
+explicit reindexing. All interchanges require the source's integrability
+and rapid-decay proofs. Passing from canonical support to general fixed
+positive support uses $g_1(x)=g(\ell(x-1))$ and the injective index map
+$(b,q,d)\mapsto(b,\ell q,d+\ell q)$; there is no Jacobian in $u$.
+\source{GuthMaynard.Improvement.PoissonReduction; UnequalFullInput.supportIndexMap_term}
+
+\section{Masks and smoothing without regularity of mask boundaries}
+Let $b_\kappa$ be the source's \lean{ContDiffBump} at zero with inner
+radius $1$ and outer radius $2$. Its normalized kernel is the exact function
+$\kappa(x)=b_\kappa(x)/\int b_\kappa$; the denominator is strictly positive.
+Thus $\kappa$ is nonnegative, compactly supported, smooth and has mass one.
+Set $\kappa_h(x)=h^{-1}\kappa(x/h)$ and $S_hg=\kappa_h*g$, for $h>0$.
+\source{GuthMaynard.Improvement.CompactKernel: kernelBump, compactKernel, compactKernel_mass}
+\begin{lemma}[Mass and square norm under smoothing]
+For nonnegative integrable $g$ with $g^2$ integrable,
+\[
+ \int S_hg=\int g,\qquad \int(S_hg)^2\le\int g^2.
+\]
+If $g$ is supported in $[a,b]$, $S_hg$ is smooth and supported in
+$[a-2h,b+2h]$.
+\end{lemma}
+\begin{proof}
+Tonelli and the mass-one identity give preservation of mass. Apply the
+weighted Cauchy--Schwarz inequality at each $x$ to
+$\int\kappa_h(y)g(x-y)\,dy$, then integrate and use translation invariance.
+The support inclusion follows because $x-y$ cannot be in $[a,b]$ when
+$x$ is outside its $2h$ enlargement and $|y|\le2h$. Derivatives may be taken
+on the compactly supported smooth convolution factor, as justified by the
+source's convolution regularity theorem.
+\end{proof}
+\source{GuthMaynard.Improvement.Smoothing: smooth_mass, smooth_l2_contraction; MaskedAffine.compact_smoothed_general_schwartz}
+
+\begin{proposition}[The masked affine interface]\label{prop:maskedaff}
+Fix $0<a\le b$ and $C_0\ge0$. For each $\eps>0$ one constant works for
+all admissible $\mathcal T,R,K,h$, every measurable set $E$, and every
+measurable real $r$ supported in $[a,b]$ with $r^2,r^4$ integrable:
+\[
+ J_{R,K,C_0}\bigl(S_h(\one_Er^2)\bigr)
+ \le C\mathcal T^\eps
+ \left(R^2K^4\Bigl(\int_Er^2\Bigr)^2+RK^3\int_Er^4\right),
+\]
+where $\mathcal T\ge2$, $1\le K\le R\le\mathcal T^4$, and
+$0<h\le\min(1,a/4)$, $h^{-1}\le\mathcal T$.
+\end{proposition}
+\begin{proof}
+The smoothed function is nonnegative, smooth, and supported in
+$[a/2,b+2]$. The established normalized smoothing theorem supplies
+\eqref{eq:supprofile} with constants independent of $E,r,h,\mathcal T$;
+importantly the normalization is by the actual output supremum, not by an
+inverse mask mass. Apply Input~\ref{input:affine} on the enlarged fixed
+interval. The preceding lemma preserves $\int_Er^2$ and bounds the output
+square integral by $\int_Er^4$. This proves the assertion including the
+case of zero restricted mass. No regularity of $\partial E$ is used.
+\end{proof}
+\source{GuthMaynard.Improvement.MaskedAffine: compact_smoothed_full_input, compact_smoothed_unequal_affine, masked_unequal_affine}
+
+\chapter{The centered cubic, exceptional Fourier mass, and spectral comparison}\label{ch:cubic}
+\section{Literal kernels, measures, and operators}
+Fix the actual comparison bump $w$: it is the smooth bump centered at $5/2$
+with inner radius $3/2$ and outer radius $2$. Thus $0\le w\le1$,
+$w=1$ on $[1,4]$, and its closed support is contained in $[1/2,5]$.
+Put $a_0(x)=w(x)^2$ and $\chi(s)=w(s+2)$.
+Then $0\le\chi\le1$, $\chi=1$ on $[-1,2]$, and
+$\supp\chi\subset[-2,3]$.
+\source{MathCollab.Density.ComparisonCutoff; GuthMaynard.Improvement.FixedCutoffs}
+
+For a smooth amplitude $a$ supported in $[l,u]\subset(0,\infty)$ define
+\begin{equation}\label{eq:kernel}
+ K_{a,L}(s)=\sum_{\lceil lL\rceil\le m\le\lfloor uL\rfloor}
+             a(m/L)\e^{\ii s\log(m/L)}
+           -L\int_\R a(x)\e^{\ii s\log x}\,dx.
+\end{equation}
+For a measurable nonnegative integrable time density $\mu$, set
+$d\nu_\mu(t)=\mu(t)\,dt$ and
+\[
+ \mathcal C_{a,L}(\mu)=\iiint
+ K_{a,L}(t_1-t_2)K_{a,L}(t_2-t_3)K_{a,L}(t_3-t_1)
+ \prod_{j=1}^3d\nu_\mu(t_j).
+\]
+This is the independent definition \lean{kernelCubic}, not a trace definition.
+In $\mathcal H=L^2(\nu_\mu;\C)$, let
+$p_x(t)=e(t\lambda(x))$. For a real nonnegative cutoff $a$, define
+\[
+ G=\sum_{\lceil lL\rceil\le m\le\lfloor uL\rfloor}
+ a(m/L)\,p_{m/L}\otimes p_{m/L},\qquad
+ C=L\int a(x)\,p_x\otimes p_x\,dx,\qquad H=G-C.
+\]
+Here $(v\otimes v)z=\langle v,z\rangle v$.
+These are positive operators $G,C$, while $H$ need not be positive.
+The source constructs the integral as a nuclear integral of rank-one operators;
+$\int\|La(x)p_x\|\|p_x\|\,dx<\infty$ follows from $a\in L^1$ and
+$\|p_x\|^2=\nu_\mu(\R)$.
+\source{GuthMaynard.Improvement.OperatorKernel: operatorDiscrete, operatorContinuous; OperatorCubic; CubicKernel; CenteredPoisson}
+
+\begin{lemma}[The genuine cubic trace identity]
+For a countable Hilbert basis $b$ of $\mathcal H$,
+\[
+ \tr_b(H^3)=\mathcal C_{a,L}(\mu),\qquad
+ \tr_b(T)=\sum_j\langle b_j,Tb_j\rangle
+\]
+for the nuclear operators used here.
+\end{lemma}
+\begin{proof}
+Expand the nuclear presentations of the three factors. A rank-one cyclic
+product has trace the cyclic product of three feature inner products.
+Since $\langle p_x,p_y\rangle=\Hhat\mu(\lambda(x)-\lambda(y))$ with the
+source's orientation, integration over frequencies gives the Fourier-side
+cyclic product; Fubini gives the independently defined time-side kernel
+cubic. The discrete-continuous difference is represented by the disjoint
+union of finite counting frequencies and continuous frequencies, with signed
+amplitude. Absolute integrability of the products is bounded by the product
+of the nuclear norm integrals. This justifies the expansion and every
+interchange. The source proves basis-independence through these integral
+presentations, rather than presuming an infinite eigenbasis.
+\end{proof}
+\source{GuthMaynard.Improvement.OperatorCubic.operator_frequency_cubic; OperatorCentered.operator_centered_cubic; OperatorTrace}
+
+\section{The masked cubic estimate and why the first mask is retained}
+For the remainder of this section $\mu\ge0$ is measurable, belongs to
+$L^1\cap L^2$, and is supported in an interval of length at most $\mathcal T$.
+Write
+\[
+ F=\Hhat\mu,\quad M=\int\mu^2,\quad M_1=\int\mu,\quad
+ E=\int|F|^4,\quad E_0=\int_{B^c}|F|^4,\quad A_2=\int_B|F|^2.
+\]
+The Fourier square and fourth powers are integrable: Plancherel gives
+$\int|F|^2=M$, and $|F|\le M_1$ gives
+$\int|F|^4\le M_1^2M$.
+
+\begin{analyticinput}[Complete masked centered-cubic estimate]\label{input:maskedcubic}
+For fixed smooth $a$ supported in a fixed positive interval, each $\eps>0$
+has a constant $C>0$ such that if
+$\mathcal T\ge2$, $\mathcal T^{4/5}\le L\le\mathcal T$, and $B$ is
+measurable and symmetric under $\xi\mapsto-\xi$, then
+\begin{equation}\label{eq:maskedcubic}
+ |\mathcal C_{a,L}(\mu)|\le C\mathcal T^\eps
+ \left(\mathcal T^2M^{3/2}+\mathcal TL\sqrt M\sqrt{E_0}
+    +\sqrt{A_2}(\mathcal T^2M+\mathcal TL\sqrt E)\right).
+\end{equation}
+The constant precedes all densities, masks, and scales.
+\end{analyticinput}
+\source{GuthMaynard.Improvement.CenteredRestrictedCubic.centered_masked_cubic_estimate}
+
+\paragraph{Precise analytic construction behind this input.}
+Poisson summation turns \eqref{eq:kernel} into the sum of the nonzero modes
+$L\Hhat{(a(x)\e^{\ii s\log x})}(Lm)$. The source retains
+$0<|m|\le U$, $U=\mathcal T^{1+\eta}/L$, choosing $0<\eta<4/5$ before
+all varying data. It bounds the cubic replacement error by
+$C\mathcal T^{-100}M^{3/2}$. Expanding the retained cube gives the exact
+factor $L^3$ and, for $m=(m_1,m_2,m_3)$, the spatial integral with amplitude
+$a(x_1)a(x_2)a(x_3)$, phase $e(-L(m_1x_1+m_2x_2+m_3x_3))$, and Fourier product
+\[
+ F(\lambda(x_3)-\lambda(x_1))
+ F(\lambda(x_1)-\lambda(x_2))
+ F(\lambda(x_2)-\lambda(x_3)).
+\]
+Set $x_1=rv$, $x_2=ry$, $x_3=r$. The Jacobian is exactly $r^2$.
+The Fourier product becomes
+$F(-\lambda(v))F(\lambda(v)-\lambda(y))F(\lambda(y))$.
+Radial integration, before taking a norm, yields rapid decay in
+$L(m_1v+m_2y+m_3)$. The near region is the thin strip
+$|L(m_1v+m_2y+m_3)|\le\mathcal T^\eta$.
+It is rewritten as a window of width
+$\mathcal T^\eta/(L|m_2|)$ about
+$-(m_1v+m_3)/m_2$. Negative denominators are normalized by simultaneous
+negation of modes. For the inverse-ratio energy, the exact identity
+\[
+ \frac{-(m_1v+m_3)/m_2}{v}
+ =-\frac{m_3/v+m_1}{m_2}
+\]
+swaps slope and translation. The Jacobian for $v\mapsto1/v$ is bounded on
+the fixed positive ratio interval. Both energies are bounded by the mixed
+masked affine theorem of Chapter~\ref{ch:affine}. The dyadic mode sum,
+width losses, mode count, and radial discard are charged in the source
+\lean{cubic_scale_closure} chain. In Fourier coordinates the relevant
+measure change is $dx=2\pi x\,d\lambda$; no unrecorded normalization change
+is made.
+
+For a symmetric exceptional set $B$, the retained cubic is partitioned exactly
+into four designated-mask terms
+\[
+ (B^c,B^c,B^c),\qquad(B,\R,\R),\qquad
+ (B,\R,B^c),\qquad(B,B^c,B^c).
+\]
+Cyclic reindexing of both spatial coordinates and the full mode cube moves
+each exceptional mask to the first Fourier factor. The all-low term costs
+$\mathcal T^\eps(\mathcal T^2M^{3/2}+\mathcal TL\sqrt M\sqrt{E_0})$;
+each of the other three costs
+$\mathcal T^\eps\sqrt{A_2}(\mathcal T^2M+\mathcal TL\sqrt E)$.
+The homogeneous negligible errors are absorbed by the first term.
+For bounded heights the source separately bounds the cubic by a constant
+multiple of $\mathcal T^2M^{3/2}$. Thus eventual Poisson retention is not
+used to skip the bounded-height range.
+\source{GuthMaynard.Improvement.CubicRetainedPartition.retained_cubic_designated_partition; RadialCoordinates; CubicMixedBox; CubicFourierMoments; CubicMaskedEstimate; CubicRetainedMasked; CenteredCubicApprox; CenteredCubicBoundedHeight}
+
+\paragraph{Explicit affine-to-cubic exponent closure.}
+For fixed ratio support and a fixed factor $q_0\ge1$, the smoothing width
+in a denominator shell $K$ is $h=q_0\mathcal T^\eta/(LK)$.
+For $1\le K\le R\le U=\mathcal T^{1+\eta}/L$ one has
+$h^{-1}\le\mathcal T$ and
+$h\le q_0\mathcal T^{\eta-4/5}$. Since $\eta<4/5$, a single eventual
+height threshold puts every such width in the admissible compact-smoothing
+range of Proposition~\ref{prop:maskedaff}.
+After the affine estimate and Cauchy--Schwarz, a box contribution at restricted
+first-factor square mass $A$ and other-factor masses $M_D,E_D$ has scalar factor
+\[
+ \sqrt A\frac{L^2\mathcal T^\eta}{K}
+       \sqrt{R^2K^4M_D^2+RK^3E_D}.
+\]
+The square root is at most $K(RKM_D+\sqrt{RK}\sqrt{E_D})$.
+Both $RK\le U^2$ and $\sqrt{RK}\le U$; hence the factor is at most
+\[
+ \sqrt A\left(\mathcal T^{3\eta}\mathcal T^2M_D
+                +\mathcal T^{2\eta}\mathcal TL\sqrt{E_D}\right),
+\]
+because $L^2\mathcal T^\eta U^2=\mathcal T^{2+3\eta}$ and
+$L^2\mathcal T^\eta U=\mathcal T^{1+2\eta}L$.
+A Fourier-affine loss $\mathcal T^\alpha$ contributes
+$\mathcal T^{\alpha/2}$ after the square root. The finite dyadic-class
+count contributes at most $D_\delta\mathcal T^\delta$, since $U\le\mathcal T$.
+Choose $\eta=\min(\eps/12,1/10)$, $\alpha=\eps/4$, $\delta=\eps/4$;
+then $\delta+\alpha/2+3\eta\le\eps$.
+Thus both terms fit the displayed masked-cubic budget while the restricted
+factor $\sqrt A$ is retained unchanged. Passing back from ratio coordinates
+charges only fixed factors bounded using $dx=2\pi x\,d\lambda$.
+\source{GuthMaynard.Improvement.CubicScaleClosure: cubic_smoothing_width_bounds, cubic_box_polynomial_scale, cubic_box_epsilon_absorption; CubicScaledStrip; CubicFourierMoments}
+
+\begin{proposition}[Restricted cubic from the masked estimate]\label{prop:restricted}
+For the same $a,\mu,\mathcal T,L$ and every $\Lambda\ge0$,
+\begin{equation}\label{eq:restricted}
+ |\mathcal C_{a,L}(\mu)|\le C\mathcal T^\eps
+  \left(\mathcal T^2M^{3/2}+\mathcal TL\Lambda M
+       +\mathcal TL M_1\int_{\{|F|>\Lambda\}}|F|^2\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Take $B=\{|F|>\Lambda\}$. The Fourier transform is continuous, so $B$ is
+measurable. Because $\mu$ is real, $F(-\xi)=\overline{F(\xi)}$, so $B$ is
+symmetric. Put $A_2=\int_B|F|^2$. Plancherel and the pointwise bounds give
+\[
+ A_2\le M,\qquad E_0\le\Lambda^2M,\qquad
+ E\le\Lambda^2M+M_1^2A_2.
+\]
+It follows that $\mathcal TL\sqrt M\sqrt{E_0}\le\mathcal TL\Lambda M$
+and $\mathcal T^2M\sqrt{A_2}\le\mathcal T^2M^{3/2}$.
+Also $\sqrt E\le\Lambda\sqrt M+M_1\sqrt{A_2}$; hence
+\[
+ \mathcal TL\sqrt{A_2}\sqrt E
+ \le\mathcal TL\Lambda M+\mathcal TL M_1A_2.
+\]
+Substituting these three inequalities in \eqref{eq:maskedcubic} increases its
+constant by at most a factor three. This is precisely the source's restricted
+closure, including zero mass and zero threshold.
+\end{proof}
+\source{GuthMaynard.Improvement.CubicOrdinaryClosure.ordinary_fourier_threshold_budgets, ordinary_restricted_cubic_of_masked; CenteredRestrictedCubic.centered_restricted_cubic}
+
+\section{The amplifier and the spectral inequality}
+The amplifier column set is
+\[
+ Q_{N,L}=\{q\in\N:\lceil L/N\rceil_+\le q\le\lfloor2L/N\rfloor_+\}.
+\]
+For $N>0$, $N\le L$, its cardinality $k$ satisfies
+$L/(2N)\le k\le2L/N$. Its divisor matrix is
+\[
+ B_{m,q}=\sum_{n\in I_N}\one_{m=qn}a_n.
+\]
+Every contributing product $qn$ has $1\le qn/L\le4$, the plateau of $w$.
+Its synthesized column is exactly
+$\e^{\ii t\log(qN/L)}D_{N,a}(t)$.
+The source bounds the amplifier norm by divisor multiplicity, using the
+established subpower divisor bound $d(n)\ll_\eta n^\eta$.
+It then constructs a finite orthonormal family in its synthesized range,
+not a postulated infinite eigenfamily.
+\source{GuthMaynard.Improvement.AmplifierArithmetic; AmplifierNorm; AmplifierSynthesis; AmplifierQuantitative}
+
+\begin{analyticinput}[The actual finite amplifier witness]\label{input:amp}
+For each $\eta>0$ there is $P>0$ such that, uniformly in the bounded
+coefficients, scales $N>0$, $N\le L$, and finite nonnegative time measures,
+there is an orthonormal family $v_1,\ldots,v_r$, $r\le k$, satisfying
+\[
+ k\frac{\int\mu|D_{N,a}|^2}{P(1+L)^\eta(N+1)}
+ \le\sum_{j=1}^r\langle v_j,Gv_j\rangle.
+\]
+Here $G$ uses amplitude $w^2$ on the indicated integer rows.
+The source also proves the Schur bound $\|C\|\le D_0LB$ whenever
+$0\le\mu\le B$, with $D_0$ depending only on the fixed cutoff.
+\end{analyticinput}
+\source{GuthMaynard.Improvement.AmplifierQuantitative.amplifier_time_density_witness; OperatorSchur.operator_fixed_cutoff_schur}
+\begin{proof}[Proof of the finite amplifier witness]
+Let $\mathcal A$ be the literal divisor matrix between the finite column
+and row Euclidean spaces. For a row $m$, the product fiber is
+$F_m=\{(q,n)\in Q_{N,L}\times I_N:qn=m\}$.
+Cauchy--Schwarz and $|a_n|\le1$ give
+$|\mathcal A z(m)|^2\le|F_m|\sum_{(q,n)\in F_m}|z_q|^2$.
+A nonempty fiber injects into the divisors of $|m|$ and has $0<m\le4L$.
+Thus $|F_m|\le C_\eta(1+L)^\eta$. Summing over rows counts each $(q,n)$
+at most once and gives
+$\|\mathcal A\|^2\le P(1+L)^\eta(N+1)$.
+Let $\mathcal B$ synthesize a row coordinate into $w(m/L)p_{m/L}$.
+Then $\mathcal B\mathcal B^*=G$ exactly. Every synthesized column
+$\mathcal B\mathcal A e_q$ has square norm $\int\mu|D|^2$ by the
+plateau identity and its unit phase.
+Choose an orthonormal basis $v_1,\ldots,v_r$ of the finite range of
+$\mathcal B\mathcal A$; $r\le k$. Parseval in that range and adjoint
+Parseval in the finite column space give
+\[
+ \sum_q\|\mathcal B\mathcal A e_q\|^2
+ =\sum_j\|\mathcal A^*\mathcal B^*v_j\|^2
+ \le\|\mathcal A\|^2\sum_j\|\mathcal B^*v_j\|^2
+ =\|\mathcal A\|^2\sum_j\langle v_j,Gv_j\rangle.
+\]
+Insert the matrix bound and divide by its positive uniform upper bound.
+This proves the displayed witness, including rank zero. The Schur estimate
+is the separate proved continuous-kernel norm input stated above.
+\end{proof}
+\source{GuthMaynard.Improvement.AmplifierNorm.amplifier_matrix_energy; AmplifierWitness.amplifier_range_witness; AmplifierSynthesis.amplifier_synthesis_factorization}
+
+\begin{lemma}[Finite spectral sign control]
+If $C\ge0$ and $G=C+H\ge0$ in finite dimension, with eigenvalues $h_j$
+of $H$, then
+\[
+ \sum_j(-h_j)_+^3\le\tr(CH^2),\qquad
+ \sum_j(h_j)_+^3\le|\tr(H^3)|+\tr(CH^2).
+\]
+\end{lemma}
+\begin{proof}
+In an orthonormal eigenbasis of $H$ put $c_j=\langle b_j,Cb_j\rangle$.
+Positivity gives $c_j\ge0$ and $c_j+h_j\ge0$. If $h_j\le0$,
+$(-h_j)^3\le c_jh_j^2$; otherwise the left side is zero. Sum these
+inequalities. Finally $(h_j)_+^3=h_j^3+(-h_j)_+^3$ and
+$\sum h_j^3\le|\sum h_j^3|$. Notice that $C$ is not assumed to commute
+with $H$ or to be diagonal.
+\end{proof}
+\source{GuthMaynard.Improvement.FiniteSpectral.finite_negative_trace, finite_positive_trace; OperatorSpectralComparison.operator_eigenbasis_diagonal_nonneg}
+
+\begin{analyticinput}[Nuclear spectral comparison]\label{input:spectral}
+For positive $G,C$ with the source's nuclear presentations, a finite
+orthonormal witness satisfying
+$ka\le\sum_j\langle v_j,Gv_j\rangle$, $r\le k$, and $\|C\|\le B$ obeys
+\[
+ k(a-B)_+^3\le|\tr_b((G-C)^3)|+\Rea\tr_b(C(G-C)^2).
+\]
+The countable basis $b$ exists for the actual $L^2$ time space.
+\end{analyticinput}
+\paragraph{Justification of the imported operator step.}
+In finite dimension the source constructs an eigenbasis of $G-C$. Bessel's
+inequality bounds the projections of the finite witness. The positive-part
+cubic inequality follows from the preceding sign-control lemma together
+with the finite witness's quadratic lower bound. For the actual space take
+finite-dimensional spans of the witness and finitely many basis vectors,
+compress both operators, apply the finite inequality, and pass to the
+directed limit. Nuclear presentations prove convergence of both cubic and
+mixed diagonal traces. Thus no infinite spectral-basis assumption or
+unproved compact trace identity is required.
+\source{GuthMaynard.Improvement.OperatorSpectralComparison.operator_finite_spectral_comparison; OperatorNuclearSpectral.operator_nuclear_spectral_comparison; OperatorFiniteTrace; OperatorTraceConvergence}
+
+\begin{analyticinput}[The mixed source correction]\label{input:mixed}
+Fix $A\ge1$ and $p>0$. For every $\eps>0$ one constant works whenever
+$N\ge2$, $N\le L$, $0\le\mathcal T\le AN^p$, $\mu\in L^1\cap L^2$
+is measurable and nonnegative, supported in an interval of length
+$\mathcal T$, and $\mu\le|D_{N,a}|^2$:
+\[
+ |\tr_b(CH^2)|\le R_0N^\eps L^2N\mathcal T\int\mu^2.
+\]
+\end{analyticinput}
+\source{GuthMaynard.Improvement.OperatorSourceMixed.operator_source_mixed}
+The source discharges this with the following literal row and cycle bounds.
+For any fixed reflection cutoff $v$, put
+$c_v(s)=\int v(x)\e^{\ii s\log x}dx$ and $K=K_{v,L}$.
+The established source-row theorem states, uniformly for $u$ on the time support,
+\[
+ \int\mu(t)|K(u-t)|^2dt\le R_vN^\eps LN\mathcal T.
+\]
+Its proof uses the actual reflected Mellin kernel: near rows use bounded
+coefficient/product energy, signed shells use Fourier-reflected band estimates,
+and finite dyadic summation includes negative reflection. It applies to the
+genuine centered row, not to an unrelated absolute kernel.
+The continuous correction has kernel $Lc_v$. The source proves
+$\psi=|c_v|\in L^1$, bounded, by compact-smooth Mellin decay.
+By the nuclear mixed trace identity its cycle is
+\[
+ \iiint Lc_v(u-v)K(v-t)K(t-u)\mu(u)\mu(v)\mu(t)\,du\,dv\,dt.
+\]
+Use $|K(-s)|=|K(s)|$ and
+$|K(v-t)K(t-u)|\le(|K(v-t)|^2+|K(u-t)|^2)/2$.
+The row bound controls the inner $t$ integral by $R_vN^\eps LN\mathcal T$.
+The remaining double integral of $\psi(u-v)\mu(u)\mu(v)$ is at most
+$\|\psi\|_1\int\mu^2$, by the source's $L^1$--$L^2$ convolution inequality.
+This proves the mixed estimate with constant
+$(1+\|\psi\|_1)R_v$. In the raw spectral application $v=a_0=w^2$,
+which is itself an admissible reflection cutoff; hence the displayed
+$G,C,H$ are exactly the ones in the row estimate.
+\source{GuthMaynard.Improvement.ReflectionSourceRow.centered_source_row; MixedKernelRow.kernelMixed_time_row_bound; MixedCutoffEnvelope; OperatorMixedBound; SourceSpectralRaw}
+
+\begin{proposition}[Raw spectral mass estimate]\label{prop:spectralraw}
+Under the hypotheses of Input~\ref{input:mixed} and also
+$\mu\le\min(|D_{N,a}|^2,B)$, $B\ge0$, let $M=\int\mu^2$.
+For any $\eta,\eps>0$ the source supplies constants $P,D_0,R_0>0$ such that
+\begin{equation}\label{eq:spectralraw}
+ M^3\le4\bigl(P(1+L)^\eta(N+1)\bigr)^3
+ \left((D_0LB)^3+\frac{2N}{L}
+   \left(|\mathcal C_{a_0,L}(\mu)|+R_0N^\eps L^2N\mathcal T M\right)\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Pointwise $\mu^2\le\mu|D|^2$, with both integrals justified by boundedness
+of the finite polynomial. The amplifier witness therefore has level at
+least $M/P_1$, where $P_1=P(1+L)^\eta(N+1)>0$.
+Use Input~\ref{input:spectral}, $k\ge L/(2N)$, the Schur bound
+$\|C\|\le D_0LB$, the cubic trace identity, and Input~\ref{input:mixed}.
+Writing $z=(M/P_1-D_0LB)_+$ gives
+\[
+ \frac L{2N}z^3\le|\mathcal C|+R_0N^\eps L^2N\mathcal T M.
+\]
+Since $M/P_1\le D_0LB+z$ and
+$(x+y)^3\le4(x^3+y^3)$ for nonnegative $x,y$, multiplication by $P_1^3$
+gives exactly \eqref{eq:spectralraw}. This proof also works when $M=0$.
+\end{proof}
+\source{GuthMaynard.Improvement.SpectralMassAssembly.actual_spectral_mass_bound, spectral_mass_scalar; SourceSpectralRaw.source_spectral_raw}
+
+\begin{proposition}[Uniformly absorbed spectral scale]\label{prop:spectralscale}
+Fix $A\ge1$, $p>0$. For every $\delta>0$, one constant $S>0$ works for
+$N\ge2$, $N\le L\le AN^p$, $0\le\mathcal T\le AN^p$, and the preceding
+source densities:
+\begin{equation}\label{eq:spectralscale}
+ M^3\le SN^\delta\left((NLB)^3+\frac{N^4}{L}|\mathcal C_{a_0,L}(\mu)|
+                         +N^5L\mathcal T M\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Take $\eta=\delta/(6p)$ and the mixed-source loss $\eps=\delta/2$.
+Then $3p\eta+\eps=\delta$. From
+$1+L\le(1+A)N^p$ and $N+1\le2N$,
+\[
+ 4\bigl(P(1+L)^\eta(N+1)\bigr)^3N^\eps
+ \le32P^3(1+A)^{3\eta}N^{\delta+3}.
+\]
+Insert an additional $N^\eps\ge1$ in the nonnegative terms of
+\eqref{eq:spectralraw} where necessary. Expanding $N^3$ into the three
+terms yields $(NLB)^3$, $2N^4|\mathcal C|/L$, and
+$2R_0N^5L\mathcal TM$. A uniform constant
+$32P^3(1+A)^{3\eta}(D_0^3+2+2R_0)$ dominates their coefficients.
+\end{proof}
+\source{GuthMaynard.Improvement.SpectralScaleBudget: spectral_prefactor_budget, spectral_raw_scale_budget, source_spectral_scale}
+
+\chapter{The literal truncation and the optimized fourth moment}\label{ch:moment}
+\section{Truncation is not clipping}
+For $N\ge2$, $T>0$, a bounded source $D=D_{N,a}$, and real $U$, put
+\[
+ \beta_T(t)=\chi(t/T),\qquad
+ \mu_U(t)=\one_{\{|D(t)|\le U\}}\beta_T(t)|D(t)|^2,\qquad
+ r_U(t)=\one_{\{|D(t)|>U\}}\beta_T(t)|D(t)|^2.
+\]
+The measure density is \emph{discarded} above $U$; it is not
+$\min(|D|^2,U^2)$. Let
+\[
+ M=\int\mu_U^2,\qquad H_{\rm rem}=\int r_U,\qquad M_1=\int\mu_U.
+\]
+All these integrals are finite and nonnegative. Indeed $D$ is a finite
+continuous sum with $|D|\le N+1\le2N$ and $\beta_T$ is bounded and
+compactly supported. The source proves measurability and integrability of
+$\mu_U$, $\mu_U^2$, and $r_U$, support in $[-2T,3T]$, and
+\[
+ 0\le\mu_U(t)\le\min(|D(t)|^2,U^2),\qquad
+ \mu_U+r_U=\beta_T|D|^2.
+\]
+For negative $U$, $\mu_U=0$; the domination statement remains valid.
+\source{GuthMaynard.Improvement.SourceTailConditional.source_density_regular; TruncatedSourceAttachment.fixed_truncated_source_regular}
+
+\section{The arithmetic sampling interface and the exceptional Fourier tail}
+\begin{analyticinput}[Actual source sampling]\label{input:sampling}
+For the fixed $\chi$, one $D_0>0$ works for all $N,T\ge2$ and bounded
+source coefficients. For every complex test $h$ with $h\in L^1\cap L^2$,
+$\Hhat h\in L^1$, and $\supp h\subset\supp\beta_T$,
+\[
+ \left|\int |D(t)|^2h(t)\,dt\right|
+ \le D_0N^2\int|\Hhat h|+
+      D_0N\sqrt{T\log(2N)}\left(\int|h|^2\right)^{1/2}.
+\]
+\end{analyticinput}
+\source{GuthMaynard.Improvement.SourceDirichletTail.boundedPolynomial_source_sampling; SourceTailConditional.SourceSamplingBound}
+
+\paragraph{Arithmetic content of this input.}
+Expansion of $|D|^2$ reduces pairing to Fourier samples at
+$\log(n/m)/(2\pi)$, $n,m\in I_N$. Reduce $(n,m)$ by its greatest common
+divisor to $(a,b)$; its actual multiplicity is the number of pairs on that
+primitive rational ray. It is at most $\lfloor2N\rfloor/\max(a,b)$.
+Distinct primitive pairs of height at most $Y$ have logarithms separated
+by at least $Y^{-2}$: their integer cross-products differ by at least one,
+and $\log p-\log q\ge1/p$ for $p\ge q+1$.
+At height $q$ there are at most $2q$ positive pairs. Thus squared
+multiplicities through height $Y$ have sum at most
+$2\lfloor2N\rfloor^2(1+\log Y)$.
+The source decomposes exact low height plus half-open dyadic height shells,
+uses disjoint Fourier-sampling neighborhoods and the proved derivative
+variation estimate, and obtains the displayed sampling bound. In particular
+it does not discard repeated ratios, the diagonal ratio $(1,1)$, or the
+nonintegral endpoint term.
+More precisely, set $Y=\min(2N,\max(2,\sqrt T))$ and choose the least $J$
+with $2N\le2^JY$. Then $Y\ge2$, $Y^2\le2T$,
+$\sum_{j<J}2^jY\le4N$ and $\sum_{j<J}(2^jY)^{-1}\le2/Y$.
+If $Y=2N$ then $J=0$; otherwise $Y\ge\sqrt T$.
+For a test supported in $[-cT,cT]$, with
+$M_h=\int|h|^2$ and $I_h=\int_{-2}^2|\widehat h|$, the exact low-height
+sampling cost is at most
+\[
+ \sqrt{16N^2\log(2N)}\sqrt{(2\pi Y^2+4\pi cT)M_h}.
+\]
+The established shell-variation bound at height $Q=2^jY$ is
+$16\pi NQI_h+8\pi NcTQ^{-1}\sqrt{M_h}$.
+The geometric sums therefore give high cost at most
+$64\pi N^2I_h+16\pi c(NT/Y)\sqrt{M_h}$, with the second term absent
+when $J=0$. Since $NT/Y\le N\sqrt T$ when it is present, and
+$\log(2N)\ge1$, the low and high terms fit
+\[
+ (64\pi+8\sqrt{\pi(1+c)}+16\pi c)
+      \left(N^2I_h+N\sqrt{T\log(2N)}\sqrt{M_h}\right).
+\]
+For the fixed time support take $c=3$ and enlarge the band integral to the
+full Fourier $L^1$ integral. The finite expansion of the polynomial pairing
+then gives Input~\ref{input:sampling}, with bounded coefficients applied
+only inside $I_N$.
+\source{GuthMaynard.Improvement.ReducedRatioGeometry; SourceRatioAssembly; SamplingVariation; SamplingFourier; SourceRatioHeightBudget; SourceRatioBound}
+
+\begin{proposition}[Source Fourier mass above the actual removal threshold]\label{prop:tail}
+There is a fixed $D_1>0$ such that if
+$\Lambda\ge D_1(N^2+H_{\rm rem})$, then
+\begin{equation}\label{eq:tail}
+ \int_{\{|\Hhat\mu_U|>\Lambda\}}|\Hhat\mu_U|^2
+       \le D_1N^2T\log(2N).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Set $E=\{|\Hhat\mu_U|>\Lambda\}$, $A_2=\int_E|\Hhat\mu_U|^2$, and
+$g=\mathcal F^{-1}(\one_E\Hhat\mu_U)$. Since $\Lambda>0$,
+\[
+ \int_E|\Hhat\mu_U|\le A_2/\Lambda,\quad
+ |g(t)|\le A_2/\Lambda,\quad\int|g|^2=A_2.
+\]
+The source proves the inverse-Fourier identity
+$\int\mu_Ug=A_2$; reality makes this bilinear identity have the stated
+orientation, by the symmetric Fourier mask. For
+$h=\beta_Tg$, its Fourier $L^1$ norm is bounded by
+$J A_2/\Lambda$, $J=\int|\Hhat\chi|$, and its square norm by $A_2$.
+All test regularity follows from the source's smooth cutoff convolution
+lemmas. The decomposition $\beta_T|D|^2=\mu_U+r_U$ and the sampling
+input imply
+\[
+ A_2\le (D_0N^2J+H_{\rm rem})A_2/\Lambda
+           +D_0N\sqrt{T\log(2N)}\sqrt{A_2}.
+\]
+Choose $D_1$ large enough that
+$2(D_0N^2J+H_{\rm rem})\le\Lambda$ and $4D_0^2\le D_1$.
+Absorb the first term, obtaining
+$A_2/2\le D_0N\sqrt{T\log(2N)}\sqrt{A_2}$.
+If $A_2=0$ the result is immediate; otherwise divide by $\sqrt{A_2}$ and
+square. This proves \eqref{eq:tail} without assuming that the removed mass
+is small.
+\end{proof}
+\source{GuthMaynard.Improvement.SourceTailConditional.source_tail_of_sampling, source_tail_scalar_absorption; SourceDirichletTail.boundedPolynomial_source_tail}
+
+\begin{analyticinput}[Actual second moments and classical level volume]\label{input:classical}
+For $N\ge2$, $T\ge0$, bounded source coefficients, and one-separated
+$W\subset[t_0,t_0+T]$,
+\[
+ \sum_{t\in W}|D(t)|^2\le102N(T+N\log(2N)).
+\]
+For $N\le T$ the source gives the simpler bound
+$204TN\log(2N)$.
+For each $\eps>0$, whenever $N\ge2$, $N\le T\le N^2$, $V>0$,
+\begin{equation}\label{eq:classical}
+ |W|\le C_\eps N^\eps\left(N^2/V^2+TN^4/V^6\right)
+\end{equation}
+for every one-separated source large-value set. The corresponding Lebesgue
+level volume on an interval of length $qT$ is at most
+$qC_\eps N^\eps(N^2/V^2+TN^4/V^6)$ for integer $q\ge0$.
+Finally, for our truncated source with $N\le T$,
+\[
+ M_1\le612TN\log(2N).
+\]
+\end{analyticinput}
+\source{GuthMaynard.Improvement.SeparatedSecondMoment; ClassicalLargeValues.classical_large_values; ClassicalLevelVolume.boundedPolynomial_classical_level_volume; TruncatedSourceMeanValue.fixed_truncated_source_mass}
+
+\paragraph{No missing threshold case in the classical estimate.}
+The high-threshold input behind \eqref{eq:classical} is the native integer
+large-values theorem on $T^{1/3}\le M\le T$, with threshold
+$V\ge M^{3/4+\kappa}$, giving
+$T^\eta(M^2/V^2+M^3\sqrt T/V^4)$.
+The real-to-integer transfer of Chapter~1 applies above
+$16N^{3/4+\eps/8}$; nonempty $W$ implies $N\ge8$, which gives the integer
+scale condition. Its second term fits \eqref{eq:classical}, since
+\[
+ N^3\sqrt T/V^4\le N^2/V^2+TN^4/V^6
+\]
+by expanding $(NV^2-N^2\sqrt T)^2\ge0$.
+Below the threshold the separated second moment is used, with
+$V^4\le16^4N^{3+\eps/2}$ and
+$\log(2N)\le(\log2+2/\eps)N^{\eps/2}$.
+Empty sets are handled directly. Thus the classical input is not applied
+outside its large-value height range.
+\source{GuthMaynard.Improvement.ClassicalLargeValues: classical_cross_budget, classical_low_scalar, classical_floor_scale, classical_large_values}
+
+\begin{proposition}[Removed mass bound]\label{prop:removed}
+For each $\eps>0$ one constant works for $N\ge2$, $N\le T\le N^2$,
+$U\ge1$, and every bounded coefficient family:
+\begin{equation}\label{eq:removed}
+ H_{\rm rem}\le C_\eps N^\eps(N^2+TN^4/U^4).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Choose a dyadic cutoff $J$ with $2N\le2^J$ and
+$J+1\le K_\eps N^{\eps/2}$. Such a cutoff is obtained from the least
+dyadic cover and the logarithmic power bound. Since $|D|\le2N\le2^JU$,
+split the removed part into levels $2^jU<|D|\le2^{j+1}U$, $0\le j<J$.
+On each level $|D|^2\le4(2^jU)^2$. The cutoff is at most one and supported
+in $[-2T,3T]$, an interval of length $5T$, so Input~\ref{input:classical}
+with loss $\eps/2$ gives
+\[
+ H_{\rm rem}\le5C N^{\eps/2}\sum_{j<J}
+ 4(2^jU)^2\left(N^2/(2^jU)^2+TN^4/(2^jU)^6\right).
+\]
+The first part is $4JN^2$. The second is
+$4TN^4U^{-4}\sum_{j<J}16^{-j}\le8TN^4U^{-4}$.
+Use the bound on $J+1$ and $N^{\eps/2}\ge1$; the product of the two
+half-losses is $N^\eps$. The source chooses $40CK$ as a common constant.
+\end{proof}
+\source{GuthMaynard.Improvement.RemovedMassBound: removed_dyadic_classical_sum, removed_dyadic_cover, fixed_source_removed_mass}
+
+\section{Fixed-source raw cubic and spectral assembly}
+Use Proposition~\ref{prop:restricted} on support length $5T$, with
+$\Lambda=D_1(N^2+H_{\rm rem})$. By \eqref{eq:tail} and
+$M_1\le612TN\log(2N)$,
+\begin{equation}\label{eq:fixedcubic}
+ |\mathcal C_{a_0,L}(\mu_U)|\le C(5T)^\eps
+ \left(25T^2M^{3/2}+5TLD_1(N^2+H_{\rm rem})M
+         +3060D_1N^3LT^3\log^2(2N)\right).
+\end{equation}
+This requires $(5T)^{4/5}\le L\le5T$, not merely $T^{4/5}\le L$.
+The coefficient $3060$ is the product $5\cdot612$, and the support
+translation is $[-2T,3T]$.
+\source{GuthMaynard.Improvement.TruncatedSourceCubic.fixed_truncated_source_cubic}
+
+If also $N\le T\le N^2$, $N\le L$, then
+$L,5T\le5N^2$. Apply Proposition~\ref{prop:spectralscale} with $A=5$,
+$p=2$, $B=U^2$. Substituting \eqref{eq:fixedcubic} gives
+\begin{align}\label{eq:fixedraw}
+ M^3\le SN^\delta\bigg[&(NLU^2)^3+5N^5LTM\\
+ &+\frac{N^4}{L}C(5T)^\eps
+ \bigg(25T^2M^{3/2}+5TLD_1(N^2+H_{\rm rem})M\\
+ &\hspace{50mm}+3060D_1N^3LT^3\log^2(2N)\bigg)\bigg].\nonumber
+\end{align}
+The constants $S,C,D_1$ precede all sources and scales.
+\source{GuthMaynard.Improvement.TruncatedSourceMomentRaw.fixed_truncated_source_moment_raw}
+
+\section{The three optimized quantities}
+\begin{definition}
+For $N,T>0$ define
+\[
+ L_*=N^{1/7}T^{5/7},\qquad U_*=N^{5/7}T^{1/14},\qquad
+ P_*=N^{18/7}T^{6/7}.
+\]
+\end{definition}
+\begin{lemma}[Admissibility and exact scale identities]\label{lem:scales}
+If $N\ge2$ and $N^{6/5}\le T\le N^{5/3}$, then
+\[
+ N\le T\le N^2,\quad N\le L_*,\quad T^{4/5}\le L_*\le T,
+ \quad1\le U_*\le N,
+\]
+and $5L_*$ is admissible for \eqref{eq:fixedraw}. Moreover
+\begin{align*}
+ NL_*U_*^2&=P_*,&N^4T^2/L_*&=P_*^{3/2}=P_*\sqrt{P_*},\\
+ N^5L_*T&=P_*^2,&TN^4/U_*^2&=P_*,\\
+ TN^4/U_*^4&=NL_*,&N^7T^3&\le P_*^3.
+\end{align*}
+\end{lemma}
+\begin{proof}
+All powers have positive bases. $N\le T\le N^2$ follows from
+$1\le6/5$ and $5/3\le2$. From $T\ge N^{6/5}$,
+$T^{5/7}\ge N^{6/7}$, giving $N\le L_*$.
+From $T\le N^{5/3}$, $T^{3/35}\le N^{1/7}$, giving
+$T^{4/5}=T^{3/35}T^{5/7}\le L_*$. Using $N\le T$,
+$L_*\le T^{6/7}\le T$. Multiplying by five and
+$5^{4/5}\le5$ yields $(5T)^{4/5}\le5L_*\le5T$.
+Also $U_*\ge1$ and, using $T\le N^2$,
+$U_*\le N^{6/7}\le N$. Every identity is an exact addition of
+exponents; for example $NL_*U_*^2$ has $N$-exponent
+$1+1/7+10/7=18/7$ and $T$-exponent $5/7+1/7=6/7$.
+For the final inequality,
+$N^7T^3/P_*^3=N^{-5/7}T^{3/7}\le1$ because $T^3\le N^5$.
+\end{proof}
+\source{GuthMaynard.Improvement.MiddleRangeScales; MiddleRangeIdentities; MiddleLargeValueBranches.middle_threshold_le_length}
+
+\begin{lemma}[Homogeneous cubic absorption]\label{lem:absorb}
+If $M,P,Q\ge0$ and
+\[
+ M^3\le Q(P^3+P^{3/2}M^{3/2}+P^2M),
+\]
+then $M\le(1+3Q)P$. If the right-hand coefficient is $QN^\eps$ with
+$N\ge1$, $\eps\ge0$, then
+$M\le(1+3Q)N^\eps P$.
+\end{lemma}
+\begin{proof}
+If $M\le P$, the first conclusion is immediate. Otherwise $M>0$ and
+$P\le M$. Each term in the bracket is at most $PM^2$:
+$P^3\le PM^2$, $P^{3/2}M^{3/2}\le PM^2$, and $P^2M\le PM^2$.
+Thus $M^3\le3QPM^2$; cancellation of $M^2>0$ gives $M\le3QP$.
+For the second assertion use the first with $QN^\eps$ and then
+$1+3QN^\eps\le(1+3Q)N^\eps$. The argument does not divide by $P$,
+so it includes $P=0$.
+\end{proof}
+\source{GuthMaynard.Improvement.MomentScalarClosure.normalized_moment_absorption, normalized_moment_power_absorption}
+
+\begin{theorem}[Actual optimized truncated fourth moment]\label{thm:fourth}
+For every $\eps>0$ there is $C_\eps>0$ such that, uniformly for
+$N\ge2$, $N^{6/5}\le T\le N^{5/3}$, and bounded coefficients,
+\[
+ \int_\R\left(\one_{\{|D_{N,a}|\le U_*\}}
+                  \chi(t/T)|D_{N,a}(t)|^2\right)^2dt
+ \le C_\eps N^\eps P_*.
+\]
+\end{theorem}
+\begin{proof}
+Write $L=L_*$, $U=U_*$, $P=P_*$ and $\theta=\eps/6$.
+Use \eqref{eq:fixedraw} with $\delta=\theta$, cubic loss $\theta$,
+and spectral scale $5L$. Lemma~\ref{lem:scales} turns it exactly into
+\begin{align}\label{eq:middleraw}
+ M^3\le SN^\theta\bigg[&125P^3+25P^2M+C(5T)^\theta\bigg(
+        5P^{3/2}M^{3/2}\\
+ &+5D_1N^4T(N^2+H_{\rm rem})M
+               +3060D_1N^7T^3\log^2(2N)\bigg)\bigg].\nonumber
+\end{align}
+The $125$ and $25$ are the literal factor-five rescaling losses.
+Use Proposition~\ref{prop:removed} with loss $\theta$, giving
+\[
+ H_{\rm rem}\le KN^\theta(N^2+NL)\le2KN^\theta NL,
+ \qquad N^2+H_{\rm rem}\le(1+2K)N^\theta NL.
+\]
+The latter and $N^5LT=P^2$ bound the middle removal term by
+$5D_1(1+2K)N^\theta P^2M$.
+Moreover
+\[
+ (5T)^\theta\le5^\theta N^{2\theta},\qquad
+ \log^2(2N)\le J^2N^{2\theta},\quad J=\log2+1/\theta,
+ \qquad N^7T^3\le P^3.
+\]
+Since $N^\theta,N^{2\theta}\ge1$, all nonnegative terms in
+\eqref{eq:middleraw} are dominated by
+\[
+ QN^{\theta+\theta+2\theta+2\theta}
+       (P^3+P^{3/2}M^{3/2}+P^2M),
+\]
+where the source's explicit uniform coefficient is
+\[
+ Q=S\left(150+C5^\theta
+       \left(5+5D_1(1+2K)+3060D_1J^2\right)\right)\ge0.
+\]
+The four losses sum to $6\theta=\eps$. Lemma~\ref{lem:absorb} gives
+$M\le(1+3Q)N^\eps P$. Every constant was selected before $N,T,a$.
+\end{proof}
+\source{GuthMaynard.Improvement.MiddleMomentRaw.middle_source_moment_raw; MomentScalarClosure.raw_moment_normalized_budget; MiddleFourthMoment.middle_fourth_moment}
+
+\chapter{From the fourth moment to all separated large values}\label{ch:middle}
+\section{Good cells, bad cells, and the reproducing weight}
+The source fixes the exact frequency cutoff $\chi$ of Chapter~\ref{ch:cubic}
+and defines $k=\mathcal F^{-1}\chi$ as a Schwartz function. Put $q(t)=|k(t)|$;
+no smoothness of the absolute value $q$ is required.
+For $n\in I_N$ the negative frequency
+$-\log(n/N)/(2\pi)$ lies in $[-1,2]$, so the transform of $k$ equals one
+there. Translation invariance gives, term by term,
+\[
+ \int k(t-w)e(t\xi)\,dt=e(w\xi)\widehat k(-\xi).
+\]
+Finite summation therefore proves $D(w)=\int k(t-w)D(t)\,dt$.
+This applies inversion to the Schwartz kernel, not to the nonintegrable
+exponential. Two weighted Cauchy--Schwarz inequalities give
+\[
+ |D(w)|^4\le\left(\int q\right)^3\int q(t-w)|D(t)|^4dt.
+\]
+Schwartz decay supplies $q(s)\le C_j(1+|s|)^{-j}$. Applying the source's
+separated quadratic-decay packing lemma gives the uniform overlap bound
+$\sum_{w\in W}q(t-w)\le B_0$. Since $\int|s|^jq(s)\,ds$ is finite,
+$q(s)\le |s|^jq(s)/R^j$ on $|s|>R$. Multiply by
+$|D|^4\le16N^4$ and integrate after translating. This proves, for $R>0$,
+\[
+ \int_{|t-w|>R}q(t-w)|D(t)|^4dt\le D_jN^4/R^j.
+\]
+All weighted moments are integrable because $D$ is bounded and the kernel
+is integrable; no global $L^4$ assertion for $D$ is used.
+\source{GuthMaynard.Improvement.SourceReproducingKernel; SourceQuarticKernel; SourceQuarticTail}
+
+Let
+\[
+ \mathcal K=\{k\in\Z:\lfloor-T\rfloor\le k\le\lfloor2T\rfloor,
+       \ \exists x\in[-T,2T],\ |D(x)|>U,\ \lfloor x\rfloor=k\}.
+\]
+The exact deleted set is
+$Z=\bigcup_{k\in\mathcal K}\{w\in W:|w-k|\le R+1\}$, and $G=W\setminus Z$.
+A one-separated set in $[k-R-1,k+R+1]$ has at most $2R+3$ points.
+Taking the union bound proves $|Z|\le(2R+3)|\mathcal K|$.
+If $w\in G$ and $|t-w|\le R\le T$, then $t\in[-T,2T]$.
+If $|D(t)|>U$, the integer $k=\lfloor t\rfloor$ belongs to $\mathcal K$,
+and $|t-k|<1$ implies $|w-k|\le R+1$, contradicting $w\notin Z$.
+Thus $|D(t)|\le U$ and $\chi(t/T)=1$, so
+$\mu_U(t)^2=|D(t)|^4$. This explains the plateau $[-1,2]$.
+
+For completeness, the bad-cell bound uses parity-bin selection alone.
+Choose one witness from each occupied cell and select the parity class
+containing at least half the cells. Those witnesses are one-separated.
+Split them into the three intervals $[-T,0]$, $[0,T]$, $[T,2T]$;
+each has length $T$, preserving $T\le N^2$. The classical bound applied
+at threshold $U$ gives at most three copies of its budget. Restoring both
+parities gives at most six copies. No derivative estimate or positive
+lower bound on the measure of a bad cell is needed.
+\source{GuthMaynard.Improvement.QuarticCellGeometry; QuarticMomentExtraction.quartic_good_integral}
+
+\begin{proposition}[Extraction at a specified truncated moment]\label{prop:extraction}
+For each $\eps>0$ there is $E_\eps>0$ such that if
+$N\ge2$, $N\le T\le N^2$, $1\le V\le U\le2N$, and
+$W\subset[0,T]$ is one-separated with $|D(w)|\ge V$, then for every
+upper bound $M_0$ on $\int\mu_U^2$,
+\begin{equation}\label{eq:extract}
+ |W|\le E_\eps N^\eps
+ \left(N^2/U^2+TN^4/U^6+M_0/V^4\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+For a fixed tail order $j$, the preceding reproducing estimates imply for
+$w\in G$
+\[
+ V^4\le A_0\int q(t-w)\mu_U(t)^2dt+A_0D_jN^4/R^j,
+ \qquad A_0=\left(\int q\right)^3.
+\]
+When the last term is at most $V^4/2$, sum over $G$, interchange the finite
+sum and integrals, and use the overlap bound to obtain
+$|G|\ll M_0/V^4$. The actual classical bad-cell bound gives
+$|\mathcal K|\ll_{\eps}N^\eps(N^2/U^2+TN^4/U^6)$.
+It uses occupied unit cells and the parity argument just proved, not the
+measure of a superlevel set or an uncharged derivative-variation loss. Combining deleted and good points gives
+\[
+ |W|\le B\left((R+1)N^{\eps/2}(N^2/U^2+TN^4/U^6)+M_0/V^4\right)
+\]
+whenever its uniform rapid-tail condition holds.
+
+Choose $\nu=\min(\eps/2,1/2)>0$ and an integer $j$ such that $\nu j\ge5$.
+Let $N_0=\max(2,2B)$ and take $R=N^\nu$ for $N\ge N_0$.
+Then $R\le N\le T$, $R^j\ge N^5$, and $BN^4/R^j\le1/2\le V^4/2$.
+Also $(R+1)N^{\eps/2}\le2N^\eps$.
+For $2\le N<N_0$, packing gives $|W|\le T+1\le2N_0^2$, while
+$U\le2N$ gives $N^2/U^2\ge1/4$. Thus an enlarged common constant
+$8N_0^2+2B+1$ covers the bounded-length case too. This proves
+\eqref{eq:extract} with no radius or tail premise left.
+\end{proof}
+\source{GuthMaynard.Improvement.QuarticMomentExtraction.quartic_moment_extraction; QuarticBadCells.quartic_bad_cells_bound; QuarticExtraction.quartic_extraction; QuarticRadiusExtraction.quartic_extraction_of_moment}
+
+\begin{lemma}[Threshold budgets]
+In the middle time range, if $0<V\le U_*$, then
+\[
+ N^2/U_*^2+TN^4/U_*^6\le2P_*/V^4.
+\]
+If $V\ge U_*$, then $TN^4/V^6\le P_*/V^4$.
+\end{lemma}
+\begin{proof}
+Since $N\le L_*$ and $P_*=NL_*U_*^2$,
+$N^2/U_*^2\le P_*/U_*^4$.
+The identity $TN^4/U_*^2=P_*$ gives
+$TN^4/U_*^6=P_*/U_*^4$. Sum and use $V^4\le U_*^4$.
+For the second assertion use $V^2\ge U_*^2$ in
+$TN^4/V^6=(TN^4/V^2)/V^4$.
+\end{proof}
+\source{GuthMaynard.Improvement.MiddleLowLargeValues.middle_low_threshold_budget; MiddleLargeValueBranches.middle_high_threshold_budget}
+
+\begin{proof}[Proof of Theorem~\ref{thm:middle}]
+First treat $W\subset[0,T]$. If $0<V<1$, no polynomial estimate is needed:
+packing gives $|W|\le T+1\le2N^2\le2N^2/V^2$.
+If $1\le V\le U_*$, apply Proposition~\ref{prop:extraction} with loss
+$\eps/2$ and Theorem~\ref{thm:fourth} with loss $\eps/2$.
+The threshold-budget lemma gives
+\[
+ |W|\le E N^{\eps/2}
+   \left(2P_*/V^4+D N^{\eps/2}P_*/V^4\right)
+ \le E(2+D)N^\eps P_*/V^4.
+\]
+If $V>U_*$, apply the actual classical estimate
+\eqref{eq:classical} with loss $\eps$ and the high-threshold budget.
+This gives $|W|\le C_2N^\eps(N^2/V^2+P_*/V^4)$.
+The sum $C=C_1+C_2+2$ of the low, high, and packing constants works for
+all positive thresholds.
+
+For a translated interval set
+$W_0=\{t-t_0:t\in W\}$ and
+$b_n=a_n\e^{\ii t_0\log(n/N)}$.
+Translation preserves cardinality and separation, $|b_n|=|a_n|$, and
+\[
+ D_{N,b}(s)=D_{N,a}(s+t_0).
+\]
+Apply the origin bound to $W_0,b$. The right side and constant are unchanged.
+\end{proof}
+\source{GuthMaynard.Improvement.MiddleLowLargeValues.middle_large_values_low; MiddleLargeValueBranches.middle_large_values_high, middle_large_values_small; SourceTranslation; MiddleLargeValues.middle_range_large_values}
+
+\chapter{Short zero detection and fixed coefficient families}\label{ch:detector}
+\section{The arithmetic mollifier and the exact contour identity}
+Let $\mu_{\rm ar}(n)$ be the integer M\"obius function, extended by zero at
+$n=0$. The mollifier and its product coefficients are
+\[
+ M_X(s)=\sum_{1\le d\le\lfloor X\rfloor_+}\mu_{\rm ar}(d)d^{-s},\qquad
+ c_X(n)=\sum_{d\mid n,\ d\le\lfloor X\rfloor_+}\mu_{\rm ar}(d).
+\]
+The divisor set at $0$ is empty. For $X\ge1$, $c_X(1)=1$ and
+$c_X(n)=0$ if $2\le n\le X$. Also $|c_X(n)|\le d(n)$.
+Define, for $Y>0$,
+\[
+ S(\rho;X,Y)=\sum_{n\ge0}c_X(n)n^{-\rho}\e^{-n/Y},\qquad
+ R(\rho;X,Y)=M_X(1)Y^{1-\rho}\Gamma(1-\rho),
+\]
+where the $n=0$ summand is zero. The source proves absolute convergence
+in the real-part ranges in which it is used. With $\rho=\beta+\ii\gamma$,
+put
+\begin{align*}
+ I(\rho;X,Y)=\frac1{2\pi}\int_\R&
+ \Gamma(1/2-\beta+\ii v)\zeta(1/2+\ii(\gamma+v))\\
+ &\cdot M_X(1/2+\ii(\gamma+v))Y^{1/2-\beta+\ii v}\,dv.
+\end{align*}
+\source{MathCollab.Density.MollifierCoefficients; DetectorMellin.detectorKernel; DetectorContour.detectorResidue; DetectorError.detectorIntegral}
+
+\begin{analyticinput}[Actual short contour identity]\label{input:contour}
+If $\zeta(\rho)=0$, $9/13\le\beta<1$, and $Y\ge1$, then, for independent
+mollifier and smoothing parameters $X,Y$,
+\[
+ S(\rho;X,Y)=R(\rho;X,Y)+I(\rho;X,Y).
+\]
+\end{analyticinput}
+\paragraph{What the contour argument uses.}
+Mellin inversion of $\e^{-n/Y}$ gives the right vertical contour on
+$\Rea s=1/2$. Move to $\Rea s=1/2-\beta$ in a finite rectangle.
+The factor $\zeta(\rho)=0$ cancels the Gamma singularity at $s=0$;
+the zeta pole at $s=1-\rho$ gives exactly $R$.
+The shifted zeta regularization, residue identity, absolute integrability
+of both vertical contours, and decay of both horizontal contours are
+proved dependencies. Taking the height to infinity gives the displayed
+identity with factor $1/(2\pi)$, not $1/(2\pi\ii)$ after real vertical
+parameterization. No Weyl estimate is an extra premise of this identity.
+\source{GuthMaynard.Improvement.ShortDetectorIdentity.short_smoothedDetector_contour_identity, short_zeta_detector_identity; ShortDetectorContour; ShortDetectorMellin; ShortDetectorEstimates}
+
+\section{The finite detector and its dichotomy}
+For a positive height $H$ choose
+\[
+ X_H=2H^{1/100},\quad Y_H=H^{1/2},\quad
+ K_H=\left\lceil H^{1/2}(\log H)^2\right\rceil_+.
+\]
+Define fixed coefficients
+\[
+ b_H(n)=\begin{cases}c_{X_H}(n)\e^{-n/Y_H},&
+              \lfloor X_H\rfloor_+<n<K_H,\\0,&\text{otherwise},\end{cases}
+ \qquad F_H(\rho)=\sum_{n<K_H}b_H(n)n^{-\rho}.
+\]
+They depend on $H$, not on either coordinate of the zero.
+For $H\ge1$, $K_H>1$, and $\beta\ge0$, the source proves the exact split
+\begin{equation}\label{eq:finiteidentity}
+ S(\rho;X_H,Y_H)=\e^{-1/Y_H}+F_H(\rho)
+          +\sum_{n\ge0}c_{X_H}(n+K_H)(n+K_H)^{-\rho}\e^{-(n+K_H)/Y_H}.
+\end{equation}
+The finite source interval is strict at both $X_H$ and
+$Y_H(\log H)^2$, because the upper index is $n<K_H$.
+\source{GuthMaynard.Improvement.ShortFiniteDetector: shortDetectorCoefficient, shortFiniteDetector, shortFiniteDetector_decomposition}
+
+\begin{analyticinput}[Uniform short-detector remainder bounds]\label{input:remdet}
+For every fixed $c>0$, eventually in $H$, the infinite tail in
+\eqref{eq:finiteidentity} has norm at most $c$ uniformly for $\beta\ge0$;
+the residue $R(\rho;X_H,Y_H)$ has norm at most $c$ uniformly for
+$9/13\le\beta\le1$ and $H\le|\gamma|\le2H$.
+\end{analyticinput}
+These estimates use the exponential smoothing tail and actual Gamma-strip
+bounds. In particular, the negative-strip bound keeps its singular real-part
+factor explicit:
+\[
+ |\Gamma(-a+\ii v)|\le(12/a)(1+|v|)\e^{-|v|}
+ \quad(0<a\le1/2).
+\]
+Here $a=\beta-1/2\ge5/26$ for the short branch. The source obtains this
+negative-strip bound from $\Gamma(z+1)=z\Gamma(z)$ and $|z|\ge a$.
+\source{GuthMaynard.Improvement.ShortDetectorTruncation.short_detector_tail_eventually_small; ShortDetectorResidue.short_detector_residue_eventually_small; ShortDetectorGamma.short_detector_gamma_bound}
+
+\begin{lemma}[Uniform detector alternative]\label{lem:alternative}
+Eventually in $H$, every zero $\rho$ with
+$9/13\le\Rea\rho<1$, $H\le|\Ima\rho|\le2H$ satisfies
+\[
+ |F_H(\rho)|\ge1/3\quad\text{or}\quad
+ |I(\rho;X_H,Y_H)|\ge1/3.
+\]
+\end{lemma}
+\begin{proof}
+Take both remainders in Input~\ref{input:remdet} to be at most $1/24$,
+and $Y_H\ge4$. Since $\e^{-1/Y_H}\ge1-1/Y_H\ge3/4$, the contour
+identity and \eqref{eq:finiteidentity} give
+$3/4\le|F_H(\rho)|+|I(\rho;X_H,Y_H)|+1/12$.
+If both displayed detector values were less than $1/3$, the right side
+would be less than $2/3+1/12=3/4$, a contradiction.
+All required thresholds precede $\rho$.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortDetectorAlternative.short_detector_eventually_alternative}
+
+\section{Eliminating the varying real part by an exact Taylor family}
+Put $D_H=\lfloor\log_2 K_H\rfloor+1$ in the natural-logarithm-to-base-two
+integer convention \lean{Nat.log}. Decompose the finite detector into
+blocks $(Q,2Q]$, $Q=2^r$, $0\le r<D_H$:
+\[
+ B_{H,Q}(\rho)=\sum_{Q<n\le2Q}b_H(n)n^{-\rho}.
+\]
+If $|F_H(\rho)|\ge1/3$, a block has norm at least $1/(3D_H)$.
+Every nonzero block has
+$H^{1/100}<Q<H^{1/2}(\log H)^2$.
+For $j\ge0$ define
+\[
+ b_{H,Q,j}(n)=b_H(n)(2n/Q-3)^j,\qquad
+ P_{H,Q,j}(t)=\sum_{Q<n\le2Q}b_{H,Q,j}(n)\e^{-\ii t\log(n/Q)}.
+\]
+Again the coefficients do not depend on $\beta$ or $\gamma$.
+Let
+\[
+ w_j(\beta)=\frac{\beta(\beta+1)\cdots(\beta+j-1)}{j!}(-1/3)^j,
+ \qquad w_0(\beta)=1.
+\]
+For $0\le\beta\le1$ the rising-product ratio lies in $[0,1]$, so
+$|w_j(\beta)|\le3^{-j}$. The binomial series gives the exact identity
+\[
+ \sum_{j\ge0}w_j(\beta)P_{H,Q,j}(\gamma)
+       =(3/2)^\beta\sum_{Q<n\le2Q}b_H(n)(n/Q)^{-\beta}
+                                    \e^{-\ii\gamma\log(n/Q)}.
+\]
+Indeed $1+(2n/Q-3)/3=2n/(3Q)$.
+The norm of the right side is $(3/2)^\beta Q^\beta|B_{H,Q}(\rho)|$.
+\source{MathCollab.Density.DetectorTaylorFamily.detectorTaylorWeight; GuthMaynard.Improvement.ShortDetectorTaylorFamily; ShortDetectorBlockExpansion.hasSum_shortDetectorTaylorPolynomial}
+
+\begin{proposition}[A fixed logarithmic-size detecting family]\label{prop:fixedfamily}
+Let $J_H=\lceil10\log H\rceil_+$. Eventually in $H$, the fixed family
+$(r,j)$, $0\le r<D_H$, $0\le j\le J_H$, has size at most
+$60(\log H)^2$. If $0\le\sigma\le\beta\le1$ and
+$|F_H(\rho)|\ge1/3$, one member with $Q=2^r$ satisfies
+\[
+ |P_{H,Q,j}(\gamma)|\ge Q^\sigma/(60\log H),\qquad
+ H^{1/100}<Q<H^{1/2}(\log H)^2.
+\]
+\end{proposition}
+\begin{proof}
+On $(Q,2Q]$, $|2n/Q-3|\le1$, $|b_H(n)|\le d(n)\le n\le2Q$;
+therefore $|P_{H,Q,j}(t)|\le2Q^2$ for every $j,t$.
+The infinite Taylor tail after $J$ has norm at most $3Q^2\,3^{-J}$.
+At $J=J_H+1$, $3^{-J}\le H^{-5}$, and $Q\le H^2$ makes it at most
+$3/H$. Eventually $3/H\le1/(6D_H)$.
+For the block of norm $\ge1/(3D_H)$ the full Taylor combination has
+norm at least $Q^\beta/(3D_H)$. Removing the tail leaves at least
+$Q^\beta/(6D_H)$. The total absolute Taylor weight is at most
+$\sum3^{-j}=3/2\le2$, so one retained polynomial has norm at least
+$Q^\beta/(12D_H)$. Use $Q^\sigma\le Q^\beta$ and
+$D_H\le5\log H$. Finally $J_H+1\le12\log H$, giving the stated family
+cardinality. No coefficient is chosen after seeing the zero.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortFixedDetectorFamily.shortFiniteDetector_fixed_family_eventually; ShortDetectorFamilyScales.short_detector_family_scales_eventually}
+
+\section{Powering, dyadic product pieces, and normalization}
+Extend $b_{H,Q,j}$ by zero outside $(Q,2Q]$ to an arithmetic function.
+Its $k$-fold Dirichlet convolution has coefficients
+\[
+ c_{H,Q,j,k}(n)=\sum_{n_1\cdots n_k=n}\prod_{i=1}^k b_{H,Q,j}(n_i).
+\]
+It vanishes unless $Q^k<n\le(2Q)^k$ for $k\ge1$.
+The finite Dirichlet series is exactly the $k$th power of the original
+series. Use conjugated coefficients $\overline{c_{H,Q,j,k}(n)}$ so that
+positive phases give the same norm at the \emph{same} ordinate $\gamma$.
+Splitting $(Q^k,2^kQ^k]$ into $k$ dyadic intervals with starts
+$N=2^\ell Q^k$, $0\le\ell<k$, one interval has polynomial norm at least
+$|P_{H,Q,j}(\gamma)|^k/k$.
+\source{GuthMaynard.Improvement.ShortDetectorConvolution; ShortDetectorPoweredPieces.exists_shortPoweredDetector_piece}
+
+\begin{lemma}[Least-successful powering]
+Uniformly for $a\in[3/4,4/5]$ and large $H$, if
+$H^{1/100}<Q\le H^{1/2}(\log H)^2$, there is $1\le k\le100$ with
+$H^a\le Q^k\le H^{3a/2}$. Every product piece satisfies
+\[
+ H^a\le N\le2^{99}H^{3a/2},\qquad2N\le H^2.
+\]
+\end{lemma}
+\begin{proof}
+Since $Q^{100}>H\ge H^a$, choose the least successful $k$. If $k\le2$,
+$Q^k\le Q^2\le H(\log H)^4\le H^{3a/2}$ eventually, uniformly because
+$3a/2\ge9/8>1$. If $k\ge3$, leastness gives $Q^{k-1}<H^a$;
+$k/(k-1)\le3/2$ gives $Q^k<H^{3a/2}$. For the dyadic pieces use
+$1\le2^\ell\le2^{99}$. The uniform buffer
+$2^{100}H^{3a/2}\le H^2$ follows from $3a/2\le6/5<2$.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortDetectorPowerScales.short_detector_power_exists, short_detector_power_buffer_eventually, short_detector_power_piece_bounds}
+
+For fixed $k\le100$, divisor growth gives
+$|c_{H,Q,j,k}(n)|\ll_\alpha n^\alpha$, uniformly in $H,Q,j,k$.
+For any $\eta>0$, when $n\le H^2$, eventually these coefficients are
+at most $H^\eta$. Define the normalized coefficients
+\[
+ a_{H,Q,j,k,\eta}(n)=\overline{c_{H,Q,j,k}(n)}/H^\eta.
+\]
+They have modulus at most one on all eligible pieces.
+The full index set is
+\[
+ \mathcal P_H=\{(r,j,k,\ell):0\le r<D_H,\ 0\le j\le J_H,
+                                  1\le k\le100,\ 0\le\ell<100\}.
+\]
+Its scale is $N_p=2^\ell(2^r)^k$ and its coefficient is the preceding
+normalized function. Including extra pieces with $\ell\ge k$ in this fixed
+index set is harmless; the actual covering witness has $\ell<k$.
+
+\begin{proposition}[The powered fixed-family cover]\label{prop:poweredcover}
+For each $\eta>0$, eventually in $H$, $|\mathcal P_H|\le600000(\log H)^2$.
+For $a\in[3/4,4/5]$, $0\le\sigma\le\Rea\rho\le1$, and
+$|F_H(\rho)|\ge1/3$, there is $p\in\mathcal P_H$ such that
+\[
+ H^a\le N_p\le2^{99}H^{3a/2},\qquad2N_p\le H^2,
+ \qquad |D_{N_p,a_{p,\eta,H}}(\Ima\rho)|\ge N_p^\sigma H^{-2\eta}.
+\]
+\end{proposition}
+\begin{proof}
+Use Proposition~\ref{prop:fixedfamily}, the least-successful power, and the
+piece pigeonhole. The factors $(60\log H)^k$, $k$, and the fixed conversion
+from $Q^{k\sigma}$ to $(2^\ell Q^k)^\sigma$ are bounded by a constant
+times $(\log H)^{100}$ uniformly for $k\le100$, $0\le\sigma\le1$.
+For each fixed $\eta>0$, the source proves that this entire height loss is
+at most $H^\eta$ eventually. Division by the coefficient normalization
+$H^\eta$ gives $N_p^\sigma H^{-2\eta}$. The family cardinality is at most
+$100\cdot100$ times $60(\log H)^2$. The coefficient bound is uniform over
+all family members with $2N_p\le H^2$. This construction preserves the
+ordinate, avoiding an uncharged reseparation loss.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortPoweredDetectorFamily.shortPoweredDetectorFamily_cover, shortPoweredDetectorFamily_coefficients; ShortDetectorPoweredHeight; ShortDetectorNormalization}
+
+\chapter{The two density windows from the improved large-values estimate}\label{ch:windows}
+\section{The variable short-window exponents}
+For $9/13\le\sigma\le5/7$, define
+\[
+ a(\sigma)=\frac6{7\sigma+3},\qquad b(\sigma)=\frac32a(\sigma),\qquad
+ g(\sigma)=\frac{18(1-\sigma)}{7\sigma+3}.
+\]
+The source proves
+\[
+ 3/4\le a\le4/5,\quad0\le b\le6/5,\quad g>0,
+ \qquad2b(1-\sigma)=g,\qquad a(18/7-4\sigma)+6/7=g.
+\]
+Also
+\begin{equation}\label{eq:meancompare}
+ 11/6-5\sigma/3\le g(\sigma).
+\end{equation}
+For completeness, multiplying the difference in \eqref{eq:meancompare}
+by $6(7\sigma+3)>0$ gives
+$70\sigma^2-155\sigma+75
+=70(\sigma-5/7)(\sigma-3/2)\ge0$.
+\source{GuthMaynard.Improvement.ShortDensityScale.short_density_scale_bounds, short_density_scale_identities}
+
+\begin{proposition}[Large values in the variable powered window]\label{prop:shortwindow}
+For $0<\delta\le1/100$ there is a positive constant independent of $\sigma$
+such that, for $H,N\ge2$, $9/13\le\sigma\le5/7$,
+\[
+ H^{a(\sigma)}\le N\le H^{b(\sigma)+\delta},\qquad
+ V=N^\sigma H^{-2\delta},
+\]
+and any bounded source, one-separated $W\subset[t_0,t_0+H]$ with
+$|D(w)|\ge V$ obeys
+\[
+ |W|\le C_\delta H^{g(\sigma)+10\delta}.
+\]
+\end{proposition}
+\begin{proof}
+We have $N^\delta\le H^{2\delta}$ and
+$N^{2-2\sigma}\le H^{g+2\delta}$.
+If $N\le H^{5/6}$, then $N^{6/5}\le H$.
+The lower bound $N\ge H^a\ge H^{3/5}$ gives $H\le N^{5/3}$.
+Thus Theorem~\ref{thm:middle} is used in its exact time range. Its two
+terms, after division by the threshold, are
+\[
+ N^\delta\left(N^{2-2\sigma}H^{4\delta}
+             +N^{18/7-4\sigma}H^{6/7+8\delta}\right).
+\]
+Since $18/7-4\sigma\le0$, the lower length bound and the scale identity
+give $N^{18/7-4\sigma}H^{6/7}\le H^g$.
+The first term costs at most $H^{g+6\delta}$ inside the parentheses;
+the second at most $H^{g+8\delta}$. The outer $N^\delta$ costs
+$H^{2\delta}$, proving this branch with $2C H^{g+10\delta}$.
+
+If $N>H^{5/6}$, use the actual separated second moment. Division by
+$V^2$ gives
+\[
+ |W|\le102\left(HN^{1-2\sigma}+N^{2-2\sigma}\log(2N)\right)H^{4\delta}.
+\]
+Because $1-2\sigma\le0$,
+$HN^{1-2\sigma}\le H^{11/6-5\sigma/3}\le H^g$.
+With $D_\delta=\log2+1/\delta$, the logarithm is at most
+$D_\delta N^\delta\le D_\delta H^{2\delta}$, so the second term costs
+at most $D_\delta H^{g+4\delta}$. This branch costs at most
+$102(1+D_\delta)H^{g+8\delta}$ and hence the claimed bound.
+The source chooses $2C+102(1+D_\delta)$ as a common constant.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortWindowLargeValues.short_window_large_values; ShortDensityHeight.short_density_height_budgets}
+
+\section{The closed upper window and the padded time}
+For $5/7\le\sigma\le3/4$ set
+\[
+ h(\sigma)=\frac94(1-\sigma),\qquad
+ s(\sigma)=\begin{cases}6/7,&\sigma\le18/25,\\7/8,&\sigma>18/25.\end{cases}
+\]
+The exact scalar comparisons are
+\[
+ 39/14-3\sigma\le h,\quad
+ s(18/5-4\sigma)\le h,\quad1+s(1-2\sigma)\le h.
+\]
+The first is equality at $5/7$. For the $6/7$ split the respective latter
+differences are $(-117+165\sigma)/140$ and $(11-15\sigma)/28$;
+for the $7/8$ split they are $(-18+25\sigma)/20$ and $(3-4\sigma)/8$.
+They are nonnegative on the specified subintervals.
+\source{GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_exponents}
+
+\begin{proposition}[Large values in the closed upper powered window]\label{prop:upperwindow}
+For $0<\delta\le1/100$ there is one constant for all
+$5/7\le\sigma\le3/4$, $H,N\ge2$, and
+$H^{3/4}\le N\le H^{9/8+\delta}$, with the same bounded coefficients,
+separation, localization, and threshold $V=N^\sigma H^{-2\delta}$:
+\[
+ |W|\le C_\delta H^{h(\sigma)+10\delta}.
+\]
+\end{proposition}
+\begin{proof}
+As before $N^\delta\le H^{2\delta}$ and
+$N^{2-2\sigma}\le H^{h+2\delta}$.
+If $N\le H^{s(\sigma)}$, use the padded time
+\[
+ S=\begin{cases}H,&N\le H^{5/6},\\N^{6/5},&N>H^{5/6}.\end{cases}
+\]
+It satisfies $H\le S$ and $N^{6/5}\le S\le N^{5/3}$.
+When $S=H$, the lower bound $N\ge H^{3/4}$ gives
+$N^{18/7-4\sigma}S^{6/7}\le H^{39/14-3\sigma}\le H^h$.
+When $S=N^{6/5}$, the term is $N^{18/5-4\sigma}$; its exponent is
+nonnegative, so the upper length bound gives at most
+$H^{s(18/5-4\sigma)}\le H^h$.
+Apply Theorem~\ref{thm:middle} on the enlarged interval
+$[t_0,t_0+S]$. The original set and threshold are unchanged.
+The same two-term calculation as in Proposition~\ref{prop:shortwindow}
+gives at most $2C H^{h+10\delta}$.
+For $N>H^{s(\sigma)}$, the separated second moment and the last scalar
+comparison give $HN^{1-2\sigma}\le H^h$; the logarithmic and first-term
+budgets give the same mean-value closure. This proof includes $\sigma=3/4$.
+\end{proof}
+\source{GuthMaynard.Improvement.UpperCurveBudgets.upper_curve_padded_time, upper_curve_mean_budget; UpperCurveLargeValues.upper_curve_large_values}
+
+\section{Type-I separated zero representatives}
+\begin{proposition}[Type-I counts in both windows]\label{prop:typeI}
+For each $\eps>0$, uniformly in $\sigma,t_0$ and eventually in $H$,
+any finite $R\subset\C$ whose ordinates are injective and one-separated,
+with $\sigma\le\Rea\rho\le1$, $\Ima\rho\in[t_0,t_0+H]$ and
+$|F_H(\rho)|\ge1/3$, has
+\[
+ |R|\le C_\eps H^{g(\sigma)+\eps}\quad(9/13\le\sigma\le5/7),
+ \qquad |R|\le C_\eps H^{h(\sigma)+\eps}\quad(5/7\le\sigma\le3/4).
+\]
+\end{proposition}
+\begin{proof}
+Take $\eta=\min(\eps/100,1/100)$. For the short window apply
+Proposition~\ref{prop:poweredcover} with $a=a(\sigma)$;
+for the upper window use $a=3/4$.
+Restrict the fixed family to members satisfying the appropriate length
+bounds and $2N_p\le H^2$. Eventually $2^{99}\le H^\eta$, so its upper
+length becomes $H^{b+\eta}$ or $H^{9/8+\eta}$ respectively.
+For each member let $W_p$ be the subset of ordinates where that member
+has norm at least $N_p^\sigma H^{-2\eta}$.
+The corresponding window proposition bounds
+$|W_p|\le C_\eta H^{g+10\eta}$ or $C_\eta H^{h+10\eta}$.
+Each $W_p$ is a subset of the original separated set, so separation and
+localization are preserved. The cover gives $W\subset\bigcup_pW_p$.
+Eventually $600000(\log H)^2\le H^\eta$. Hence
+$|R|=|W|\le\sum_p|W_p|\le C_\eta H^{g+11\eta}$, or the version with
+$h$. Since $11\eta\le\eps$, the desired estimate follows.
+All finite families and their coefficients were constructed before any zero
+or real part was chosen.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortTypeICount.short_typeI_separated_count, short_typeI_zero_slab_count; UpperCurveTypeICount.upper_curve_typeI_separated_count, upper_curve_typeI_zero_slab_count}
+
+\section{The actually used Type-II moment is weaker than the named contract}
+Put
+\[
+ Z_H(t)=\left|\zeta(1/2+\ii t)M_{2H^{1/100}}(1/2+\ii t)\right|.
+\]
+The proposition \lean{ShortMobiusFourthMoment} is the assertion
+$\int_{H/2}^{3H}Z_H^4\ll_\eps H^{1+\eps}$.
+Some conditional intermediate modules explicitly take that assertion as a
+hypothesis. \emph{The final short and upper-curve branches do not use it.}
+They instead use the following proved weaker theorem.
+
+\begin{analyticinput}[Native ordinary fourth moment]\label{input:fourthzeta}
+For every $\eps>0$ there are $B>0$ and a height threshold such that
+\[
+ \int_x^{2x}|\zeta(1/2+\ii t)|^4dt\le Bx^{1+\eps}
+\]
+for all positive $x$ above that threshold.
+\end{analyticinput}
+This is the native actual-zeta producer
+\lean{Fourth.zeta_fourth_dyadic}, not a postulated moment inequality.
+The following expands the actual producer above its already established
+contour and Gamma-ratio machinery.
+\source{MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic}
+
+\paragraph{Exact divisor-square source.}
+Let $s_t=1/2+\ii t$, $d(n)$ be the divisor count ($d(0)=0$),
+$\Gamma_\R(s)=\pi^{-s/2}\Gamma(s/2)$,
+$G_t=\Gamma_\R(s_t)\Gamma_\R(s_{-t})\ne0$, and
+$A(w)=(1-4w^2)^4$. Define
+\[
+ P_t(w)=\left(\frac{(s_{-t}+w)(1-s_{-t}-w)}{s_{-t}(1-s_{-t})}\right)^2,
+\]
+\[
+ K_t(w)=\frac{\e^{100w^2}A(w)P_t(w)\Gamma_\R(s_{-t}+w)^2}{G_tw}.
+\]
+For $c>0$ put
+\[
+ C_{t,c}(n)=\frac1{2\pi}\int_\R d(n)n^{-s_{-t}-c-\ii u}K_t(c+\ii u)\,du,
+ \qquad P_{t,c,N}=\sum_{0\le n\le N}C_{t,c}(n),
+\]
+with the zero-index term explicitly zero. The exact source's right piece
+$R_t$ is its vertical divisor integral at real coordinate $1$ divided by
+$G_t$. The native contour reflection and completed-zeta identity give
+$z(t)^2=2\Rea R_t$, hence $z(t)^4\le4|R_t|^2$.
+For $t\ge0$, each $C_{t,c}(n)$ is independent of $c>0$: a finite rectangle
+has zero boundary integral, both vertical lines are integrable, and both
+horizontal integrals tend to zero. The source proves
+$R_t=\sum_{n\ge0}C_{t,c}(n)$ and the exact finite-prefix-plus-tail split.
+These are the precise contour identities used here, not an assumed
+approximate functional equation with unnamed errors.
+\source{MathCollab.Density.Stronger.Fourth.SquareSource; SquareNormalized; SquareLineShift; SquareTruncation}
+
+\paragraph{Truncation and Gaussian prefix control.}
+For $b>3/2$ the established Gamma-kernel bound and $d(n)\le n$ give
+\[
+ |R_t-P_{t,c,N}|\le A_b t^b N^{3/2-b}
+\]
+when $t\ge\max(4,4b)$, for every $c>0$.
+The tail sum is bounded by the decreasing-power integral
+$\sum_{n>N}n^{1/2-b}\le N^{3/2-b}/(b-3/2)$.
+For any $\delta>0$ choose $b=2+2/\delta$; then
+$b+(1+\delta)(3/2-b)=-(1+\delta)/2\le0$.
+If $H\le t\le2H$ and $N\ge H^{1+\delta}$, this proves a uniform constant
+bound $|R_t-P_{t,c,N}|\le K_{\rm tail}$.
+
+For fixed $c>0$ the kernel estimate is
+$|K_t(c+\ii u)|\le A_ct^c\e^{-98u^2}$ for $t\ge\max(4,4c)$.
+Write
+$a_c(n)=d(n)n^{-1/2-c}$ and
+$D_{c,N}(v)=\sum_{1\le n\le N}a_c(n)\e^{-\ii v\log n}$.
+The exact finite-prefix integral and weighted Cauchy--Schwarz give
+\[
+ |P_{t,c,N}|^2\le K_g t^{2c}
+       \int_\R\e^{-98u^2}|D_{c,N}(u-t)|^2du.
+\]
+Both weighted integrals are finite since $D_{c,N}$ is a bounded finite sum,
+and the Gaussian mass is $\sqrt{\pi/98}$.
+The divisor subpower estimate gives, uniformly in $c\ge0$,
+$|a_c(n)|^2\le D_\theta n^{\theta-1}$; summing on $(M,2M]$ gives
+$\sum|a_c(n)|^2\le D_\theta(2M)^\theta$.
+The proved dyadic-prefix mean square, followed by Gaussian Fubini, therefore
+supplies, for $N=2^M$,
+\[
+ \int_H^{2H}\int_\R\e^{-98u^2}|D_{c,N}(u-t)|^2du\,dt
+ \le D_p(M+1)^2(H+2(5\pi+1)N)N^\theta.
+\]
+\source{MathCollab.Density.Stronger.Fourth.SquareTail; SquarePrefix; Coefficients; PrefixMean; GaussianProducer}
+
+\paragraph{The actual fourth-moment exponent closure.}
+For requested loss $\eps>0$ the source's expression
+\lean{min eps 1/20} parses as $q=\min(\eps,1)/20$.
+In particular $0<q\le1/20$, $q\le1$, and $7q\le\eps$.
+Choose $H^{1+q}\le N=2^M\le2H^{1+q}$.
+The tail and prefix estimates give
+\[
+ z(t)^4\le8K_g(2H)^{2q}
+          \int_\R\e^{-98u^2}|D_{q,N}(u-t)|^2du+8K_{\rm tail}^2.
+\]
+The dyadic-count estimate $(M+1)^2\le A_qN^q$ and
+$H+2(5\pi+1)N\le(1+4(5\pi+1))H^{1+q}$ show the integrated main budget is
+at most a constant times
+\[
+ (2H)^{2q}H^{1+q}(2H^{1+q})^{2q}
+       =2^{4q}H^{1+5q+2q^2}\le2^{4q}H^{1+7q}.
+\]
+The integrated constant tail is $8K_{\rm tail}^2H$.
+Since $7q\le\eps$ and $H\ge1$, both fit $CH^{1+\eps}$.
+The height threshold is fixed before $H$; all finite-prefix, Gaussian, and
+coefficient constants were already fixed by $q$. This proves exactly
+Input~\ref{input:fourthzeta}, relative to the explicit contour-kernel inputs.
+\source{MathCollab.Density.Stronger.Fourth.FourthMoment.zeta_fourth_dyadic; GaussianProducer.exists_fourth_dyadic_budget}
+
+\begin{proposition}[Weak short mollified fourth moment]\label{prop:weakmoment}
+For every $\eps>0$, eventually in $H$,
+\[
+ \int_{H/2}^{3H}Z_H(t)^4dt\le C_\eps H^{1+1/25+\eps}.
+\]
+\end{proposition}
+\begin{proof}
+The elementary mollifier bound at $\Rea s=1/2$ is
+$|M_X(s)|\le\lfloor X\rfloor_+\le X$. Thus
+$Z_H(t)^4\le16H^{1/25}|\zeta(1/2+\ii t)|^4$.
+Cover $[H/2,3H]$ by $[H/2,H]$, $[H,2H]$, and $[2H,4H]$.
+For sufficiently large $H$ the native fourth-moment bound applies on all
+three intervals. Their sum is at most $3(B+1)(2H)^{1+\eps}$.
+Multiplying by $16H^{1/25}$ gives the source's constant
+$48(B+1)2^{1+\eps}$. Closed versus half-open integration endpoints have
+Lebesgue measure zero.
+\end{proof}
+\source{GuthMaynard.Improvement.WeakShortMoment.shortTwistedNorm_fourth_le, weak_short_moment}
+
+\begin{analyticinput}[Window reduction for actual Type-II detectors]\label{input:typeIIwindow}
+There is $C>0$, eventually in $H$, uniformly for $\sigma\ge9/13$,
+one-separated $W\subset[H,2H]$, and a chosen zero representative $\rho_u$
+with $\Ima\rho_u=u$, $\sigma\le\Rea\rho_u\le1$, such that
+$|I(\rho_u;X_H,Y_H)|\ge1/3$ implies
+\[
+ |W|\le CH^{1-2\sigma}\int_{H/2}^{3H}Z_H(t)^4dt.
+\]
+\end{analyticinput}
+\paragraph{Precise reduction.}
+The detector-window theorem, after Gamma-tail truncation and H\"older,
+supplies for each $u$ a lower bound
+\[
+ 1\le A H^{1-2\sigma}\int_{-H/2}^{H/2}
+ |\Gamma(1/2-\Rea\rho_u+\ii v)|Z_H(u+v)^4dv.
+\]
+Sum over the one-separated ordinates. The uniform negative-Gamma strip
+bound and the proved separated Gamma-packing bound dominate the sum of
+weights by a constant on $[H/2,3H]$. This gives the displayed input.
+Different representatives are allowed to have different real parts;
+no common-$\beta$ assumption is added.
+\source{GuthMaynard.Improvement.ShortDetectorWindowDetection.short_detector_window_fourth; ShortTypeIIPacking.short_typeII_window_packing; ShortTypeIICount.short_typeII_count_by_moment}
+
+\begin{proposition}[The unconditional Type-II count used here]\label{prop:typeII}
+For every $\eps>0$, eventually in $H$, Type-II separated representatives
+in a positive slab have
+\[
+ |R|\le C_\eps H^{2-2\sigma+1/25+\eps}.
+\]
+On $9/13\le\sigma\le5/7$ this exponent without $\eps$ is at most
+$g(\sigma)$; on $5/7\le\sigma\le3/4$ it is at most $h(\sigma)$.
+\end{proposition}
+\begin{proof}
+Multiply Input~\ref{input:typeIIwindow} by Proposition~\ref{prop:weakmoment}.
+The exponent is $(1-2\sigma)+(1+1/25+\eps)$.
+For the first comparison multiply $g-(2-2\sigma+1/25)$ by
+$25(7\sigma+3)>0$: the result is
+$(7\sigma-5)(50\sigma-69)\ge0$ on the short interval.
+For the second comparison the difference is
+$(1-\sigma)/4-1/25\ge1/16-1/25>0$ on the closed upper interval.
+Thus the genuine fixed power loss $1/25$ fits both target windows.
+\end{proof}
+\source{GuthMaynard.Improvement.WeakTypeIICount.weak_short_typeII_count; WeakShortDensity.weak_short_typeII_zero_slab_count, weak_short_typeII_exponent_le; UpperCurveDensity.upper_curve_slab_density}
+
+\chapter{Restoring analytic multiplicities and summing the height slabs}\label{ch:counting}
+\section{Local Jensen counts and separated representatives}
+\begin{analyticinput}[The precise local analytic bounds]\label{input:jensen}
+For $\sigma\ge3/5$, $H\ge8$, and an occupied ordinate bin $[k,k+1)$,
+center the disks at $c=2+\ii(k+1/2)$. All slab zeros in that bin are inside
+the closed disk of radius $3/2$. Zeta is analytic on the disk of radius
+$7/4$, has $|\zeta(c)|\ge0.6$, and on its outer circle
+$|\zeta|\le100H^3$.
+Jensen's divisor bound with analytic multiplicity gives
+\[
+ \sum_{\substack{\rho\in Z(\sigma;H,2H)\\k\le\Ima\rho<k+1}}
+ m(\rho)
+ \le\frac{\log(100H^3/0.6)}{\log((7/4)/(3/2))}.
+\]
+\end{analyticinput}
+The geometric inclusion follows from
+$|\Rea(\rho-c)|\le7/5$, $|\Ima(\rho-c)|\le1/2$, and
+$(7/5)^2+(1/2)^2< (3/2)^2$.
+The outer disk avoids the pole $1$ at these heights. The lower Euler-product
+bound, outer zeta-growth bound, and analytic-order/divisor identification
+are the exact imported analytic facts used by Jensen.
+\source{GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_unit_bin_sum_le_jensen; MathCollab.Density.LocalZeroCount; MathCollab.Density.ZetaGrowth}
+
+\begin{lemma}[Uniform logarithmic local multiplicity and extraction]\label{lem:representatives}
+There is $B>0$ such that for all $\sigma\ge9/13$, $H\ge2$, every unit
+bin in $Z(\sigma;H,2H)$ has total multiplicity at most $B\log(2H)$.
+There is therefore a subset $R\subset Z(\sigma;H,2H)$ with injective,
+one-separated ordinates and
+\[
+ n(\sigma;H,2H)\le2B\log(2H)|R|.
+\]
+\end{lemma}
+\begin{proof}
+For large $H$, Input~\ref{input:jensen} is at most a fixed multiple of
+$\log(2H)$. For bounded $2\le H\le H_0$, every bin sum is at most the
+finite count $Q=N(9/13,2H_0)$; since $\log(2H)\ge\log4$, add
+$Q/\log4$ to the uniform coefficient.
+
+For the finite weighted extraction, partition the occupied unit bins into
+even and odd classes and choose the class carrying at least half the total
+weight. Choose one zero from each occupied bin in that class. Different
+chosen bins are separated by at least two integer bin indices; their
+ordinates are at least one apart and cannot coincide. A bin has weight at
+most $B\log(2H)$, so the total weighted count is at most
+$2B\log(2H)$ times the number of representatives. The source packages this
+as weighted separated extraction, preserving full zero multiplicity.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortLocalZeroCount.short_zeta_local_multiplicity_bound, short_zeta_separated_representatives; MathCollab.Density.ZeroSeparation}
+
+\begin{proposition}[Actual slab density in the two closed windows]\label{prop:slabs}
+For every $\eps>0$, one constant and one eventual height threshold work
+for all $\sigma$ in either specified interval:
+\[
+ n(\sigma;H,2H)\le C_\eps H^{g(\sigma)+\eps}
+    \quad(9/13\le\sigma\le5/7),
+\]
+\[
+ n(\sigma;H,2H)\le C_\eps H^{h(\sigma)+\eps}
+    \quad(5/7\le\sigma\le3/4).
+\]
+\end{proposition}
+\begin{proof}
+Choose representatives as in Lemma~\ref{lem:representatives}.
+Filter them into $R_I=\{\rho:|F_H(\rho)|\ge1/3\}$ and its complement
+$R_{II}$. The detector alternative implies that every complement member
+has $|I(\rho;X_H,Y_H)|\ge1/3$. Both subsets preserve separation and
+ordinate injectivity. Apply Proposition~\ref{prop:typeI} with loss
+$\eps/2$ and Proposition~\ref{prop:typeII} with loss $\eps/2$, using its
+exact exponent comparisons. Then
+\[
+ |R|\le(C_I+C_{II})H^{q(\sigma)+\eps/2},
+ \qquad q=g\text{ or }h.
+\]
+Multiplicities are restored by the preceding logarithmic factor.
+Since $\log(2H)\le(\log2+2/\eps)H^{\eps/2}$, the total exponent is
+$q(\sigma)+\eps$. The constant is selected before $\sigma,H$.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortDetectorCounting.short_slab_count_of_separated_branch_bounds; WeakShortDensity.short_slab_density; UpperCurveDensity.upper_curve_slab_density}
+
+\section{From eventual positive slabs to both-sign all-height counts}
+The source proves conjugation symmetry of zeta and invariance of its analytic
+multiplicity, hence
+$N(\sigma,T)\le2n(\sigma;0,T)$.
+The inequality, rather than equality, permits the real-axis overlap.
+A closed-slab split satisfies
+$n(\sigma;0,2H)\le n(\sigma;0,H)+n(\sigma;H,2H)$;
+zeros on the shared boundary can be counted twice only on the upper-bound side.
+\source{MathCollab.Density.ZetaConjugation}
+
+\begin{lemma}[Exact dyadic summation with positive exponent]\label{lem:dyadic}
+For fixed $\sigma$, if $p>0$ and eventually
+$n(\sigma;H,2H)\le CH^p$, $C>0$, then one $A>0$ works for all $T\ge2$:
+$N(\sigma,T)\le AT^p$.
+\end{lemma}
+\begin{proof}
+First extend the slab estimate to every $H\ge1$.
+Choose $R=\max(1,H_0)$ from its eventual threshold and put
+$Q=n(\sigma;0,2R)$. For $1\le H<R$, monotonicity gives the slab count
+at most $Q\le QH^p$; for $H\ge R$ use $CH^p$.
+Thus $B=C+Q$ works on every such slab.
+Put $r=2^p>1$, $Q_0=n(\sigma;0,1)$ and
+$D=Q_0+B/(r-1)>0$. The source notes $D+B\le Dr$.
+Induction using the closed-slab split gives
+\[
+ n(\sigma;0,2^j)\le D(2^j)^p.
+\]
+For $T\ge1$ choose $2^j\le T<2^{j+1}$. Monotonicity gives
+$n(\sigma;0,T)\le D(2^{j+1})^p\le DrT^p$.
+Conjugation bounds $N(\sigma,T)$ by twice that quantity. The geometric
+constant $1/(2^p-1)$ is finite because $p>0$. No epsilon is spent in
+this summation; its dependence on $\sigma$ is retained.
+\end{proof}
+\source{MathCollab.Density.DensityDyadicSummation: zetaSlab_extend_power_bound, zetaPositive_bound_of_slabs, zetaDensity_bound_of_eventual_slabs}
+
+\begin{corollary}[Fixed-line density in the two new windows]\label{cor:windows}
+For $9/13\le\sigma\le5/7$, every $\eps>0$ gives
+$N(\sigma,T)\ll_{\sigma,\eps}T^{g(\sigma)+\eps}$ for all $T\ge2$.
+For $5/7\le\sigma\le3/4$ the same assertion holds with $h(\sigma)$.
+\end{corollary}
+\begin{proof}
+The exponents $g(\sigma)+\eps$ and $h(\sigma)+\eps$ are strictly
+positive on these closed intervals. Apply Lemma~\ref{lem:dyadic} to
+Proposition~\ref{prop:slabs} for the fixed line. The source does not infer
+uniformity in $\sigma$ from this fixed-line geometric summation.
+\end{proof}
+\source{GuthMaynard.Improvement.WeakShortDensity.short_density; UpperCurveDensity.upper_curve_density}
+
+\chapter{The previously established lower and strictly upper branches}\label{ch:otherbranches}
+\section{The native Ingham branch and count-convention bridge}
+The lower input is not taken from the informal name ``Ingham'' alone.
+The development proves a positive-slab theorem through its native classical
+detector, then translates the native rectangle count into the actual count
+of Chapter~1.
+
+\begin{definition}[Classical exponent certificate]
+The native logarithmic scale is $\tau=\log T/\log Q$ when $Q>1$.
+Put
+\[
+ E_{\rm MHH}(\sigma,\tau)=\max(2-2\sigma,
+             \min(\tau+1-2\sigma,\tau+4-6\sigma)),
+\]
+\[
+ E_{\rm sub}(\sigma,\tau_0,\tau)=
+             \max(2-2\sigma,3-3\sigma+\tau-\tau_0).
+\]
+The source structure \lean{EndpointScaleCertificate} consists of
+$\tau_0>0$, $3-3\sigma\le\tau_0$, and the following four obligations:
+\begin{enumerate}[label=(\roman*)]
+\item $E_{\rm MHH}\le2-2\sigma$ for $0\le\tau\le\tau_0+\sigma-1$;
+\item $E_{\rm sub}\le(3-3\sigma)\tau/\tau_0$ for
+$2\tau_0/3\le\tau\le\tau_0$;
+\item for $4\tau_0/3\le\tau\le8\tau_0/3$, either $\tau/2$ or $\tau/3$
+is in $[2\tau_0/3,\tau_0]$;
+\item the exceptional zeta-polynomial interval
+$2\le\tau<4\tau_0/3$ is empty or lies below $6\sigma-3$,
+the proved Weyl exclusion threshold.
+\end{enumerate}
+\end{definition}
+\source{GuthMaynard.NativeMoment.FiniteScaleAssembly: classicalMHHExponent, corollary1110Envelope, EndpointScaleCertificate, ZetaWindowResolved}
+
+\begin{lemma}[The Ingham certificate]
+For $1/2<\sigma<1$, $\tau_0=2-\sigma$ satisfies this certificate.
+\end{lemma}
+\begin{proof}
+$\tau_0>0$ and $3-3\sigma\le2-\sigma$ follow from $\sigma>1/2$.
+In (i) the upper bound is $1$, and the second-moment branch of
+$E_{\rm MHH}$ is at most $2-2\sigma$ for $\tau\le1$.
+For (ii), the first component fits the target by
+$\tau\ge2\tau_0/3$. For the second, multiplying by $\tau_0>0$
+reduces the comparison to
+$(\tau_0-(3-3\sigma))(\tau_0-\tau)\ge0$.
+For (iii), choose the half-scale if $\tau\le2\tau_0$, otherwise the
+third-scale. For (iv), $4(2-\sigma)/3<2$ when $\sigma>1/2$, so the
+interval is empty. These are exactly the finite exponent obligations;
+they do not themselves supply the analytic detector estimate.
+\end{proof}
+\source{GuthMaynard.NativeMoment.FiniteScaleAssembly.ingham_endpoint_scale_certificate}
+
+\begin{analyticinput}[Native classical endpoint positive-slab theorem]\label{input:inghamnative}
+For $1/2<\sigma<1$ and an endpoint certificate at $\tau_0$, the actual
+native closed-rectangle count satisfies
+\[
+ \forall\eps>0,\qquad
+ n_{\rm nat}(\sigma;T,2T)\ll_{\sigma,\eps}T^{3(1-\sigma)/\tau_0+\eps}
+ \quad\text{eventually in }T.
+\]
+At $\sigma=1/2$, the native global count separately obeys an
+$\eps$-power bound relative to $T$.
+\end{analyticinput}
+\paragraph{The analytic content consumed by this input.}
+The native finite detector dichotomy first gives zero count zero, a
+Type-I finite polynomial witness, or a Type-II witness. The Type-I
+logarithmic scale is split into the low range, the basic range
+$[2\tau_0/3,\tau_0]$, the raised range $\tau\ge4\tau_0/3$, and the
+remaining medium range. In the latter the source separates
+$\tau\le11/10$ from $11/10<\tau<4\tau_0/3$.
+The low/basic/powered consumers use actual MHH, convolution-power,
+coefficient normalization, and displacement/reseparation bounds.
+The last medium range uses the proved native ordinary-zeta reflection
+consumer \lean{classical_medium_typeI_witness_consumer_native}; it is
+not silently eliminated by the empty exceptional-zeta window.
+The Type-II consumer uses the actual fourth-moment reduction.
+The native source selects the maximum of the finitely many branch constants
+and a common maximum of their height thresholds, retaining the binwise
+analytic-multiplicity factor. This yields the positive-slab estimate.
+The half-line endpoint uses the separately proved global zero-count estimate.
+\source{GuthMaynard.NativeMoment.ClassicalEndpointDensity.classical_endpoint_positive_slab_native, ingham_endpoint_positive_slab_native; MediumTypeIEndpoint; TypeIIFourthMomentReduction; ClassicalDensity.ingham_zero_density_at_half_native}
+
+\begin{proposition}[The actual Ingham lower strip]\label{prop:ingham}
+For each $\sigma\in[1/2,9/13]$ and $\eps>0$ there is $C>0$ such that
+for all $T\ge2$,
+\[
+ N(\sigma,T)\le CT^{3(1-\sigma)/(2-\sigma)+\eps}.
+\]
+\end{proposition}
+\begin{proof}
+For $\sigma>1/2$ use the certificate just proved and
+Input~\ref{input:inghamnative}, followed by the native dyadic-to-global
+transfer. The native bound is expressed as
+\lean{EpsilonPowerBound}: for each positive $\eps$ the absolute count
+is Big-O at infinity of $T^\eps|T^p|$.
+The native rectangle allows $\Rea\rho\le1$ rather than $\Rea\rho<1$.
+Since $\sigma>0$, every native zero has positive real part, and imported
+zeta nonvanishing for $\Rea\rho\ge1$ makes its upper inequality strict.
+Thus the finite native zero set equals $Z(\sigma;-T,T)$ exactly, and both
+sums use the same natural analytic order. At $\sigma=1/2$ use the
+separate native global estimate, where $p=1$.
+For either case a positive Big-O constant is obtained; because
+$p=3(1-\sigma)/(2-\sigma)\ge0$, the finite bounded-height range is
+absorbed by $Q=N(\sigma,R)$ with $R\ge2$ above the eventual threshold.
+$C+Q$ works since $T^{p+\eps}\ge1$ for $T\ge2$. This proves the
+all-height actual-count statement without changing multiplicity conventions.
+\end{proof}
+\source{GuthMaynard.Improvement.NativeIngham.ingham_lower_density; NativeDensitySourceBridge.native_N_eq_zetaDensityCount, native_density_epsilon_bound; NativeDensityConventionBridge}
+
+\section{The physical twelfth moment and the high-value producer}
+Put $z(t)=|\zeta(1/2+\ii t)|$ and
+$E(H,V)=\{t\in[H,2H]:z(t)\ge V\}$.
+
+\begin{analyticinput}[Native high-value finite-peak theorem]\label{input:peaks}
+For every $\eta>0$, eventually in $H$, uniformly for
+$V>0$, $V\ge H^{1/8+\eta}$, every finite one-separated
+$W\subset E(H,V)$ obeys
+\[
+ |W|V^{12}\le H^{2+\eta}.
+\]
+\end{analyticinput}
+This actual-zeta input is supplied by the native point-mean producer and the
+native Atkinson stationary-source local-mean producer:
+\lean{PointMean.pointMeanInput_native} and
+\lean{Atkinson.localMeanStationaryInput_native}. Their packet width ranges,
+local means, and stationary transform estimates are substantive analytic
+foundations. They are not deduced in this document from a pointwise growth
+bound or an unnamed moment assumption.
+\source{MathCollab.Density.Stronger.NativePeaks.pointValue_peak_card_native; PointMean.PeaksInput; Atkinson.AtkinsonNativeLocalMean; Peaks.WidthRanges}
+
+\paragraph{Exact point-mean and packet interfaces.}
+Write $z(t)=|\zeta(1/2+\ii t)|$. The proved point-mean interface selects
+$P>0$ such that for $T\ge10$, $V>0$, $G,L\ge0$, a finite one-separated
+$W\subset[c-G/2,c+G/2]$, with $10\le c-G/2$, $c+G/2\le T$,
+$(\log t)^2\le L$ on $W$, $G/2+L\le G$, and $z(t)\ge V$, one has
+\[
+ V^2|W|\le P\log T\left(|W|+4\int_{c-G}^{c+G}z(u)^2du\right).
+\]
+Define the actual excess
+$E_G(t;e)=\max(0,\int_{t-G}^{t+G}z(u)^2du-e)$.
+The proved packet interface, for every $\delta,\kappa,\nu>0$, selects
+$C,D>0,H_0\ge40000$ before all subsequent variables. If $H\ge H_0$,
+$W$ is $G$-separated, $H\le t\le2H$ and
+$t^\delta\le G\le t^{1/2-\delta}$, $t^{1/4+\kappa}\le G$ on $W$,
+and $W\subset[A,A+L]$, it states
+\[
+ \left(\sum_{t\in W}E_G(t;CG\log t)\right)^2
+ \le DH^\nu\left(|W|H/G+|W|^2\sqrt{GL}\right).
+\]
+These are the precise two imported analytic inequalities in the peak argument.
+Their producers use the actual Gamma--zeta-square point contour and the
+stationary Atkinson local mean, respectively.
+\source{MathCollab.Density.Stronger.Peaks.Inputs: PointMeanInput, LocalMeanPacketInput; PointMean.Equation44.heathBrown_equation44_native}
+
+\paragraph{Finite packet absorption and peak aggregation.}
+Given a packet coefficient $A_0>0$ and excess level $Y_0>0$, choose
+$L_0=(Y_0^2/(4A_0))^2/G$. Then
+$2A_0\sqrt{GL_0}=Y_0^2/2\le Y_0^2$.
+For a localized set of size $r$, $rY_0\le\sum E_G$ and the packet inequality
+imply $r^2Y_0^2\le A_0(rH/G+r^2\sqrt{GL_0})$.
+If $r>0$, absorption and cancellation give
+$r\le2A_0H/(GY_0^2)$; if $r=0$ the same bound is immediate.
+Partition $[H,2H]$ into at most $\lfloor H/L_0\rfloor+1$ fibers.
+This gives the exact global bound
+\[
+ r\le2A_0H/(GY_0^2)+32A_0^3H^2/Y_0^6.
+\]
+Applying the packet interface with loss $\nu/3$ puts both terms below
+$D' H^\nu(H/(GY_0^2)+H^2/Y_0^6)$.
+
+For point peaks, use half-width bins
+$n=\lfloor(t-H)/(G/2)\rfloor_+$ with center $c_n=H+nG/2$ and occupancy
+$r_n$. The point-mean input gives, with $\mathcal L=\log(3H)$,
+$V^2r_n\le P\mathcal L(r_n+4I_n)$, where
+$I_n=\int_{c_n-G}^{c_n+G}z^2$.
+When $V^2\ge2P\mathcal L$, put $A_1=V^2/(16P\mathcal L)$;
+then $I_n\ge2r_nA_1$.
+If the packet error is at most $A_1$, every bin with $r_n\ge m\ge1$
+has excess at least $mA_1$. Even and odd bin centers separately are
+$G$-separated. The preceding excess-count bound yields
+\[
+ |\{n:r_n\ge m\}|\le2D'H^\nu
+       \left(\frac H{G(mA_1)^2}+\frac{H^2}{(mA_1)^6}\right)
+ \le\frac{2D'H^\nu}{m^2}
+       \left(\frac H{GA_1^2}+\frac{H^2}{A_1^6}\right).
+\]
+The finite occupancy identity $|W|=\sum_{m\ge1}|\{n:r_n\ge m\}|$ and
+$\sum_{m\ge1}m^{-2}\le2$ give the point-count bound at width $G$.
+Choose $K=16PC+1$ and $G=V^2/(K\mathcal L^2)$. The error condition follows
+from $K\ge16PC$; the point-mean width condition follows eventually from
+$2\mathcal L^2\le G$. Subject to
+\[
+ K\mathcal L^2(2H)^{1/4+\kappa}\le V^2
+       \le K\mathcal L^2H^{1/2-\delta},
+\]
+the exact width conditions hold throughout the slab, and substitution yields
+\[
+ |W|\le D''H^\nu
+       \left(H\mathcal L^4/V^6+H^2\mathcal L^6/V^{12}\right).
+\]
+For the requested peak loss $\eps$, the source chooses
+$\eta=\min(\eps/16,1/1000)$, $\delta=1/48$, $\kappa=\nu=\eta$.
+For nonempty $W$, its actual Weyl-growth bound gives $V\le H^{1/6+\eta}$.
+The lower threshold $V\ge H^{1/8+\eps}$ and this growth bound make both
+width comparisons valid eventually. Multiplying by $V^{12}$ gives
+\[
+ D''\mathcal L^4H^{2+7\eta}+D''\mathcal L^6H^{2+\eta}
+ \le H^{2+8\eta}\le H^{2+\eps}
+\]
+eventually. Empty sets are handled directly. This proves the finite peak
+consumer used in Input~\ref{input:peaks}, including every occupancy and
+width loss, relative to its two precisely stated analytic producers.
+\source{MathCollab.Density.Stronger.AtkinsonCardinalityAbsorption; AtkinsonGlobalCardinality; Peaks.Clusters; Peaks.ClusterCount; Peaks.WidthRanges}
+
+\begin{lemma}[High-value measure and the twelfth moment]\label{lem:twelfth}
+For each $\eps>0$ the source proves
+\[
+ \int_H^{2H}z(t)^{12}dt\ll_\eps H^{2+\eps}
+ \quad\text{eventually},\qquad
+ \int_0^{3T}z(t)^{12}dt\ll_\eps T^{2+\eps}
+ \quad\text{eventually}.
+\]
+\end{lemma}
+\begin{proof}
+The finite separated-cover lemma applied to Input~\ref{input:peaks}
+gives $|E(H,V)|\le2H^{2+\eta}/V^{12}$ for $V\ge H^{1/8+\eta}$.
+For a requested exponent $\eps$ take $\eta=\eps/20$.
+Below $V=H^{1/8+\eta}$, $z^{12}\le V^8z^4$, so
+Input~\ref{input:fourthzeta} contributes at most
+$CH^{2+9\eta}$.
+For the high values the source uses its established actual growth bound
+$z^{12}\le H^3$ on the dyadic interval eventually. With
+$\eta'<\eta$, the measure-tail bound at $\eta'$ and layer integration
+of the twelfth power give
+\[
+ \int_{E(H,H^{1/8+\eta'})}z^{12}
+ \le2H^{2+\eta'}\left(1+\log\frac{H^3}{(H^{1/8+\eta'})^{12}}\right)
+ \le2H^{2+\eta'}(1+3\log H).
+\]
+The logarithm is absorbed into the positive exponent gap to $2+\eta$.
+The set with the larger cutoff $H^{1/8+\eta}$ is a subset, so its
+high contribution is at most $H^{2+\eta}$ eventually.
+Since $9\eta\le\eps$, summing the two parts proves the dyadic bound.
+The physical interval follows from the proved dyadic integral accumulation
+for the continuous nonnegative function $z^{12}$, with exponent
+$2+\eps>0$, absorbing the initial compact interval. Replacing the terminal
+height by $3T$ changes only the constant by $3^{2+\eps}$.
+\end{proof}
+\source{MathCollab.Density.Stronger.ConditionalMoment.zeta_twelfth_dyadic_of_fourth_and_tail, zeta_twelfth_physical_of_dyadic; MomentGrowth; NativeMoment.zeta_twelfth_physical_native}
+
+\section{The smooth detector family above three quarters}
+For a fixed $3/4<\sigma<1$ put
+\[
+ \alpha=1/(2\sigma),\quad c=3/(4\sigma)=3\alpha/2,\quad
+ q(\sigma)=3(1-\sigma)/(2\sigma),\quad X=T^\delta,\quad Y=T^c.
+\]
+We have $0<c<1$, and choose $\delta>0$ before heights and zeros.
+The source's actual smooth dyadic partition is constructed from mathlib's
+smooth transition $s$, equal to zero on $(-\infty,0]$ and one on $[1,\infty)$:
+\[
+ d(x)=1-s(4x-5),\qquad \omega(x)=d(x)-d(2x).
+\]
+It is nonnegative, at most one, and supported in $[5/8,3/2]\subset(1/2,2)$.
+For $x>0$ the sum $\sum_{j\in\Z}\omega(x/2^j)=1$ follows by telescoping:
+nonnegative scales sum to $1-d(2x)$ and negative scales sum to $d(2x)$.
+The sum is pointwise finite by the support bounds. Splitting a block at
+its half-scale endpoints therefore introduces no endpoint contribution.
+\source{MathCollab.Density.Stronger.SmoothPartition: dyadicStep, smoothDyadicWeight, hasSum_smoothDyadicWeight}
+Its actual block is
+\[
+ B_j(\rho)=\sum_{n\ge2}c_X(n)n^{-\rho}\e^{-n/Y}\omega(n/2^j).
+\]
+The finite scale set is $\mathcal S_R=\{j\in\Z:j\ge0,2^j\le R\}$,
+$R=Y(\log T)^2$. A long block has $2^j>T^{c/2}$ and
+$|B_j(\rho)|\ge1/(24\log T)$.
+For the short family split a smooth block into natural dyadic half scales
+$Q_{j,e}=2^{j_{\rm nat}-1+e}$ for $e=0,1$.
+The coefficient on a half is
+$c_X(n)\e^{-n/Y}\omega(n/2^j)$, retaining the original smooth scale $2^j$.
+Apply the same real-part Taylor weights of Chapter~\ref{ch:detector} to
+each half. The Taylor index set is
+$\mathcal S_R\times\{0,1\}\times\{0,\ldots,\lceil10\log T\rceil_+\}$.
+Let $K=\lceil2\alpha/\delta\rceil_+$.
+Take convolution powers $1\le k\le K$ and pieces $0\le\ell<k$,
+retaining only members with $T^\alpha\le Q^k\le T^c$.
+Their integer starts are $L_q=2^\ell Q^k$, their coefficients are the
+conjugated convolution coefficients divided by $T^\eta$.
+This exactly describes \lean{smoothPoweredIndices} and
+\lean{smoothPoweredFamilyCoefficient}.
+\source{MathCollab.Density.Stronger.SmoothDetector; ShortFixedFamily; ShortTaylorCover; ShortPoweredFamily}
+
+\begin{analyticinput}[Native smooth detector cover and long-mean reduction]\label{input:smoothcover}
+For fixed $3/4<\sigma<1$, $0<\delta\le1/8$, $\eta>0$, eventually every
+actual zero in the positive slab is either covered by the preceding
+normalized powered short family at its original ordinate, with value
+$\ge L_q^\sigma T^{-2\eta}$, or has a long smooth block.
+The complementary, multiplicity-weighted long count $N_{\rm long}$ satisfies
+\begin{equation}\label{eq:longraw}
+ N_{\rm long}Y^{6\sigma-3}
+ \le CT^{6\delta}(\log T)^{13}
+          \left(\int_0^{3T}z(t)^{12}dt+T^{-113}\right).
+\end{equation}
+\end{analyticinput}
+\paragraph{What is used in the long reduction.}
+For the complementary zero the source proves the lower bound
+\[
+ Y^{(\sigma-1/2)/2}\le48C\sqrt X\log T\,
+       \int_\R\frac{z(\Ima\rho+t)}{(1+|t|)^{128}}\,dt.
+\]
+It extracts separated representatives with local analytic multiplicity,
+raises this bound to the twelfth power, and applies H\"older and the
+physical weighted-mean packing lemma. The near weighted integral is
+controlled by the physical twelfth moment; the far tail by the proved zeta
+growth and the integrable weight of order $128$. This yields the exact
+exponents $X^6$, $Y^{6\sigma-3}$, $(\log T)^{13}$, and remainder
+$T^{-113}$ in \eqref{eq:longraw}. Long and short counts form an exact
+partition of the original slab, weighted by $m(\rho)$.
+\source{MathCollab.Density.Stronger.ShortPoweredFamily.smooth_long_or_short_powered_cover; LongMultiplicityReduction.smoothLongZeroCount_physical_moment_reduction; WeightedCriticalMean; LongMeanCounting}
+
+\begin{proposition}[Short part of the stronger density branch]\label{prop:strongshort}
+If $\eta>0$ and $8\eta<\sigma-3/4$, the actual multiplicity count
+covered by the smooth powered family satisfies
+$N_{\rm short}\ll_{\sigma,\delta,\eta}T^{q(\sigma)+12\eta}$ eventually.
+\end{proposition}
+\begin{proof}
+The source establishes for every eligible member
+$T^\alpha\le L_q\le2^KT^c\le T$ eventually, bounded normalized
+coefficients, and at most $144K^2(\log T)^2$ members.
+Use the earlier native integer large-values bound (the high-threshold
+input described after \eqref{eq:classical}) at comparison height
+$H_a=32T(\log T)^2$. It requires $H_a^{1/3}\le L_q\le H_a$ and
+$L_q^{3/4+\kappa}\le L_q^\sigma T^{-2\eta}$.
+Take $\kappa=(\sigma-3/4)/2>0$; the margin $8\eta<\sigma-3/4$ implies
+$3/4+\kappa\le\sigma-4\eta$. Since $L_q\ge T^\alpha\ge\sqrt T$,
+these height and threshold conditions hold eventually exactly as in the
+source.
+
+With $V_q=L_q^\sigma T^{-2\eta}$ the two terms are
+$L_q^{2-2\sigma}T^{4\eta}$ and
+$L_q^{3-4\sigma}\sqrt{H_a}\,T^{8\eta}$.
+The positive length exponent uses the upper length bound and
+$2c(1-\sigma)=q(\sigma)$; the negative one uses the lower bound and
+$1/2+(3-4\sigma)\alpha=q(\sigma)$.
+Each member's budget is at most
+$(2^K+32)\log T\,T^{q(\sigma)+8\eta}$.
+The indexed finite cover and multiplicity extraction add a factor
+$\log(2T)H_a^\eta$ and the number of family members.
+Eventually $H_a^\eta\le T^{2\eta}$, and the resulting four logarithms
+are at most $T^{2\eta}$. This gives exactly the total loss $12\eta$.
+It bounds only the explicitly covered subset; the other zeros remain in
+$N_{\rm long}$.
+\end{proof}
+\source{MathCollab.Density.Stronger.ShortExponentAccounting.smooth_family_sum_eventually; ShortZeroCount.smoothShortZeroCount_bound}
+
+\begin{proposition}[The strictly upper density branch]\label{prop:strong}
+For every fixed $\sigma>3/4$ and $\eps>0$ there is $C>0$ such that
+for all $T\ge2$,
+\[
+ N(\sigma,T)\le CT^{3(1-\sigma)/(2\sigma)+\eps}.
+\]
+\end{proposition}
+\begin{proof}
+For $\sigma\ge1$ the count is zero, so take $C=1$.
+For $3/4<\sigma<1$, put $d=1-c>0$. Choose
+\[
+ \delta=\min(1/16,d/24),\quad
+ \eta=\min(\eps/24,(\sigma-3/4)/16),\quad\nu=d/16.
+\]
+Then $0<\delta\le1/8$, $\delta<d/12$, $8\eta<\sigma-3/4$,
+$12\eta\le\eps$, and $0<\nu\le d/8$.
+Lemma~\ref{lem:twelfth} gives $\int_0^{3T}z^{12}\le DT^{2+\nu}$
+eventually. Insert this in \eqref{eq:longraw}; its extra remainder is
+also at most $T^{2+\nu}$ for $T\ge1$.
+The identity
+\[
+ 2+(6-12\sigma)c/2=q(\sigma)-(1-c)
+\]
+shows that the raw long exponent is $q-d+6\delta+\nu$.
+Because $6\delta<d/2$ and $\nu\le d/8$, a positive margin remains to
+$q-d/4$; the thirteen logarithms are absorbed into that margin.
+Thus $N_{\rm long}\ll T^{q-d/4}$ eventually.
+Proposition~\ref{prop:strongshort} gives
+$N_{\rm short}\ll T^{q+12\eta}$. Their exact partition gives an
+actual positive-slab bound with exponent $q+12\eta>0$.
+Apply Lemma~\ref{lem:dyadic} and finally monotonicity in the exponent to
+replace $12\eta$ by $\eps$ for $T\ge2$.
+The choice $d>0$ and the high-threshold margin fail at $\sigma=3/4$;
+no endpoint at that line is inferred.
+\end{proof}
+\source{MathCollab.Density.Stronger.FinalParameters.exists_stronger_loss_parameters; ConditionalDensity.stronger_density_bound_of_twelfth_moment; NativeDensity.stronger_density_bound_native}
+
+\section{The separate coefficient-two branch used in the global proof}
+The source's global-uniform theorem uses an earlier coefficient-two result
+above $3/4$, not the stronger branch just proved. To preserve that actual
+proof route we record its exact established interface.
+\begin{analyticinput}[Native Weyl-based density conclusion]\label{input:two}
+The source proves, for $\sigma>3/4$ and every $\eps>0$,
+\[
+ N(\sigma,T)\ll_{\sigma,\eps}T^{2(1-\sigma)+\eps}\quad(T\ge2).
+\]
+It discharges the actual critical-line Weyl input
+$z(t)\le C_w(1+|t|)^{1/6+\eta_0}$ with $0\le\eta_0<1/48$.
+\end{analyticinput}
+\paragraph{Use of the imported machinery.}
+The source chooses the positive counting loss
+$\min((\sigma-3/4)/16,\eps/24)$ before heights, obtains an eventual
+actual positive-slab bound with exponent $2(1-\sigma)$ plus twelve such
+losses, and uses the actual-count dyadic summation. The Weyl growth is
+proved by the native van der Corput, second-derivative, and explicit Weyl
+chain. The contour errors, powered family, separated counts, and analytic
+multiplicity restoration in that branch are proved dependencies, not
+unproved density premises. If $\sigma\ge1$ it again uses the empty count.
+\source{MathCollab.Density.DensityConclusion.zeta_density_bound_of_weyl; DensityTheorem.zeta_density_bound; GuthMaynard.WeylZeta; WeylPort}
+
+\chapter{Endpoint assembly, uniform constants, and the boundary audit}\label{ch:final}
+\section{The fixed-line piecewise theorem}
+\begin{proof}[Proof of Theorem~\ref{thm:full}]
+If $1/2\le\sigma\le9/13$, apply Proposition~\ref{prop:ingham}.
+If $9/13<\sigma\le5/7$, use Corollary~\ref{cor:windows} with $g$.
+If $5/7<\sigma\le3/4$, use its $h$ bound.
+If $3/4<\sigma\le1$, use Proposition~\ref{prop:strong}.
+The resulting exponent is exactly $f(\sigma)=A(\sigma)(1-\sigma)$.
+The constant in each branch may depend on the fixed $\sigma$ and $\eps$;
+this case distinction makes no additional uniformity claim.
+\end{proof}
+\source{GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve; GuthMaynardStatement.coefficient_times_gap, full_curve}
+
+The endpoint values are
+\[
+ f(1/2)=1,\quad f(9/13)=12/17,\quad f(5/7)=9/14,
+ \quad f(3/4)=9/16,\quad f(1)=0.
+\]
+At $9/13$ the two rational formulas coincide; at $5/7$ the rational
+formula equals $(9/4)(1-\sigma)$. The value at $3/4$ belongs to the
+closed upper window, not the strictly upper branch.
+\source{GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_endpoints}
+
+\section{The actual route to the fixed-line coefficient 39/17}
+Let $c_0=39/17$. The source compares
+\[
+ \frac{3(1-\sigma)}{2-\sigma}\le c_0(1-\sigma)
+       \quad(1/2\le\sigma\le9/13),
+\]
+\[
+ \frac{18(1-\sigma)}{7\sigma+3}\le c_0(1-\sigma)
+       \quad(9/13\le\sigma\le5/7).
+\]
+The first uses $2-\sigma\ge17/13$, and the second
+$7\sigma+3\ge102/13$. Both denominators are positive and $1-\sigma\ge0$.
+Above $3/4$ Input~\ref{input:two} fits since $2<c_0$ and
+$1-\sigma\ge0$.
+The source closes $[5/7,3/4]$ through its \emph{separate} padded upper-window
+route. It uses the same fixed powered detector family at lower exponent
+$3/4$, upper exponent $9/8$, but uses the fixed second split $7/8$ rather
+than $s(\sigma)$. The needed comparisons are
+\[
+ \tfrac94(1-\sigma),\quad39/14-3\sigma,\quad
+ 63/20-7\sigma/2,\quad15/8-7\sigma/4
+       \ \le c_0(1-\sigma).
+\]
+They are affine in $\sigma$ and hold at both endpoints $5/7$ and $3/4$.
+Padded time $S=H$ below $H^{5/6}$ and $S=N^{6/5}$ between
+$H^{5/6}$ and $H^{7/8}$ yields the first three budgets; the mean-value
+branch above $H^{7/8}$ yields the fourth. The loss is $10\delta$ as in
+Chapter~\ref{ch:windows}. The fixed-family cover adds $\eta$, the
+unconditional weak Type-II exponent fits $c_0(1-\sigma)$, and Jensen
+restoration plus dyadic summation gives the actual upper density bound.
+Thus the whole fixed-line $c_0$ theorem has no
+\lean{GuthMaynardUpperDensity} or \lean{ShortMobiusFourthMoment} premise.
+\source{GuthMaynard.Improvement.UpperWindowBudgets; UpperWindowLargeValues; UpperTypeICount; WeakUpperDensity.upper_density; GlobalDensityIngham.global_density_fixed_sigma_of_ingham}
+
+\section{Finite-grid uniformization}
+\begin{lemma}[One-sided-modulus uniformization]\label{lem:grid}
+Let $a<b$, $K>0$, and $q:[a,b]\to\R$ satisfy
+\[
+ q(x)\le q(y)+K(y-x)\quad(a\le x\le y\le b).
+\]
+Suppose each $\sigma\in[a,b]$ and each $\eta>0$ has a constant with
+$N(\sigma,T)\le C_{\sigma,\eta}T^{q(\sigma)+\eta}$ for all $T\ge2$.
+For every $\eps>0$ a single positive $C$ then works for all $\sigma,T$:
+$N(\sigma,T)\le CT^{q(\sigma)+\eps}$.
+\end{lemma}
+\begin{proof}
+Choose a natural $n>2K(b-a)/\eps$. Set
+$x_j=a+j(b-a)/n$ for $j=0,\ldots,n$.
+At each grid point choose $C_j>0$ with the fixed-line estimate at loss
+$\eps/2$. Let $C=1+\sum_{j=0}^n C_j$.
+For a given $\sigma$, let
+$j=\lfloor(\sigma-a)n/(b-a)\rfloor_+$; then $0\le j\le n$,
+$x_j\le\sigma$ and $\sigma-x_j\le(b-a)/n$.
+The one-sided modulus gives
+$q(x_j)+\eps/2\le q(\sigma)+\eps$.
+Monotonicity of the actual zero count in its real-part cutoff and
+monotonicity of $T$-powers in their exponent, for $T\ge2$, give
+\[
+ N(\sigma,T)\le N(x_j,T)
+ \le C_jT^{q(x_j)+\eps/2}
+ \le C_jT^{q(\sigma)+\eps}\le CT^{q(\sigma)+\eps}.
+\]
+The constant was selected from a finite grid before $\sigma,T$.
+\end{proof}
+\source{GuthMaynard.Improvement.CurveUniformization.density_curve_uniform_on_interval}
+
+\begin{proof}[Proof of Theorem~\ref{thm:global}]
+Use the actual fixed-line coefficient-$c_0$ proof from the preceding
+section. The source specializes finite-grid uniformization to
+$q(\sigma)=c_0(1-\sigma)$ on $[1/2,1]$.
+More explicitly choose $n>c_0/\eps$ and
+$x_j=1/2+j/(2n)$, using fixed-line loss $\eps/2$.
+Then $c_0(\sigma-x_j)\le c_0/(2n)\le\eps/2$.
+The constant $1+\sum C_j$ and the exact comparison in Lemma~\ref{lem:grid}
+give the assertion, including $\sigma=1$.
+This proof does not attempt to uniformize the discontinuous exact curve.
+\end{proof}
+\source{GuthMaynard.Improvement.ShortDensityUniform.zetaDensityCount_uniform_of_fixed_sigma; GlobalDensityIngham.global_density_uniform_of_ingham; GlobalDensity.global_density_uniform; GuthMaynardStatement.global_uniform}
+
+\section{Uniformity on the exact left curve and away from the strict join}
+The source proves each smooth branch has a one-sided modulus with $K=4$.
+For $1/2\le x\le y\le9/13$,
+\[
+ \frac{3(1-x)}{2-x}-\frac{3(1-y)}{2-y}
+       =\frac{3(y-x)}{(2-x)(2-y)}\le4(y-x).
+\]
+For $9/13\le x\le y\le5/7$,
+\[
+ \frac{18(1-x)}{7x+3}-\frac{18(1-y)}{7y+3}
+       =\frac{180(y-x)}{(7x+3)(7y+3)}\le4(y-x),
+\]
+using $(7x+3)(7y+3)\ge49$.
+For the linear branch the difference is $(9/4)(y-x)\le4(y-x)$.
+For $3/4\le x\le y\le1$ the upper rational expression has
+\[
+ \frac{3(1-x)}{2x}-\frac{3(1-y)}{2y}
+       =\frac{3(y-x)}{2xy}\le4(y-x),\qquad xy\ge9/16.
+\]
+Only this modulus statement includes $x=3/4$; the stronger density theorem
+itself still requires strict inequality.
+\source{GuthMaynard.Improvement.CurveModulus}
+
+\begin{proposition}[Uniform exact left curve]\label{prop:leftuniform}
+For every $\eps>0$ one constant works for all $\sigma\in[1/2,3/4]$
+and $T\ge2$ in the bound $N(\sigma,T)\le CT^{f(\sigma)+\eps}$.
+\end{proposition}
+\begin{proof}
+Apply Lemma~\ref{lem:grid} separately to the three closed intervals
+$[1/2,9/13]$, $[9/13,5/7]$, and $[5/7,3/4]$, using the branch
+fixed-line bounds and the preceding moduli. The sum of the three positive
+constants works everywhere on their union. The definitions agree at the
+two interior joins, so there is no endpoint discrepancy.
+\end{proof}
+\source{GuthMaynard.Improvement.FullCurveLeftUniform.full_density_curve_uniform_left}
+
+\begin{proof}[Proof of Theorem~\ref{thm:away}]
+Let $C_1$ be the left constant from Proposition~\ref{prop:leftuniform}.
+If $3/4+\delta<1$, apply Lemma~\ref{lem:grid} to
+$[3/4+\delta,1]$ with $q(\sigma)=3(1-\sigma)/(2\sigma)$ and $K=4$.
+Proposition~\ref{prop:strong} applies at every point of that interval,
+so a right constant $C_2$ exists. Take $C_1+C_2$ and choose the appropriate
+branch. If $3/4+\delta\ge1$, every admitted point in the right alternative
+has $\sigma\ge1$, so its count is zero. The left constant alone works.
+This handles intervals that degenerate to the single endpoint or are empty.
+\end{proof}
+\source{GuthMaynard.Improvement.CombinedDensityCurve.combined_density_curve_uniform_away_boundary; GuthMaynardStatement.uniform_away_boundary}
+
+\section{A boundary obstruction is not a counterexample to uniform density}
+\begin{proposition}[Exact boundary-modulus obstruction]
+For every real $K$ there is $\sigma\in(3/4,1]$ such that
+\[
+ f(\sigma)+K(\sigma-3/4)<f(3/4).
+\]
+\end{proposition}
+\begin{proof}
+For every $\sigma>3/4$, the right formula satisfies
+$f(\sigma)=3(1-\sigma)/(2\sigma)<1/2$, by multiplying by $2\sigma>0$.
+Set $\delta_K=1/(64(|K|+1))$ and $\sigma=3/4+\delta_K$.
+Then $0<\delta_K\le1/64$, $\sigma\le1$, and $K\delta_K\le1/64$.
+Thus $f(\sigma)+K\delta_K<1/2+1/64=33/64<9/16=f(3/4)$.
+\end{proof}
+\source{GuthMaynard.Improvement.CurveBoundaryAudit.combined_curve_right_lt_half, combined_curve_boundary_modulus_obstruction}
+It follows that the one-sided finite-$K$ modulus required by
+Lemma~\ref{lem:grid} cannot hold across $3/4$ for the combined curve.
+This proves a limitation of that uniformization method, not the falsehood
+of a whole-strip exact-curve uniform density estimate.
+
+\section{The independent actual-zero assertion in the interface}
+The endpoint specification states $\operatorname{actualZeroBound}(\sigma,T,B)$
+as existence of a finite set $Z$ whose membership is exactly
+\[
+ \zeta(\rho)=0,\quad0<\Rea\rho<1,\quad\sigma\le\Rea\rho,
+ \quad|\Ima\rho|\le T,
+\]
+and for which $\sum_{\rho\in Z}m(\rho)\le B$.
+Given any bound on $N(\sigma,T)$, choose
+$Z=Z(\sigma;-T,T)$. The finite-set theorem from Chapter~1 proves its
+existence, and $-T\le\Ima\rho\le T$ is equivalent to
+$|\Ima\rho|\le T$. The sum defining $N$ is exactly the required sum,
+so each endpoint count bound yields the independent assertion.
+The coefficient identity $A(\sigma)(1-\sigma)=f(\sigma)$ is verified
+branch by branch. The large-values specification is definitionally the
+same bounded polynomial and the same middle-range proposition proved
+in Chapter~\ref{ch:middle}. These are all the final wrapper steps.
+\source{GuthMaynardStatement.actualZeroBound_of_count, coefficient_times_gap, middle_large_values in lean/Solution.lean}
+
+\appendix
+\chapter{Dependency ledger, provenance, and verification boundary}
+\section{The mathematical inputs used, not additional endpoint assumptions}
+The inputs below are established theorems in the pinned source closure.
+Their use is explicit in the preceding proofs. A future paper expanding
+all of their internal analytic proofs would require additional chapters;
+this blueprint does not claim such an expansion has already been made.
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Analytic zero foundations.} mathlib analytic zeta away from $1$,
+nonvanishing in $\Rea s\ge1$, isolated zeros on compact sets, the identity
+theorem, finite analytic order and local factorization. Used to make the
+zero count nonvacuous and multiplicities genuine.
+\item \textbf{Ordinary Fourier foundations.} Lebesgue/Bochner integration,
+Tonelli/Fubini under the stated integrability, normalized Plancherel,
+Fourier inversion for the cut signals, convolution regularity, rapid decay
+of compact smooth/Schwartz inputs, Poisson summation with explicit scale.
+Used by affine energies, source sampling, the masked cubic, and extraction.
+\item \textbf{Affine native descent.} Source Lemma-9.2 recurrence, divisor
+ray counting and retained Poisson budgets, adaptive smoothing, and finite
+natural-number descent. The height profile, support-depth budget, and
+unequal $RK$ factor are retained in Chapter~\ref{ch:affine}.
+\item \textbf{Nuclear operator foundations.} Positive rank-one sums and
+integrals, finite-dimensional eigenbases, witness/Bessel bounds, Schur
+operator norm, cubic and mixed trace limits through finite compressions.
+No infinite eigenbasis or commuting correction operator is assumed.
+\item \textbf{Native classical large values.} The high-threshold integer
+estimate is applied only with its $\kappa>0$ and scale restrictions; the
+separated mean square closes low thresholds and real-length rounding.
+\item \textbf{Actual contour foundations.} M\"obius cancellation, Mellin
+inversion, regularized zeta poles, rectangle residues, Gamma strip decay,
+and uniform ordinate-tail packing. Used with independent $X,Y$.
+\item \textbf{Native fourth moment.} \lean{Fourth.zeta_fourth_dyadic}
+feeds the weak mollified fourth moment and the high/low twelfth-moment
+assembly. The sharper \lean{ShortMobiusFourthMoment} contract remains
+separate and is not used in the unconditional endpoints.
+\item \textbf{Native high-value peaks.} Point-mean and stationary-source
+Atkinson producers plus packet width ranges feed the actual finite peak
+bound. That bound feeds the high twelfth-moment tail, not an assumed
+unrestricted twelfth-moment conjecture.
+\item \textbf{Native Ingham endpoint.} Classical detector dichotomy and the
+separate medium ordinary-zeta Type-I reflection consumer, coefficient
+normalization, bounded shifts with reseparation, Type-II fourth moment,
+and exact native-count bridge. The half endpoint has its own proof.
+\item \textbf{Earlier coefficient-two upper density.} Explicit native Weyl
+input, detector error estimates, finite powered families, multiplicity
+restoration, and dyadic accumulation. It is the actual upper branch used
+by \lean{GlobalDensityIngham}, even though the combined fixed-line curve
+has a stronger strictly upper branch.
+\end{enumerate}
+
+\section{Proof route and compatibility names}
+The final registered path is
+\begin{quote}\small
+\lean{GuthMaynardStatement.full_curve} follows from
+\lean{combined_density_curve}.\\
+\lean{GuthMaynardStatement.global_uniform} follows from
+\lean{global_density_uniform}.\\
+\lean{GuthMaynardStatement.uniform_away_boundary} follows from
+\lean{combined_density_curve_uniform_away_boundary}.\\
+\lean{GuthMaynardStatement.middle_large_values} follows from
+\lean{middle_range_large_values}.
+\end{quote}
+The wrappers are in the file \lean{Solution.lean}; its endpoint namespace
+is \lean{GuthMaynardStatement}. Similarly ``candidate'', ``conditional'', and ``gate'' in
+an internal filename are not evidence of an unproved endpoint. Each explicit
+intermediate contract must be checked where its producer is supplied.
+The internal \lean{GuthMaynardUpperDensity} proposition is not a premise of
+\lean{global_density_uniform}; \lean{InghamLowerDensity} is discharged by
+\lean{ingham_lower_density}; the final short branch uses
+\lean{WeakShortDensity.short_density}.
+
+\section{Preserved attribution}
+New material in the repository carries AGPL-3.0-only licensing; imported ports
+retain their original notices. The pinned record identifies adapted material
+from Scott McColm at revisions
+\lean{6e2d10c6c2252ee1575bb7ef12dea12e2f1a3af1} (MIT-0) and
+\lean{2ace9e7c09a69fdcd1edae1ab6deb7cb3b4df1be} (MIT), selected Fourier,
+Poisson, Mellin and Gamma developments from Conor Grogan's
+\lean{prime-minor-arcs-2-15} at
+\lean{f369f267b4dcfebf010c8e7baa2c9602e2960eba} (Apache-2.0), and analytic
+foundations from \lean{PrimeNumberTheoremAnd} at
+\lean{4ecb950126c4290293c5662dfe0e884123171df5} (Apache-2.0).
+The original repository's \lean{THIRD_PARTY_NOTICES.md}, \lean{licenses/},
+source headers, and \lean{third_party/} manifests are preserved in the
+archive. The informal reconstruction is not attributed to those authors as
+an approved text.
+
+\section{What has and has not been checked here}
+The downloaded statement and solution files match the registry's SHA-256
+values respectively:
+\begin{center}
+\lean{b0feb005a241a3d2da02def8c8ae83cb9db2e743b6c5679245a5c22775e7675a}\\
+\lean{8b3e9e2dea3baa6c9db288f6d6bc64662b8fd1f14525599e99abb7fd9bc9f7cb}.
+\end{center}
+The source was read and the displayed mathematics was reconstructed and
+cross-checked against the cited declarations. The LaTeX build and references
+are checked separately in the accompanying validation record. This does not
+constitute human peer review, an author endorsement, a novelty certificate,
+or a fresh complete kernel replay of the pinned Lean development.
+The registry's mechanical certificate and the repository's earlier local
+verification receipt have distinct provenance; neither is silently replaced
+by a claim that this reconstruction performed a full rebuild.
+
+\section{Source references}
+\begin{thebibliography}{9}
+\bibitem{registry}
+Palomar Registry, \emph{Zero-density estimates from an improved large-values
+bound}, entry PALOMAR-2026-10-11-000010, version 1.
+\url{https://palomar-registry.org/entry?id=PALOMAR-2026-10-11-000010&version=1}.
+\bibitem{source}
+M. Lewko, \emph{zeta-density-39-over-17-lean}, fixed repository snapshot.
+\url{https://github.com/mrklwk/zeta-density-39-over-17-lean/tree/ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0}.
+\bibitem{mathlib}
+The mathlib community, \emph{mathlib4}, revision
+\lean{065356127b1dc0016f66b7283ce0ce2c4055aa55}.
+\url{https://github.com/leanprover-community/mathlib4/tree/065356127b1dc0016f66b7283ce0ce2c4055aa55}.
+\bibitem{notices}
+The pinned source, \emph{THIRD\_PARTY\_NOTICES.md} and source-identity
+manifests, with the licenses retained for each port.
+\end{thebibliography}
+\end{document}

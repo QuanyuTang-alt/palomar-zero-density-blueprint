@@ -1,0 +1,23 @@
+{
+  "source_commit": "ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0",
+  "challenge_sha256_match": true,
+  "solution_sha256_match": true,
+  "source_checksum_entries_verified": 899,
+  "local_import_modules": 824,
+  "tex_lines": 2712,
+  "tex_words_whitespace": 13421,
+  "correspondence_paragraphs": 99,
+  "proof_environments": 43,
+  "duplicate_labels": [],
+  "undefined_internal_references": [],
+  "unexpected_control_characters": [],
+  "latex_compile_exit_code": 0,
+  "pdf_pages": 54,
+  "blank_pdf_pages": [],
+  "out_of_page_pdf_words": [],
+  "overfull_boxes": 0,
+  "undefined_reference_warnings": 0,
+  "missing_character_warnings": 0,
+  "fresh_full_lean_rebuild_performed": false,
+  "human_peer_review_performed": false
+}
