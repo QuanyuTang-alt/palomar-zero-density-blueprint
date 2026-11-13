@@ -4,8 +4,8 @@
   "solution_sha256_match": true,
   "source_checksum_entries_verified": 899,
   "local_import_modules": 824,
-  "tex_lines": 2712,
-  "tex_words_whitespace": 13421,
+  "tex_lines": 2721,
+  "tex_words_whitespace": 13467,
   "correspondence_paragraphs": 99,
   "proof_environments": 43,
   "duplicate_labels": [],
@@ -19,5 +19,8 @@
   "undefined_reference_warnings": 0,
   "missing_character_warnings": 0,
   "fresh_full_lean_rebuild_performed": false,
-  "human_peer_review_performed": false
+  "human_peer_review_performed": false,
+  "typeII_scaled_difference_exact": "350*sigma^2-657*sigma+297",
+  "typeII_source_factor_witness_exact": "(25/14)*(7*sigma-5)*(28*sigma-33)+(11/2)*sigma+33/14",
+  "typeII_identity_exact_coefficient_check": true
 }

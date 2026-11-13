@@ -588,14 +588,14 @@ Chapter 8.
 [32
 
 ]
-Underfull \hbox (badness 1237) in paragraph at lines 1942--1942
+Underfull \hbox (badness 1237) in paragraph at lines 1951--1951
 []\T1/lmr/bx/n/14.4 From even-tual pos-i-tive slabs to both-sign all-height
  []
 
 [33] [34]
 Chapter 9.
 
-Underfull \hbox (badness 4181) in paragraph at lines 1998--2000
+Underfull \hbox (badness 4181) in paragraph at lines 2007--2009
 [][]\T1/lmr/bx/n/10.95 Definition 9.1 \T1/lmr/m/n/10.95 (Clas-si-cal ex-po-nent
  cer-tifi-cate)\T1/lmr/bx/n/10.95 . []\T1/lmr/m/n/10.95 The na-tive log-a-rith-
 mic scale is
@@ -610,7 +610,7 @@ Chapter 10.
 ] [43] [44] [45]
 Appendix A.
 
-Underfull \hbox (badness 1237) in paragraph at lines 2613--2617
+Underfull \hbox (badness 1237) in paragraph at lines 2622--2626
 []\T1/lmr/bx/n/10.95 Nuclear op-er-a-tor foun-da-tions. \T1/lmr/m/n/10.95 Pos-i
 -tive rank-one sums and in-te-grals, finite-
  []
@@ -619,10 +619,10 @@ Underfull \hbox (badness 1237) in paragraph at lines 2613--2617
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 2645.
+(Font)              <10> on input line 2654.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 2645.
+(Font)              <7> on input line 2654.
  [47] [48] [49
 
 ] (zeta-density-blueprint.aux) )
-Output written on zeta-density-blueprint.xdv (54 pages, 286120 bytes).
+Output written on zeta-density-blueprint.xdv (54 pages, 286800 bytes).

@@ -1852,8 +1852,17 @@ $g(\sigma)$; on $5/7\le\sigma\le3/4$ it is at most $h(\sigma)$.
 Multiply Input~\ref{input:typeIIwindow} by Proposition~\ref{prop:weakmoment}.
 The exponent is $(1-2\sigma)+(1+1/25+\eps)$.
 For the first comparison multiply $g-(2-2\sigma+1/25)$ by
-$25(7\sigma+3)>0$: the result is
-$(7\sigma-5)(50\sigma-69)\ge0$ on the short interval.
+$25(7\sigma+3)>0$. The exact polynomial is
+\[
+ 350\sigma^2-657\sigma+297
+ =\frac{25}{14}(7\sigma-5)(28\sigma-33)
+       +\frac{11}{2}\sigma+\frac{33}{14}.
+\]
+On $9/13\le\sigma\le5/7$, both $7\sigma-5$ and $28\sigma-33$ are
+nonpositive, so their product is nonnegative; the remaining two terms are
+positive. This is the nonpositive-factor witness actually used by
+\lean{weak_short_typeII_exponent_le}, with the scalar algebra made explicit.
+In particular, at $\sigma=5/7$ the scaled difference is $44/7$, not zero.
 For the second comparison the difference is
 $(1-\sigma)/4-1/25\ge1/16-1/25>0$ on the closed upper interval.
 Thus the genuine fixed power loss $1/25$ fits both target windows.

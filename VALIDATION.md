@@ -6,7 +6,7 @@
 - Source commit: `ee2a8a32be49a4f73c7386e9dffdea24d7e3d8c0`.
 - Editable English blueprint: `zeta-density-blueprint.tex`.
 - Compiled reading copy: `zeta-density-blueprint.pdf`, 54 pages.
-- TeX source: 2,712 lines, 13,421 whitespace-delimited tokens; 43 proof environments and 99 source-correspondence paragraphs. These counts are descriptive, not a measure or certificate of mathematical completeness.
+- The TeX line/token counts in `validation.json` refer to the latest revision; 43 proof environments and 99 source-correspondence paragraphs are retained. These counts are descriptive, not a measure or certificate of mathematical completeness.
 
 ## Checks performed
 
@@ -34,6 +34,18 @@ The four registered endpoint consumers are reconstructed in English mathematical
 Imported analytic results are explicitly labeled and precisely stated at the interface being used. They are proved dependencies in the source, not added endpoint assumptions. The document does **not** expand every auxiliary proof in the complete local module closure: foundational measure theory, Gamma-ratio and contour estimates, the native stationary Atkinson producer, and the full native classical medium-reflection machinery retain explicitly delimited imported status. The complete fixed source archive preserves those proofs for further expansion.
 
 No fresh complete Lean build or independent kernel replay was run for this informal reconstruction. The registry's verification metadata and upstream `VERIFICATION.json` are preserved separately and are not described as checks performed in this task. No human peer review, author approval, or novelty certification is claimed.
+
+## Corrected Type-II scalar identity
+
+A transcription error in the short-window Type-II exponent comparison was corrected against `WeakShortDensity.weak_short_typeII_exponent_le`. The scaled difference is exactly
+
+`25(7σ+3)[18(1−σ)/(7σ+3) − (2−2σ+1/25)] = 350σ²−657σ+297`.
+
+The source's nonpositive-factor witness is retained through the exact decomposition
+
+`350σ²−657σ+297 = (25/14)(7σ−5)(28σ−33) + (11/2)σ + 33/14`.
+
+On the short interval the product is nonnegative and the remaining terms are positive. At `σ=5/7` the scaled difference equals `44/7`. Exact rational arithmetic also rechecked the adjacent mean-value and closed-upper-window difference identities. The erroneous `(7σ−5)(50σ−69)` expression is absent from the corrected TeX. The PDF, source-map line locations, checksums, ZIP and private remote repository are refreshed together.
 
 ## Archive safeguards
 
