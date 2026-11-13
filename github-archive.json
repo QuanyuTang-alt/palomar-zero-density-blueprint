@@ -6,7 +6,8 @@
   "private": true,
   "created_at": "2026-11-13T05:01:35Z",
   "status": "uploaded and verified",
-  "verified_commit": "830382150309f74bfd2153f817ef4f31c335fe02",
+  "verified_commit": "e9d100c018ee9aa1b3afba14676c5e234091c4aa",
   "remote_primary_files_byte_verified": true,
-  "remote_pinned_source_files": 900
+  "remote_pinned_source_files": 900,
+  "typeII_correction_remote_verified": true
 }
