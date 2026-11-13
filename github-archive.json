@@ -5,5 +5,8 @@
   "visibility": "private",
   "private": true,
   "created_at": "2026-11-13T05:01:35Z",
-  "status": "created; push pending"
+  "status": "uploaded and verified",
+  "verified_commit": "830382150309f74bfd2153f817ef4f31c335fe02",
+  "remote_primary_files_byte_verified": true,
+  "remote_pinned_source_files": 900
 }
